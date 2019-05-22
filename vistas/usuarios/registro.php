@@ -35,8 +35,7 @@
         <div class="form-label-group">
             <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Contraseña" required="required">
             <label for="inputPassword">Contraseña</label>
-        </div>
-            
+        </div>            
         
         <button class="btn btn-lg btn-primary btn-block" type="submit">Registrarme!</button>
         <p class="mt-5 mb-3 text-muted text-center">© 2017-2019</p>
