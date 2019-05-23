@@ -110,6 +110,8 @@
                 <i class="fas fa-user mr-3"></i>Usuarios</a>
             <a href="<?=HOST?>provincias" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-table mr-3"></i>Provincias</a>
+            <a href="<?=HOST?>curriculums" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-table mr-3"></i>Curriculums</a>
             <!-- <a href="#" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-map mr-3"></i>Maps</a>
             <a href="#" class="list-group-item list-group-item-action waves-effect">
