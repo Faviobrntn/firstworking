@@ -38,32 +38,32 @@
     <div class="tab-content">
 
         <!-- Panel 1 -->
-        <div class="tab-pane fade in show active" id="panel444" role="tabpanel">
+        <div class="tab-panel fade in" id="panel444" role="tabpanel">
 
             <!-- Nav tabs -->
             <div class="col-sm container-fluid border-primary rounded">
-                <div id="divListar">Cargando...</div>
+                <div id="divListar"><?php require_once 'listar.php'; ?></div>
             </div>
 
         </div>
         <!-- Panel 1 -->
 
         <!-- Panel 1 -->
-        <div class="tab-pane fade in show active" id="panel555" role="tabpanel">
+        <div class="tab-panel fade in show active" id="panel555" role="tabpanel">
 
             <!-- Nav tabs -->
             <div class="col-sm container-fluid border-primary rounded">
-                <div id="divSubir">Cargando...</div>
+                <div id="divSubir"><?php require_once 'subir.php'; ?></div>
             </div>
 
         </div>
         <!-- Panel 1 -->
 
         <!-- Panel 2 -->
-        <div class="tab-pane fade" id="panel666" role="tabpanel">
+        <div class="tab-panel fade" id="panel666" role="tabpanel">
 
             <div class="container-fluid border-primary rounded">
-                <div id="divCrear">Cargando...</div>
+                <div id="divCrear"><?php require_once 'crear.php'; ?></div>
             </div>
         </div>
         <!-- Panel 2 -->
@@ -74,7 +74,7 @@
     <script src="<?=HOST?>vendor/js/bootstrap.bundle.min.js"></script>
     <script src="<?=HOST?>vendor/js/mdb.min.js"></script>
     
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         $("#divListar").load( "<?= HOST ?>curriculums/listar.php");
     </script>
 
@@ -84,7 +84,7 @@
 
     <script type="text/javascript">
         $("#divCrear").load( "<?= HOST ?>curriculums/crear.php");
-    </script>
+    </script> -->
 </body>
 
 </html>
