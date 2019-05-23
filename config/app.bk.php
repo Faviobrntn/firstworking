@@ -17,18 +17,11 @@ class App
             $request = strtolower($_GET['url']);
         }
 
-        $params = explode("/", $request);
-
-        $controlador = $accion = "";
-
-        if (!empty($params[0])) {
-            $controlador = $params[0];
-            unset($params[0]);
-        }
-        if (!empty($params[1])) {
-            $accion = $params[1];
-            unset($params[1]);
-        }
+        list( 
+            $controlador, 
+            $accion, 
+            $id 
+        ) = array_pad( explode( '/', $request ), 3, '' );
 
         // Instanciamos el controlador
         if (empty($controlador)) {
@@ -50,8 +43,7 @@ class App
             }
             
             // call_user_func( array( $controller, $accion, $id ) );
-            // call_user_func_array([$controller, $accion], [$id]);
-            call_user_func_array([$controller, $accion], $params);
+            call_user_func_array([$controller, $accion], [$id]);
         }else {
             require_once 'controladores/errores.php';
             $controller = new Errores();

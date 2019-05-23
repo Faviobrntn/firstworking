@@ -27,6 +27,12 @@ class Controlador
         }
     }
 
+    public function plantilla($nombre)
+    {
+        $this->vista->plantilla($nombre);
+    }
+
+    
     public function render($nombre)
     {
         $this->vista->render($nombre);

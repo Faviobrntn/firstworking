@@ -37,6 +37,7 @@ CREATE TABLE `usuarios` (
   `domicilio` varchar(150) DEFAULT NULL,
   `carrera_id` int(11) DEFAULT NULL,
   `localidad_id` int(11) NOT NULL,
+  `creado` datetime NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_usuarios_local` FOREIGN KEY (`localidad_id`) REFERENCES `localidades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_usuarios_carrera` FOREIGN KEY (`carrera_id`) REFERENCES `carreras` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -63,6 +64,7 @@ CREATE TABLE `cv` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `usuario_id` int(11) NOT NULL,
   `archivo` blob,
+  `creado` datetime NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `FKidUsuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -87,8 +89,9 @@ DROP TABLE IF EXISTS `localidades`;
 CREATE TABLE `localidades` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(11) NOT NULL,
-  `desc` text DEFAULT NULL,
+  `descripcion` text DEFAULT NULL,
   `provincia_id` int(11) NOT NULL,
+  `creado` datetime NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_LocalProv` FOREIGN KEY (`provincia_id`) REFERENCES `provincias` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -115,8 +118,9 @@ DROP TABLE IF EXISTS `carreras`;
 CREATE TABLE `carreras` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(150) NOT NULL,
-  `desc` text DEFAULT NULL,
+  `descripcion` text DEFAULT NULL,
   `facultad_id` int(11) NOT NULL,
+  `creado` datetime NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fkFacu` FOREIGN KEY (`facultad_id`) REFERENCES `facultades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -145,8 +149,9 @@ CREATE TABLE `facultades` (
   `nombre` varchar(150) NOT NULL,
   `direccion` varchar(150) DEFAULT NULL,
   `email` varchar(150) DEFAULT NULL,
-  `desc` text DEFAULT NULL,
+  `descripcion` text DEFAULT NULL,
   `localidad_id` int(11) NOT NULL,
+  `creado` datetime NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_facus_localidad` FOREIGN KEY (`localidad_id`) REFERENCES `localidades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -176,8 +181,8 @@ CREATE TABLE `ofertas` (
   `modalidad` varchar(45) DEFAULT NULL,
   `horario_laboral` varchar(45) DEFAULT NULL,
   `remuneracion` float DEFAULT NULL,
-  `desc` text DEFAULT NULL,
-  `creacion` datetime NOT NULL,
+  `descripcion` text DEFAULT NULL,
+  `creado` datetime NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_ofertas_localidad` FOREIGN KEY (`localidad_id`) REFERENCES `localidades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ofertas_carrera` FOREIGN KEY (`carrera_id`) REFERENCES `carreras` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -228,7 +233,8 @@ DROP TABLE IF EXISTS `provincias`;
 CREATE TABLE `provincias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(150) NOT NULL,
-  `desc` text DEFAULT NULL,
+  `descripcion` text DEFAULT NULL,
+  `creado` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

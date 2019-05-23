@@ -7,7 +7,7 @@ class Modelo
     public function __construct() {
         
         try {
-            $this->db = new \mysqli("127.0.0.1", "root", "", "entorno") or die('Error al conectar'. mysqli_errno($this->db));
+            $this->db = new \mysqli("127.0.0.1", "root", "", "firstworking") or die('Error al conectar'. mysqli_errno($this->db));
             
             if ($this->db->connect_errno) {
                 throw new \Exception("Falló la conexión: %s\n", $this->db->connect_error);
