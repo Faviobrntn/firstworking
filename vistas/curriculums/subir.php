@@ -28,8 +28,7 @@
 
 <body>
     <section class="container my-4">
-        
-        
+               
         <form class="form-signin" action="" method="post">
             <div class="form-label-group">
                 <label for="inputCurriculum">Subir desde ordenador</label>

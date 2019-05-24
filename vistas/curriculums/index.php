@@ -20,15 +20,15 @@
     <!-- Nav tabs -->
     <ul class="nav nav-tabs md-tabs nav-justified primary-color" role="tablist">
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#panel444" role="tab">
+            <a class="nav-link active" data-toggle="tab" href="#panelMisCV" role="tab">
                 <i class="fas fa-file-invoice pr-2"></i>Mis CV</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#panel555" role="tab">
+            <a class="nav-link" data-toggle="tab" href="#panelSubir" role="tab">
                 <i class="fas fa-file-upload pr-2"></i>Cargar CV</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#panel666" role="tab">
+            <a class="nav-link" data-toggle="tab" href="#panelCrear" role="tab">
                 <i class="fas fa-plus-circle pr-2"></i>Crear CV</a>
         </li>
     </ul>
@@ -37,37 +37,31 @@
     <!-- Tab panels -->
     <div class="tab-content">
 
-        <!-- Panel 1 -->
-        <div class="tab-panel fade in" id="panel444" role="tabpanel">
-
+        <!-- Panel 0 -->
+        <div class="tab-pane fade in show active" id="panelMisCV" role="tabpanel">
             <!-- Nav tabs -->
             <div class="col-sm container-fluid border-primary rounded">
                 <div id="divListar"><?php require_once 'listar.php'; ?></div>
             </div>
-
         </div>
-        <!-- Panel 1 -->
+        <!-- Panel 0 -->
 
         <!-- Panel 1 -->
-        <div class="tab-panel fade in show active" id="panel555" role="tabpanel">
-
+        <div class="tab-pane fade" id="panelSubir" role="tabpanel">
             <!-- Nav tabs -->
             <div class="col-sm container-fluid border-primary rounded">
                 <div id="divSubir"><?php require_once 'subir.php'; ?></div>
             </div>
-
         </div>
         <!-- Panel 1 -->
 
         <!-- Panel 2 -->
-        <div class="tab-panel fade" id="panel666" role="tabpanel">
-
+        <div class="tab-pane fade" id="panelCrear" role="tabpanel">
             <div class="container-fluid border-primary rounded">
                 <div id="divCrear"><?php require_once 'crear.php'; ?></div>
             </div>
         </div>
         <!-- Panel 2 -->
-
     </div>
     
     <script src="<?=HOST?>vendor/js/jquery.min.js"></script>
@@ -86,5 +80,11 @@
         $("#divCrear").load( "<?= HOST ?>curriculums/crear.php");
     </script> -->
 </body>
+
+<script type="text/JavaScript">
+    $("#divListar").load( "listar.php");
+    $("#divSubir").load( "subir.php");
+    $("#divCrear").load( "crear.php");
+</script>
 
 </html>
