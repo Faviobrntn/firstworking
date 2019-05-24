@@ -116,6 +116,30 @@ class Provincia extends Modelo
             throw $e;
         }
     }
+
+
+    public function buscar($search)
+    {
+        try {
+            if (empty($search)) { throw new \Exception("Falta un parametro"); }
+
+            $resultados = null;
+            $sql = "SELECT * FROM provincias WHERE nombre LIKE '%$search%' LIMIT 1";
+            $query = $this->db->query($sql);
+            if($query){
+                 while ($row = $query->fetch_array()){
+                    $resultados[] = $row;
+                }
+                $query->close();
+            }
+           
+            return $resultados;
+        
+        } catch (\Exception $e) {
+            // throw new Exception("Error: %s\n", $e->getMessage());
+            throw $e;
+        }
+    }
 }
 
 ?>
