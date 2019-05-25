@@ -10,9 +10,9 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <!-- Bootstrap core CSS -->
-    <link href="<?=HOST?>vendor/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= HOST ?>vendor/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
-    <link href="<?=HOST?>vendor/css/mdb.min.css" rel="stylesheet">
+    <link href="<?= HOST ?>vendor/css/mdb.min.css" rel="stylesheet">
 
 </head>
 
@@ -24,10 +24,6 @@
                 <i class="fas fa-file-invoice pr-2"></i>Mis CV</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#panelSubir" role="tab">
-                <i class="fas fa-file-upload pr-2"></i>Cargar CV</a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#panelCrear" role="tab">
                 <i class="fas fa-plus-circle pr-2"></i>Crear CV</a>
         </li>
@@ -37,20 +33,11 @@
     <!-- Tab panels -->
     <div class="tab-content">
 
-        <!-- Panel 0 -->
+        <!-- Panel 1 -->
         <div class="tab-pane fade in show active" id="panelMisCV" role="tabpanel">
             <!-- Nav tabs -->
             <div class="col-sm container-fluid border-primary rounded">
                 <div id="divListar"><?php require_once 'listar.php'; ?></div>
-            </div>
-        </div>
-        <!-- Panel 0 -->
-
-        <!-- Panel 1 -->
-        <div class="tab-pane fade" id="panelSubir" role="tabpanel">
-            <!-- Nav tabs -->
-            <div class="col-sm container-fluid border-primary rounded">
-                <div id="divSubir"><?php require_once 'subir.php'; ?></div>
             </div>
         </div>
         <!-- Panel 1 -->
@@ -63,28 +50,11 @@
         </div>
         <!-- Panel 2 -->
     </div>
-    
-    <script src="<?=HOST?>vendor/js/jquery.min.js"></script>
-    <script src="<?=HOST?>vendor/js/bootstrap.bundle.min.js"></script>
-    <script src="<?=HOST?>vendor/js/mdb.min.js"></script>
-    
-    <!-- <script type="text/javascript">
-        $("#divListar").load( "<?= HOST ?>curriculums/listar.php");
-    </script>
 
-    <script type="text/javascript">
-        $("#divSubir").load( "<?= HOST ?>curriculums/subir.php");
-    </script>
+    <script src="<?= HOST ?>vendor/js/jquery.min.js"></script>
+    <script src="<?= HOST ?>vendor/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= HOST ?>vendor/js/mdb.min.js"></script>
 
-    <script type="text/javascript">
-        $("#divCrear").load( "<?= HOST ?>curriculums/crear.php");
-    </script> -->
 </body>
-
-<script type="text/JavaScript">
-    $("#divListar").load( "listar.php");
-    $("#divSubir").load( "subir.php");
-    $("#divCrear").load( "crear.php");
-</script>
 
 </html>

@@ -27,7 +27,6 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.1/js/mdb.min.js"></script>
 
-    <link href="https://unpkg.com/ionicons@4.5.5/dist/css/ionicons.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -37,7 +36,7 @@
         <!-- Card -->
         <div class="row">
             <div class="col-sm">
-                <div class="card mx-1">
+                <div class="card mx-1 my-1">
 
                     <!-- Card image -->
                     <div class="view overlay">
@@ -55,7 +54,7 @@
                         <!-- Text -->
                         <p class="card-text">resumen de cv aqui</p>
                         <!-- Button -->
-                         <div class="btn-group btn-block">
+                        <div class="btn-group btn-block">
                             <a href="#" class="btn btn-danger">
                                 <i class="fas fa-trash"></i>
                             </a>
@@ -74,7 +73,7 @@
             <!-- Card -->
             <!-- Card -->
             <div class="col-sm">
-                <div class="card mx-1">
+                <div class="card mx-1 my-1">
 
                     <!-- Card image -->
                     <div class="view overlay">
@@ -92,7 +91,7 @@
                         <!-- Text -->
                         <p class="card-text">resumen de cv aqui</p>
                         <!-- Button -->
-                         <div class="btn-group btn-block">
+                        <div class="btn-group btn-block">
                             <a href="#" class="btn btn-danger">
                                 <i class="fas fa-trash"></i>
                             </a>
@@ -111,7 +110,7 @@
             <!-- Card -->
             <!-- Card -->
             <div class="col-sm">
-                <div class="card mx-1">
+                <div class="card mx-1 my-1">
 
                     <!-- Card image -->
                     <div class="view overlay">
@@ -147,7 +146,7 @@
             <!-- Card -->
             <!-- Card -->
             <div class="col-sm">
-                <div class="card">
+                <div class="card mx-1 my-1">
 
                     <!-- Card image -->
                     <div class="view overlay">
@@ -165,7 +164,7 @@
                         <!-- Text -->
                         <p class="card-text">resumen de cv aqui</p>
                         <!-- Button -->
-                         <div class="btn-group btn-block">
+                        <div class="btn-group btn-block">
                             <a href="#" class="btn btn-danger">
                                 <i class="fas fa-trash"></i>
                             </a>
@@ -182,15 +181,40 @@
             </div>
             <!-- Card -->
         </div>
-
-
     </section>
 
+    <div>
+        <label for="files" class="float"><i class="fa fa-plus my-float  waves-effect waves-light"></i></label>
+        <input id="files" style="visibility:hidden;" type="file">
+        <style>
+            .float {
+                position: fixed;
+                width: 60px;
+                height: 60px;
+                bottom: 40px;
+                right: 40px;
+                background-color: #0C9;
+                color: #FFF;
+                border-radius: 50px;
+                text-align: center;
+                box-shadow: 2px 2px 3px #999;
+            }
+
+            .my-float {
+                margin-top: 22px;
+            }
+        </style>
+    </div>
     <!-- Bootstrap core JavaScript 
     <script src="<?= HOST ?>vendor/js/jquery.min.js"></script>
     <script src="<?= HOST ?>vendor/js/bootstrap.bundle.min.js"></script>-->
-
-    <script type="text/JavaScript" src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
 </body>
+
+<script type="text/JavaScript">
+    $("#files").change(function() {
+  filename = this.files[0].name
+  console.log(filename);
+});
+</script>
 
 </html>
