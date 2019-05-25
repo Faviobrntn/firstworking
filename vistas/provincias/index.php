@@ -34,7 +34,7 @@
             <!--Card content-->
             <div class="card-body">
                 <form class="text-center p-3" action="<?=HOST?>provincias/alta" method="post">
-                    <input type="nombre" name="nombre" id="nombreProv" class="form-control mb-4" placeholder="Nombre">
+                    <input type="text" name="nombre" id="nombreProv" class="form-control mb-4" placeholder="Nombre">
                     <textarea name="descripcion" id="descProv" class="form-control mb-4" rows="3" placeholder="Descripción"></textarea>
                     <button class="btn btn-info btn-block my-4" type="submit">Agregar</button>
                 </form>
