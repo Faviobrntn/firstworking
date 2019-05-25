@@ -1,7 +1,7 @@
 <?php 
 // namespace Modelos;
 
-class Provincia extends Modelo
+class Facultad extends Modelo
 {
     public function __construct() {
         parent::__construct();
@@ -12,7 +12,7 @@ class Provincia extends Modelo
     {
         try {
             $resultados = null;
-            if($query = $this->db->query("SELECT * FROM provincias")){            
+            if($query = $this->db->query("SELECT * FROM facultades")){            
                 // while ($row = $query->fetch_object()){
                 while ($row = $query->fetch_array()){
                     $resultados[] = $row;
@@ -33,7 +33,7 @@ class Provincia extends Modelo
         try {
             if (empty($id)) { throw new \Exception("Falta un parametro"); }
             $resultados = null;
-            $sql = "SELECT * FROM provincias WHERE id = $id LIMIT 1";
+            $sql = "SELECT * FROM facultades WHERE id = $id LIMIT 1";
             $query = $this->db->query($sql);
             if($query){
                 $resultados = $query->fetch_array();
@@ -48,27 +48,6 @@ class Provincia extends Modelo
         }
     }
 
-
-    public function listado($campo = "nombre")
-    {
-        try {
-            $resultados = [];
-            
-            $query = $this->getAll();
-            
-            if(count($query)){
-                foreach ($query as $v) {
-                    $resultados[$v['id']] = $v[$campo];
-                }
-            }
-
-            return $resultados;
-                    
-        } catch (\Exception $e) {
-            throw $e;
-        }
-    }
-
     
     public function alta($data)
     {
@@ -79,7 +58,7 @@ class Provincia extends Modelo
             $creado = date('Y-m-d H:i:s');
     
             //Arma la instrucción SQL y luego la ejecuta
-            $sql = "INSERT INTO provincias (nombre, descripcion,  creado) 
+            $sql = "INSERT INTO facultades (nombre, descripcion,  creado) 
                     VALUES ('$nombre',  '$descripcion',  '$creado')";
             
             // mysqli_query($this->db, $sql) or die (mysqli_error($this->db));
@@ -105,7 +84,7 @@ class Provincia extends Modelo
             $descripcion = strtolower($data['descripcion']);
                 
             //Arma la instrucción SQL y luego la ejecuta
-            $sql = "UPDATE provincias SET nombre='$nombre', descripcion='$descripcion' WHERE id=$id";
+            $sql = "UPDATE facultades SET nombre='$nombre', descripcion='$descripcion' WHERE id=$id";
                     
             if ($this->db->query($sql) === TRUE) {
                 return true;
@@ -124,7 +103,7 @@ class Provincia extends Modelo
     {
         try{
             //Arma la instrucción SQL y luego la ejecuta
-            $sql = "DELETE FROM provincias WHERE id='$id'";
+            $sql = "DELETE FROM facultades WHERE id='$id'";
                     
             if ($this->db->query($sql) === TRUE) {
                 return true;
@@ -145,7 +124,7 @@ class Provincia extends Modelo
             if (empty($search)) { throw new \Exception("Falta un parametro"); }
 
             $resultados = null;
-            $sql = "SELECT * FROM provincias WHERE nombre LIKE '%$search%' LIMIT 1";
+            $sql = "SELECT * FROM facultades WHERE nombre LIKE '%$search%' LIMIT 1";
             $query = $this->db->query($sql);
             if($query){
                  while ($row = $query->fetch_array()){

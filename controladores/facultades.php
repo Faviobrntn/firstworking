@@ -2,22 +2,22 @@
 // namespace Controladores;
 // use  Modelos\Usuario;
 
-class Provincias extends Controlador
+class Facultades extends Controlador
 {
     public function __construct() {
         parent::__construct();
-        $this->loadModel('Provincia');
+        $this->loadModel('Facultad');
     }
 
     public function index()
     {
         if (!empty($_GET['search'])) {
-            $provincias = $this->Provincia->buscar($_GET['search']);
+            $facultadess = $this->Facultad->buscar($_GET['search']);
         }else{
-            $provincias = $this->Provincia->getAll();
+            $facultadess = $this->Facultad->getAll();
         }
-        $this->set(compact('provincias'));
-        $this->render('provincias/index');
+        $this->set(compact('facultades'));
+        $this->render('facultades/index');
     }
 
 
@@ -29,14 +29,20 @@ class Provincias extends Controlador
                     throw new \Exception("El nombre no puede ser vacio.");
                 }
                 
-                if($this->Provincia->alta($_POST)){
+                if($this->Facultad->alta($_POST)){
                     $this->Auth->flash("Se guardo con éxito!");
+                    $this->redireccionar("facultades/index");
                 }            
             }
         } catch (\Exception $e) {
             $this->Auth->flash($e->getMessage());
         }
-        $this->redireccionar("provincias/index");
+
+        // $this->loadModel('Localidad');
+        // $localidades = $this->Localidad->listado();
+
+        // $this->set(compact('localidades'));
+        $this->render('facultades/alta');
     }
 
 
@@ -46,20 +52,20 @@ class Provincias extends Controlador
             if (!empty($_POST['id'])) {
                 $id = $_POST['id'];
             }
-            if($this->Provincia->actualizar($id, $_POST)){
+            if($this->Facultad->actualizar($id, $_POST)){
                 $this->Auth->flash("Se guardo con éxito!");
             }   
         }        
-        $this->redireccionar("provincias/index");
+        $this->redireccionar("facultades/index");
     }
     
     public function eliminar($id = null)
     {
         $mensaje = "";
-        $usuario = $this->Provincia->get($id);
+        $usuario = $this->Facultad->get($id);
 
         if($usuario){
-            if($this->Provincia->eliminar($usuario['id'])){
+            if($this->Facultad->eliminar($usuario['id'])){
                 $mensaje = "Se elimino con éxito";
             }else{
                 $mensaje = "No se pudo eliminar";
@@ -69,7 +75,7 @@ class Provincias extends Controlador
         }   
         
         $this->Auth->flash($mensaje);
-        $this->redireccionar("provincias/index");
+        $this->redireccionar("facultades/index");
     }
 }
 
