@@ -77,10 +77,11 @@ class Localidad extends Modelo
             $nombre = strtolower($data['nombre']);
             $descripcion = strtolower($data['descripcion']);
             $creado = date('Y-m-d H:i:s');
+            $provincia_id = $data['provincia_id'];
     
             //Arma la instrucción SQL y luego la ejecuta
-            $sql = "INSERT INTO localidades (nombre, descripcion,  creado) 
-                    VALUES ('$nombre',  '$descripcion',  '$creado')";
+            $sql = "INSERT INTO localidades (nombre, descripcion,  creado, provincia_id) 
+                    VALUES ('$nombre',  '$descripcion',  '$creado',  '$provincia_id')";
             
             // mysqli_query($this->db, $sql) or die (mysqli_error($this->db));
             
