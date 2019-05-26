@@ -1,3 +1,4 @@
+<?php include modelo.php ?>
 <!-- Heading -->
 <div class="card mb-4 wow fadeIn">
 
@@ -36,6 +37,19 @@
                 <form class="text-center p-3" action="<?=HOST?>localidades/alta" method="post">
                     <input type="text" name="nombre" id="nombreLocali" class="form-control mb-4" placeholder="Nombre">
                     <textarea name="descripcion" id="descLocali" class="form-control mb-4" rows="3" placeholder="Descripción"></textarea>
+                    <select name="provincia_id" id="provincia">
+                        <option value="">Seleccione la Provincia</option>
+                        <?php 
+                            $sql= $db->query("select * FROM provincias");
+                            while($fila=$sql->fetch_array()){
+                                echo "<option value='".$fila['provincia_id']."'>".$fila['nombre']."</option>";
+                            }
+                        
+                        
+                        ?>
+                    
+                    
+                    </select>
                     <button class="btn btn-info btn-block my-4" type="submit">Agregar</button>
                 </form>
             </div>
@@ -52,6 +66,7 @@
                             <td>#</td>
                             <td>Nombre</td>
                             <td>Descripción</td>
+                            <td>Provincia</td>
                             <td class="text-center" colspan="2">Acciones</td>
                         </tr>
                     </thead>
