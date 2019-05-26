@@ -40,7 +40,7 @@
                     <select name="provincia_id" id="provincia">
                         <option value="">Seleccione la Provincia</option>
                         <?php 
-                            $sql= $db->query("select * FROM provincias");
+                            $sql= $this->db->query("select * FROM provincias");
                             while($fila=$sql->fetch_array()){
                                 echo "<option value='".$fila['provincia_id']."'>".$fila['nombre']."</option>";
                             }
