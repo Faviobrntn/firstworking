@@ -1,15 +1,13 @@
-CREATE DATABASE  IF NOT EXISTS `firstworking` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `firstworking`;
--- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)
 --
 -- Host: localhost    Database: firstworking
 -- ------------------------------------------------------
--- Server version	5.7.25-0ubuntu0.18.04.2
+-- Server version	8.0.15
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+ SET NAMES utf8 ;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -17,40 +15,32 @@ USE `firstworking`;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-
 --
--- Table structure for table `usuarios`
+-- Table structure for table `carreras`
 --
 
-DROP TABLE IF EXISTS `usuarios`;
+DROP TABLE IF EXISTS `carreras`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `usuarios` (
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `carreras` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) NOT NULL,
-  `apellido` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `rol` varchar(50) NOT NULL,
-  `telefono` varchar(50) DEFAULT NULL,
-  `dni` int(10) DEFAULT NULL,
-  `domicilio` varchar(150) DEFAULT NULL,
-  `carrera_id` int(11) DEFAULT NULL,
-  `localidad_id` int(11) NOT NULL,
+  `nombre` varchar(150) NOT NULL,
+  `descripcion` text,
+  `facultad_id` int(11) NOT NULL,
   `creado` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_usuarios_local` FOREIGN KEY (`localidad_id`) REFERENCES `localidades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_usuarios_carrera` FOREIGN KEY (`carrera_id`) REFERENCES `carreras` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fkFacu` (`facultad_id`),
+  CONSTRAINT `fkFacu` FOREIGN KEY (`facultad_id`) REFERENCES `facultades` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usuarios`
+-- Dumping data for table `carreras`
 --
 
-LOCK TABLES `usuarios` WRITE;
-/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+LOCK TABLES `carreras` WRITE;
+/*!40000 ALTER TABLE `carreras` DISABLE KEYS */;
+/*!40000 ALTER TABLE `carreras` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -59,14 +49,26 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cv`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `cv` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `usuario_id` int(11) NOT NULL,
+  `titulo` varchar(45) DEFAULT NULL,
+  `resumen` varchar(120) DEFAULT NULL,
+  `idcarrera` int(11) NOT NULL,
+  `materias_aprobadas` int(2) DEFAULT NULL,
+  `promedio` double DEFAULT NULL,
+  `experiencia_laboral` varchar(500) DEFAULT NULL,
+  `conocimientos` varchar(500) DEFAULT NULL,
+  `objetivos` varchar(200) DEFAULT NULL,
   `archivo` blob,
   `creado` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `FKidUsuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `FKidUsuario` (`usuario_id`),
+  KEY `FKidCarrera_idx` (`idcarrera`),
+  KEY `FKCV_idCarrera_idx` (`idcarrera`),
+  CONSTRAINT `FKCV_idCarrera` FOREIGN KEY (`idcarrera`) REFERENCES `carreras` (`id`),
+  CONSTRAINT `FKidUsuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -80,80 +82,23 @@ LOCK TABLES `cv` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `localidades`
---
-
-DROP TABLE IF EXISTS `localidades`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `localidades` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(11) NOT NULL,
-  `descripcion` text DEFAULT NULL,
-  `provincia_id` int(11) NOT NULL,
-  `creado` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_LocalProv` FOREIGN KEY (`provincia_id`) REFERENCES `provincias` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `localidades`
---
-
-LOCK TABLES `localidades` WRITE;
-/*!40000 ALTER TABLE `localidades` DISABLE KEYS */;
-/*!40000 ALTER TABLE `localidades` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-
---
--- Table structure for table `carreras`
---
-
-DROP TABLE IF EXISTS `carreras`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `carreras` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(150) NOT NULL,
-  `descripcion` text DEFAULT NULL,
-  `facultad_id` int(11) NOT NULL,
-  `creado` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fkFacu` FOREIGN KEY (`facultad_id`) REFERENCES `facultades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `carreras`
---
-
-LOCK TABLES `carreras` WRITE;
-/*!40000 ALTER TABLE `carreras` DISABLE KEYS */;
-/*!40000 ALTER TABLE `carreras` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-
---
 -- Table structure for table `facultades`
 --
 
 DROP TABLE IF EXISTS `facultades`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `facultades` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(150) NOT NULL,
   `direccion` varchar(150) DEFAULT NULL,
   `email` varchar(150) DEFAULT NULL,
-  `descripcion` text DEFAULT NULL,
+  `descripcion` text,
   `localidad_id` int(11) NOT NULL,
   `creado` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_facus_localidad` FOREIGN KEY (`localidad_id`) REFERENCES `localidades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_facus_localidad` (`localidad_id`),
+  CONSTRAINT `fk_facus_localidad` FOREIGN KEY (`localidad_id`) REFERENCES `localidades` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -167,12 +112,40 @@ LOCK TABLES `facultades` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `localidades`
+--
+
+DROP TABLE IF EXISTS `localidades`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `localidades` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(11) NOT NULL,
+  `descripcion` text,
+  `provincia_id` int(11) NOT NULL,
+  `creado` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_LocalProv` (`provincia_id`),
+  CONSTRAINT `fk_LocalProv` FOREIGN KEY (`provincia_id`) REFERENCES `provincias` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `localidades`
+--
+
+LOCK TABLES `localidades` WRITE;
+/*!40000 ALTER TABLE `localidades` DISABLE KEYS */;
+/*!40000 ALTER TABLE `localidades` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `ofertas`
 --
 
 DROP TABLE IF EXISTS `ofertas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `ofertas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `carrera_id` int(11) NOT NULL,
@@ -181,11 +154,13 @@ CREATE TABLE `ofertas` (
   `modalidad` varchar(45) DEFAULT NULL,
   `horario_laboral` varchar(45) DEFAULT NULL,
   `remuneracion` float DEFAULT NULL,
-  `descripcion` text DEFAULT NULL,
+  `descripcion` text,
   `creado` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_ofertas_localidad` FOREIGN KEY (`localidad_id`) REFERENCES `localidades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_ofertas_carrera` FOREIGN KEY (`carrera_id`) REFERENCES `carreras` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_ofertas_localidad` (`localidad_id`),
+  KEY `fk_ofertas_carrera` (`carrera_id`),
+  CONSTRAINT `fk_ofertas_carrera` FOREIGN KEY (`carrera_id`) REFERENCES `carreras` (`id`),
+  CONSTRAINT `fk_ofertas_localidad` FOREIGN KEY (`localidad_id`) REFERENCES `localidades` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -204,13 +179,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `postulaciones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `postulaciones` (
   `usuario_id` int(11) NOT NULL,
   `oferta_id` int(11) NOT NULL,
-  PRIMARY KEY (`oferta_id`, `usuario_id`),
-  CONSTRAINT `FKidOfertas` FOREIGN KEY (`oferta_id`) REFERENCES `ofertas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FKidUsuarios` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`oferta_id`,`usuario_id`),
+  KEY `FKidUsuarios` (`usuario_id`),
+  CONSTRAINT `FKidOfertas` FOREIGN KEY (`oferta_id`) REFERENCES `ofertas` (`id`),
+  CONSTRAINT `FKidUsuarios` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -229,11 +205,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `provincias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `provincias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(150) NOT NULL,
-  `descripcion` text DEFAULT NULL,
+  `descripcion` text,
   `creado` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -247,6 +223,43 @@ LOCK TABLES `provincias` WRITE;
 /*!40000 ALTER TABLE `provincias` DISABLE KEYS */;
 /*!40000 ALTER TABLE `provincias` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `usuarios`
+--
+
+DROP TABLE IF EXISTS `usuarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  `apellido` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `rol` varchar(50) NOT NULL,
+  `telefono` varchar(50) DEFAULT NULL,
+  `dni` int(10) DEFAULT NULL,
+  `domicilio` varchar(150) DEFAULT NULL,
+  `carrera_id` int(11) DEFAULT NULL,
+  `localidad_id` int(11) NOT NULL,
+  `creado` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_usuarios_local` (`localidad_id`),
+  KEY `fk_usuarios_carrera` (`carrera_id`),
+  CONSTRAINT `fk_usuarios_carrera` FOREIGN KEY (`carrera_id`) REFERENCES `carreras` (`id`),
+  CONSTRAINT `fk_usuarios_local` FOREIGN KEY (`localidad_id`) REFERENCES `localidades` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuarios`
+--
+
+LOCK TABLES `usuarios` WRITE;
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -257,4 +270,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-23 18:39:34
+-- Dump completed on 2019-05-26 15:08:29

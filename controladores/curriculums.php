@@ -7,7 +7,6 @@ class Curriculums extends Controlador
     public function __construct() {
         parent::__construct();
         $this->loadModel('Curriculum');
-        $this->plantilla('publico');
     }
 
     public function index()

@@ -183,9 +183,12 @@
         </div>
     </section>
 
-    <div>
-        <label for="files" class="float"><i class="fa fa-plus my-float  waves-effect waves-light"></i></label>
-        <input id="files" style="visibility:hidden;" type="file">
+    <div class="container">
+        <form id="formSubirCV" action="<?= HOST ?>curriculums/subir" method="POST" enctype="multipart/form-data">
+            <label for="files" class="float"><i class="fa fa-plus my-float waves-effect waves-light"></i></label>
+            <input id="files" name="cv_pdf" style="visibility:hidden;" type="file" accept="application/pdf">
+        </form>
+
         <style>
             .float {
                 position: fixed;
@@ -212,9 +215,14 @@
 
 <script type="text/JavaScript">
     $("#files").change(function() {
-  filename = this.files[0].name
-  console.log(filename);
-});
+        if(files!=null){
+            if(this.files[0] != null){
+                filename = this.files[0].name;
+                console.log(filename);  
+                $("#formSubirCV").submit();          
+            }
+        }
+    });
 </script>
 
 </html>
