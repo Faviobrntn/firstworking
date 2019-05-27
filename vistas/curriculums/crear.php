@@ -39,12 +39,11 @@
                             <div class="col-9">
                                 <select id="id_carrera" name="id_carrera" class="custom-select" required="required">
                                     <option value="">Seleccione una Carrera</option>
-                                    <?php
-                                    $sql = $this->db->query("SELECT * FROM carreras");
-                                    while ($fila = $sql->fetch_array()) {
-                                        echo "<option value='" . $fila['id'] . "'>" . $fila['nombre'] . "</option>";
-                                    }
-                                    ?>
+                                    <?php if (!empty($carreras)) : ?>
+                                        <?php foreach ($carreras as $key => $value) : ?>
+                                            <option value="<?= $key ?>"><?= ucfirst($value) ?></option>
+                                        <?php endforeach ?>
+                                    <?php endif ?>
                                 </select>
                             </div>
                         </div>
