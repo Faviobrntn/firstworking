@@ -162,5 +162,3 @@ class Provincia extends Modelo
         }
     }
 }
-
-?>

@@ -18,7 +18,7 @@
 
 <body>
     <!-- Nav tabs -->
-    <ul class="nav nav-tabs md-tabs nav-justified primary-color" role="tablist">
+    <ul class="nav nav-tabs md-tabs nav-justified blue lighten-5" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" data-toggle="tab" href="#panelMisCV" role="tab">
                 <i class="fas fa-file-invoice pr-2"></i>Mis CV</a>
