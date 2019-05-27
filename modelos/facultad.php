@@ -8,14 +8,27 @@ class Facultad extends Modelo
     }
 
 
-    public function getAll()
+    public function getAll($asociacion = [])
     {
         try {
+            if (!empty($asociacion)) {
+                foreach ($asociacion as $as) {
+                    $this->loadModel($as);
+                }
+            }
             $resultados = null;
             if($query = $this->db->query("SELECT * FROM facultades")){            
                 // while ($row = $query->fetch_object()){
                 while ($row = $query->fetch_array()){
-                    $resultados[] = $row;
+                    $asociar = [];
+                    if (!empty($asociacion)) {
+                        foreach ($asociacion as $as) {
+                            $fk = strtolower($as).'_id';
+                            $asociar[$as] = $this->$as->get($row[$fk]);
+                        }
+                    }
+
+                    $resultados[] = $row + $asociar;
                 }
                 $query->close();
             }
@@ -54,17 +67,22 @@ class Facultad extends Modelo
         try{
             
             $nombre = strtolower($data['nombre']);
+            $email = strtolower($data['email']);
+            $direccion = strtolower($data['direccion']);
             $descripcion = strtolower($data['descripcion']);
+            $localidad_id = strtolower($data['localidad_id']);
             $creado = date('Y-m-d H:i:s');
     
             //Arma la instrucción SQL y luego la ejecuta
-            $sql = "INSERT INTO facultades (nombre, descripcion,  creado) 
-                    VALUES ('$nombre',  '$descripcion',  '$creado')";
+            $sql = "INSERT INTO facultades (nombre, email, direccion, descripcion, localidad_id, creado) 
+                    VALUES ('$nombre', '$email', '$direccion', '$descripcion', '$localidad_id', '$creado')";
             
             // mysqli_query($this->db, $sql) or die (mysqli_error($this->db));
             
             if ($this->db->query($sql) === TRUE) {
                 return true;
+            }else{
+                throw new \Exception("Error: ". $this->db->error);
             }
     
             return false;
@@ -81,13 +99,18 @@ class Facultad extends Modelo
         try{
             
             $nombre = strtolower($data['nombre']);
+            $email = strtolower($data['email']);
+            $direccion = strtolower($data['direccion']);
             $descripcion = strtolower($data['descripcion']);
+            $localidad_id = strtolower($data['localidad_id']);
                 
             //Arma la instrucción SQL y luego la ejecuta
-            $sql = "UPDATE facultades SET nombre='$nombre', descripcion='$descripcion' WHERE id=$id";
+            $sql = "UPDATE facultades SET nombre='$nombre', email='$email', direccion='$direccion', descripcion='$descripcion', localidad_id='$localidad_id' WHERE id=$id";
                     
             if ($this->db->query($sql) === TRUE) {
                 return true;
+            }else{
+                throw new \Exception("Error: ". $this->db->error);
             }
     
             return false;
