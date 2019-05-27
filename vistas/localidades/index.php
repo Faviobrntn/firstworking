@@ -1,4 +1,3 @@
-<?php include modelo.php ?>
 <!-- Heading -->
 <div class="card mb-4 wow fadeIn">
 
@@ -35,21 +34,22 @@
             <!--Card content-->
             <div class="card-body">
                 <form class="text-center p-3" action="<?=HOST?>localidades/alta" method="post">
-                    <input type="text" name="nombre" id="nombreLocali" class="form-control mb-4" placeholder="Nombre">
-                    <textarea name="descripcion" id="descLocali" class="form-control mb-4" rows="3" placeholder="Descripción"></textarea>
-                    <select name="provincia_id" id="provincia">
+                    <input type="text" name="nombre" id="nombreLocali" class="form-control mb-4" placeholder="Nombre" required="required">
+                    <select name="provincia_id" id="provincia" class="form-control mb-4" required="required">
                         <option value="">Seleccione la Provincia</option>
                         <?php 
-                            $sql= $this->db->query("select * FROM provincias");
-                            while($fila=$sql->fetch_array()){
-                                echo "<option value='".$fila['provincia_id']."'>".$fila['nombre']."</option>";
-                            }
-                        
-                        
+                            // $sql= $this->db->query("select * FROM provincias");
+                            // while($fila=$sql->fetch_array()){
+                            //     echo "<option value='".$fila['provincia_id']."'>".$fila['nombre']."</option>";
+                            // }
                         ?>
-                    
-                    
+                        <?php if(!empty($provincias)): ?>
+                            <?php foreach($provincias as $key => $value): ?>
+                                <option value="<?=$key?>"><?=ucfirst($value)?></option>
+                            <?php endforeach ?>
+                        <?php endif ?>
                     </select>
+                    <textarea name="descripcion" id="descLocali" class="form-control mb-4" rows="3" placeholder="Descripción"></textarea>
                     <button class="btn btn-info btn-block my-4" type="submit">Agregar</button>
                 </form>
             </div>
@@ -78,13 +78,14 @@
                                     <td><?= $localidad['id'] ?></td>
                                     <td><?= ucwords($localidad['nombre']) ?></td>
                                     <td><?= $localidad['descripcion'] ?></td>
-                                    <!-- <td class="text-center"><a class="btn btn-sm btn-primary" href="<?=HOST?>localidades/editar/<?=$localidad['id']?>">Editar</a></td> -->
+                                    <td><?= ucwords($localidad['provincia_id']) ?></td>
                                     <td class="text-center">
                                         <button type="button" class="btn btn-sm btn-primary" 
                                             data-toggle="modal" 
                                             data-target="#modalEditarLocalidad"
                                             data-id="<?=$localidad['id']?>"
                                             data-nombre="<?=$localidad['nombre']?>"
+                                            data-provincia="<?=$localidad['provincia_id']?>"
                                             data-desc="<?=$localidad['descripcion']?>"
                                         >Editar</button></td>
                                     <td class="text-center"><a class="btn btn-sm btn-danger" href="<?=HOST?>localidades/eliminar/<?=$localidad['id']?>">Eliminar</a></td>
@@ -116,7 +117,16 @@
         <div class="modal-body">
             <form class="text-center p-3" action="<?=HOST?>localidades/editar" method="post">
                 <input type="hidden" name="id" id="modalEditarLocalidad_id" value="0">
-                <input type="nombre" name="nombre" id="modalEditarLocalidad_nombreLocali" class="form-control mb-4" placeholder="Nombre">
+                <input type="nombre" name="nombre" id="modalEditarLocalidad_nombreLocali" class="form-control mb-4" placeholder="Nombre" required="required">
+                <select name="provincia_id" id="provincia" class="form-control mb-4" required="required">
+                    <option value="">Seleccione la Provincia</option>
+                    <?php if(!empty($provincias)): ?>
+                        <?php foreach($provincias as $key => $value): ?>
+                            <?php $check = ((!empty($_POST["provincia_id"]) AND ($_POST["provincia_id"] = $key))? 'selected' : '')?>; ?>
+                            <option value="<?=$key?>" <?=$check?> ><?= ucwords($value) ?></option>
+                        <?php endforeach ?>
+                    <?php endif ?>
+                </select>
                 <textarea name="descripcion" id="modalEditarLocalidad_descLocali" class="form-control mb-4" rows="3" placeholder="Descripción"></textarea>
                 <button class="btn btn-info btn-block my-4" type="submit">Guardar</button>
             </form>

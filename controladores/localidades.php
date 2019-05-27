@@ -16,7 +16,11 @@ class Localidades extends Controlador
         }else{
             $localidades = $this->Localidad->getAll();
         }
-        $this->set(compact('localidades'));
+
+        $this->loadModel('Provincia');
+        $provincias = $this->Provincia->listado();
+
+        $this->set(compact('localidades', 'provincias'));
         $this->render('localidades/index');
     }
 
@@ -56,16 +60,16 @@ class Localidades extends Controlador
     public function eliminar($id = null)
     {
         $mensaje = "";
-        $usuario = $this->Localidad->get($id);
+        $localidad = $this->Localidad->get($id);
 
-        if($usuario){
-            if($this->Localidad->eliminar($usuario['id'])){
+        if($localidad){
+            if($this->Localidad->eliminar($localidad['id'])){
                 $mensaje = "Se elimino con éxito";
             }else{
                 $mensaje = "No se pudo eliminar";
             }
         }else{
-            $mensaje = "No se encontro el usuario";
+            $mensaje = "No se encontro el localidad";
         }   
         
         $this->Auth->flash($mensaje);
