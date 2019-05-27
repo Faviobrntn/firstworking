@@ -23,6 +23,20 @@ class Modelo
     }
 
 
+    public function loadModel($model)
+    {
+        $archivo = strtolower($model) .'.php';
+
+        if (file_exists($archivo)) {
+            require_once $archivo;
+            $model = ucwords(strtolower($model));
+            // $this->modelo = new $model();
+            $this->$model = new $model();
+        }else {
+            throw new \Exception("No se encontro el modelo");
+        }
+    }
+
     public function __destruct() {
         //print "Destruyendo " . $this->name . "\n";
         $this->db->close();

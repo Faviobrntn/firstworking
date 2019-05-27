@@ -27,6 +27,7 @@
     <div class="col-md-12 mb-4">
         <div class="card">
             <div class="card-body">
+                <a class="btn btn-primary float-right" href="<?=HOST?>facultades/alta">Nuevo</a>
                 <table class="table table-hover">
                     <thead class="blue-grey lighten-4">
                         <tr>
@@ -48,7 +49,6 @@
                                     <td><?= ucwords($facu['nombre']) ?></td>
                                     <td><?= ucwords($facu['direccion']) ?></td>
                                     <td><?= ucwords($facu['email']) ?></td>
-                                    <td><?= ucwords($facu['descripcion']) ?></td>
                                     <td><?= !empty($facu['localidad'])? $facu['localidad']['nombre'] : '' ?></td>
                                     <td><?= $facu['descripcion'] ?></td>
                                     <td class="text-center"><a class="btn btn-sm btn-primary" href="<?=HOST?>facultades/editar/<?=$facu['id']?>">Editar</a></td>
