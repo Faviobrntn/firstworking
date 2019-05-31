@@ -37,6 +37,19 @@
             <label for="inputPassword">Contraseña</label>
         </div>            
         
+        <div class="form-label-group">
+            <select name="localidad_id" id="localidad-id" class="form-control mb-4">
+                <option value="">Seleccione su localidad</option>
+                <?php if(!empty($localidades)): ?>
+                    <?php foreach($localidades as $key => $value): ?>
+                        <?php $check = ((!empty($_POST["localidad_id"]) AND ($_POST["localidad_id"] = $key))? 'selected' : '')?>; ?>
+                        <option value="<?=$key?>" <?=$check?> ><?= ucfirst($value) ?></option>
+                    <?php endforeach ?>
+                <?php endif ?>
+            </select>
+            <!-- <label for="localidad-id">Localidad</label> -->
+        </div>
+
         <button class="btn btn-lg btn-primary btn-block" type="submit">Registrarme!</button>
         <p class="mt-5 mb-3 text-muted text-center">© 2017-2019</p>
     </form>

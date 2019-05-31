@@ -8,6 +8,8 @@ class Provincias extends Controlador
     {
         parent::__construct();
         $this->loadModel('Provincia');
+
+        $this->autorizacion();
     }
 
     public function index()

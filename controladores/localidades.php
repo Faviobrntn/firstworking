@@ -7,6 +7,8 @@ class Localidades extends Controlador
     public function __construct() {
         parent::__construct();
         $this->loadModel('Localidad');
+
+        $this->autorizacion();
     }
 
     public function index()

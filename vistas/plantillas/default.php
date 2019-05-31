@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Material Design Bootstrap</title>
+  <title>Firstworking</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
   <!-- Bootstrap core CSS -->
@@ -116,6 +116,13 @@
                 <i class="fas fa-table mr-3"></i>Facultades</a>
             <a href="<?=HOST?>curriculums" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-table mr-3"></i>Curriculums</a>
+            
+            <hr>
+
+            <a href="<?=HOST?>usuarios/logout" class="list-group-item active waves-effect"
+                onclick="return confirm('Se va a cerrar sesión. ¿Desea continuar?');">
+                <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión
+            </a>
             <!-- <a href="#" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-map mr-3"></i>Maps</a>
             <a href="#" class="list-group-item list-group-item-action waves-effect">

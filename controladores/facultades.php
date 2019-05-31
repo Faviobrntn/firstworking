@@ -7,6 +7,8 @@ class Facultades extends Controlador
     public function __construct() {
         parent::__construct();
         $this->loadModel('Facultad');
+
+        $this->autorizacion();
     }
 
     public function index()

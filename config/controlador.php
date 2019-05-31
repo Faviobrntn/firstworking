@@ -13,6 +13,18 @@ class Controlador
         $this->Auth = new Auth();
     }
 
+    public function autorizacion()
+    {
+        // var_dump($this->request);exit;
+        if (in_array($_GET['url'], $this->Auth->permitir)) {
+            return true;
+        }
+        if ($this->Auth->check()) {
+            return true;
+        }
+        return $this->redireccionar('usuarios/login');
+    }
+
     public function loadModel($model)
     {
         $archivo = 'modelos/'. strtolower($model) .'.php';

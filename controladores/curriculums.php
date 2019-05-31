@@ -8,19 +8,21 @@ class Curriculums extends Controlador
     {
         parent::__construct();
         $this->loadModel('Curriculum');
+
+        $this->autorizacion();
     }
 
     public function index()
     {
         //Auth->user($id)!= null
-        if (isset($_SESSION['usuario']['id'])) {
+        // if (isset($_SESSION['usuario']['id'])) {
             $curriculums = $this->Curriculum->getAll($_SESSION['usuario']['id']);
             $this->set(compact('curriculums'));
             $this->render('curriculums/index');
-        } else {
-            $this->Auth->flash("Necesitas loguearte para ver tus CV");
-            $this->redireccionar("usuarios/login");
-        }
+        // } else {
+        //     $this->Auth->flash("Necesitas loguearte para ver tus CV");
+        //     $this->redireccionar("usuarios/login");
+        // }
     }
 
 
@@ -44,13 +46,13 @@ class Curriculums extends Controlador
         if (!empty($_POST)) {
 
             // $this->debug($_POST);exit;
-            if ($this->Usuario->actualizar($id, $_POST)) {
+            if ($this->Curriculums->actualizar($id, $_POST)) {
                 $this->Auth->flash("Se guardo con éxito!");
                 $this->redireccionar("usuarios/index");
             }
         }
 
-        $usuario = $this->Usuario->get($id);
+        $curriculum = $this->Curriculums->get($id);
 
         $this->set(compact('usuario'));
         $this->render('usuarios/editar');
@@ -59,10 +61,10 @@ class Curriculums extends Controlador
     public function eliminar($id = null)
     {
         $mensaje = "";
-        $usuario = $this->Usuario->get($id);
+        $curriculum = $this->Curriculums->get($id);
 
-        if ($usuario) {
-            if ($this->Usuario->eliminar($usuario['id'])) {
+        if ($curriculum) {
+            if ($this->Curriculums->eliminar($curriculum['id'])) {
                 $mensaje = "Se elimino con éxito";
             } else {
                 $mensaje = "No se pudo eliminar";
@@ -73,45 +75,5 @@ class Curriculums extends Controlador
 
         $this->Auth->flash($mensaje);
         $this->redireccionar("usuarios/index");
-    }
-
-
-
-    public function login()
-    {
-        try {
-            if (!empty($_POST)) {
-
-                if (empty($_POST['email'])) {
-                    throw new \Exception("El email no puede ser vacio.");
-                }
-                if (empty($_POST['password'])) {
-                    throw new \Exception("La contraseña no puede ser vacia.");
-                }
-                // $this->debug($_POST);exit;
-                $usuario = $this->Usuario->login();
-                if ($usuario) {
-                    $this->Auth->setUsuario($usuario);
-
-                    $this->Auth->flash("Bienvenido " . $usuario['nombre']);
-
-                    $this->redireccionar("usuarios/index");
-                } else {
-                    $this->Auth->flash("Email ó contraseña incorrectos.");
-                }
-            }
-        } catch (\Exception $e) {
-            $this->Auth->flash($e->getMessage());
-        }
-
-        $this->render('usuarios/login');
-    }
-
-
-    public function logout()
-    {
-        $this->Auth->logout();
-
-        $this->redireccionar("usuarios/login");
     }
 }
