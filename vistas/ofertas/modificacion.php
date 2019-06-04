@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-<title>Cargar Oferta</title>
+<title>Modificar Oferta</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -32,7 +32,7 @@
 <div class="card">
 
 <h5 class="card-header info-color white-text text-center py-4">
-    <strong>Nueva Oferta</strong>
+    <strong>Editar Oferta</strong>
 </h5>
 
 <!--Card content-->
@@ -78,7 +78,7 @@
 
         <!--Horario Laboral-->
         <div class="md-form">
-            <label for="horarioLaboral"><strong>Laboral</strong></label></br>
+            <label for="horarioLaboral"><strong>Horario Laboral</strong></label></br>
             <input type="text" id="horarioLaboral" class="form-control"> 
             <p>&nbsp;</p>          
         </div>
@@ -98,7 +98,7 @@
         </div>
 
         <!-- Send button -->
-        <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit">Registrar</button>
+        <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit">Actualizar</button>
 
     </form>
     <!-- Form -->
