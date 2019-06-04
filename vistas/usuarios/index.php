@@ -1,20 +1,34 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Usuarios</title>
+<!-- Heading -->
+<div class="card mb-4 wow fadeIn">
 
-    <link rel="stylesheet" href="<?=HOST?>vendor/css/bootstrap.min.css">
+    <!--Card content-->
+    <div class="card-body d-sm-flex justify-content-between">
 
-</head>
-<body>
+        <h4 class="mb-2 mb-sm-0 pt-1">
+            <span>Usuarios</span>
+        </h4>
 
-    <div class="container">
+        <form class="d-flex justify-content-center">
+            <!-- Default input -->
+            <input type="search" name="search" placeholder="Buscar" aria-label="Search" class="form-control">
+            <button class="btn btn-primary btn-sm my-0 p" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+<!-- Heading -->
+
+<div class="row wow fadeIn">
+
+    <div class="col-md-12 mb-4">
+        <!--Card-->
         <div class="card">
             <div class="card-body">
-                <a href="<?=HOST?>usuarios/registro" class="btn btn-primary float-right">Registrar nuevo</a>
+                <a href="<?=HOST?>usuarios/alta" class="btn btn-primary float-right">Registrar nuevo</a>
                 <h5 class="card-title">Usuarios</h5>
                 <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
                 <table class="table">
@@ -25,7 +39,7 @@
                             <td>Apellido</td>
                             <td>Email</td>
                             <td>Creado</td>
-                            <td colspan="2">Acciones</td>
+                            <td colspan="2" class="text-center">Acciones</td>
                         </tr>
                     </thead>
 
@@ -38,8 +52,14 @@
                                     <td><?= $usuario['apellido'] ?></td>
                                     <td><?= $usuario['email'] ?></td>
                                     <td><?= $usuario['creado'] ?></td>
-                                    <td><a href="<?=HOST?>usuarios/editar/<?=$usuario['id']?>">Editar</a></td>
-                                    <td><a href="<?=HOST?>usuarios/eliminar/<?=$usuario['id']?>">Eliminar</a></td>
+                                    <td class="text-center">
+                                        <a href="<?=HOST?>usuarios/editar/<?=$usuario['id']?>" class="btn btn-sm btn-success">Editar</a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="<?=HOST?>usuarios/eliminar/<?=$usuario['id']?>" 
+                                        class="btn btn-sm btn-danger"
+                                        onclick="return confirm('Se va a eliminar el usuario. ¿Desea continuar?');">Eliminar</a>
+                                    </td>
                                 </tr>
                             <?php endforeach ?>
                         <?php endif ?>
@@ -48,11 +68,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="<?=HOST?>vendor/js/jquery.min.js"></script>
-    <script src="<?=HOST?>vendor/js/bootstrap.bundle.min.js"></script>
     
-</body>
-</html>
+</div>
 

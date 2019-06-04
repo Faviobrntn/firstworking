@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <?php include "../../config/constantes.php"; ?>
 
     <title>Crear CV</title>
 
@@ -30,11 +29,11 @@
 </head>
 
 <body>
-    <section class="container my-4">
+    <section class="flex-container my-4">
 
 
         <!-- Card -->
-        <div class="row">
+        <div class="row ">
             <div class="col-sm">
                 <div class="card mx-1 my-1">
 
@@ -65,7 +64,6 @@
                                 <i class="far fa-check-square"></i>
                             </a>
                         </div>
-
                     </div>
                 </div>
 
@@ -183,9 +181,12 @@
         </div>
     </section>
 
-    <div>
-        <label for="files" class="float"><i class="fa fa-plus my-float  waves-effect waves-light"></i></label>
-        <input id="files" style="visibility:hidden;" type="file">
+    <div class="container">
+        <form id="formSubirCV" action="<?= HOST ?>curriculums/subir" method="POST" enctype="multipart/form-data">
+            <label for="files" class="float"><i class="fa fa-plus my-float waves-effect waves-light"></i></label>
+            <input id="files" name="cv_pdf" style="visibility:hidden;" type="file" accept="application/pdf">
+        </form>
+
         <style>
             .float {
                 position: fixed;
@@ -212,9 +213,14 @@
 
 <script type="text/JavaScript">
     $("#files").change(function() {
-  filename = this.files[0].name
-  console.log(filename);
-});
+        if(files!=null){
+            if(this.files[0] != null){
+                filename = this.files[0].name;
+                console.log(filename);  
+                $("#formSubirCV").submit();          
+            }
+        }
+    });
 </script>
 
 </html>

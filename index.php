@@ -2,10 +2,10 @@
 session_start();
 
 require_once 'config/constantes.php';
-require_once 'config/controlador.php';
-require_once 'config/modelo.php';
-require_once 'config/vista.php';
 require_once 'config/app.php';
+require_once 'config/controlador.php';
+require_once 'config/vista.php';
+require_once 'config/modelo.php';
 
 echo "<script>const HOST = '".HOST."';</script>";
 

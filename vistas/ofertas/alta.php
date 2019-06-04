@@ -1,6 +1,7 @@
 <!DOCTYPE html>
+
 <head>
-<title>Cargar Oferta</title>
+    <title>Cargar Oferta</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -17,10 +18,11 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.1/js/mdb.min.js"></script>
-    
+
     <!--<link rel="stylesheet" href="../vendor/css/bootstrap.min.css">
     <link rel="stylesheet" href="../vendor/css/floating-labels.css">-->
 </head>
+
 <body>
 <div class="container">
     <div class="row">
@@ -105,4 +107,5 @@
 
 </div>
 </body>
+
 </html>

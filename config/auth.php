@@ -2,6 +2,8 @@
 
     class Auth
     {
+        public $permitir = [];
+
         public function __construct() {
 
         }
@@ -41,7 +43,14 @@
             }
             return $_SESSION['Usuario'];
         }
-
+        
+        public function check()
+        {
+            if (!empty($_SESSION['Usuario'])) {
+                return true;
+            }
+            return false;
+        }
 
         public function logout()
         {

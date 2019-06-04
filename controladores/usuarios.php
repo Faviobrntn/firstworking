@@ -7,77 +7,153 @@ class Usuarios extends Controlador
     public function __construct() {
         parent::__construct();
         $this->loadModel('Usuario');
+
+        $this->Auth->permitir = ['usuarios/registro', 'usuarios/login', 'usuarios/logout'];
+
+        $this->autorizacion();
     }
 
     public function index()
     {
-        // $this->debug($this->Auth->user());
-        // $usuarios = ["nombre" => "favio", "apellido" => "asdasd"];
-        $usuarios = $this->Usuario->getAll();
-        // echo json_encode($usuarios);exit;
+        if (!empty($_GET['search'])) {
+            $usuarios = $this->Usuario->buscar($_GET['search']);
+        }else{
+            $usuarios = $this->Usuario->getAll();
+        }
+
         $this->set(compact('usuarios'));
         $this->render('usuarios/index');
     }
 
+    public function alta()
+    {
+        try{
+            // $this->plantilla('vacio');
+    
+            if (!empty($_POST)) {
+                // $this->debug($_POST);exit;
+                $usuario = $this->Usuario->alta($_POST);
+                if($usuario){
+                    $this->Auth->flash("Se guardo con éxito!");
+                    $this->redireccionar("usuarios/login");
+                }else{
+                    $this->Auth->flash("Ocurrio un error al registrarse. Por favor, intente nuevamente.");
+                }
+            }
+    
+            $this->loadModel('Localidad');
+            $localidades = $this->Localidad->listado();
+            $roles = $this->Usuario->roles;
+    
+            $this->set(compact('localidades', 'roles'));
+
+        } catch (\Exception $e) {
+            $this->Auth->flash($e->getMessage());
+        }
+        $this->render('usuarios/alta');
+    }
+    
+
+
+    public function editar($id = null)
+    {
+        try {
+            if (!empty($_POST)) {
+                // $this->debug($_POST);exit;
+                if($this->Usuario->actualizar($id, $_POST)){
+                    $this->Auth->flash("Se guardo con éxito!");
+                    $this->redireccionar("usuarios/index");
+                }
+            }
+            
+            $usuario = $this->Usuario->get($id);
+            
+            $this->loadModel('Localidad');
+            $localidades = $this->Localidad->listado();
+            $roles = $this->Usuario->roles;
+
+            $this->set(compact('usuario', 'localidades', 'roles'));
+        
+        } catch (\Exception $e) {
+            $this->Auth->flash($e->getMessage());
+        }    
+        $this->render('usuarios/editar');
+    }
+    
+    public function eliminar($id = null)
+    {
+        try {
+            $mensaje = "";
+            $usuario = $this->Usuario->get($id);
+    
+            if($usuario){
+                if($this->Usuario->eliminar($usuario['id'])){
+                    $mensaje = "Se elimino con éxito";
+                }else{
+                    $mensaje = "No se pudo eliminar";
+                }
+            }else{
+                $mensaje = "No se encontro el usuario";
+            }   
+            
+            $this->Auth->flash($mensaje);
+        
+        } catch (\Exception $e) {
+            $this->Auth->flash($e->getMessage());
+        }            
+        $this->redireccionar("usuarios/index");
+    }
+
+
 
     public function registro()
     {
-        if (!empty($_POST)) {
+        try{
+            $this->plantilla('vacio');
+    
+            if (!empty($_POST)) {
+                // $this->debug($_POST);exit;
+                $usuario = $this->Usuario->registro($_POST);
+                if($usuario){
+                    $this->Auth->flash("Se guardo con éxito!");
+                    $this->redireccionar("usuarios/login");
+                }else{
+                    $this->Auth->flash("Ocurrio un error al registrarse. Por favor, intente nuevamente.");
+                }
+            }
+                $mensaje = "";
+            $usuario = $this->Usuario->get($id);
+    
+            if($usuario){
+                if($this->Usuario->eliminar($usuario['id'])){
+                    $mensaje = "Se elimino con éxito";
+                }else{
+                    $mensaje = "No se pudo eliminar";
+                }
+            }else{
+                $mensaje = "No se encontro el usuario";
+            }   
             
-            // $this->debug($_POST);exit;
-            $usuario = $this->Usuario->alta($_POST);
-            
-            // $this->set(compact('usuario'));
+            $this->Auth->flash($mensaje);
 
-            $this->Auth->flash("Se guardo con éxito!");
+            $this->loadModel('Localidad');
+            $localidades = $this->Localidad->listado();
+    
+            $this->set(compact('localidades'));
+
+        } catch (\Exception $e) {
+            $this->Auth->flash($e->getMessage());
         }
 
         $this->render('usuarios/registro');
     }
 
 
-    public function editar($id = null)
-    {
-        if (!empty($_POST)) {
-            
-            // $this->debug($_POST);exit;
-            if($this->Usuario->actualizar($id, $_POST)){
-                $this->Auth->flash("Se guardo con éxito!");
-                $this->redireccionar("usuarios/index");
-            }
-            
-        }
-        
-        $usuario = $this->Usuario->get($id);
-
-        $this->set(compact('usuario'));
-        $this->render('usuarios/editar');
-    }
-    
-    public function eliminar($id = null)
-    {
-        $mensaje = "";
-        $usuario = $this->Usuario->get($id);
-
-        if($usuario){
-            if($this->Usuario->eliminar($usuario['id'])){
-                $mensaje = "Se elimino con éxito";
-            }else{
-                $mensaje = "No se pudo eliminar";
-            }
-        }else{
-            $mensaje = "No se encontro el usuario";
-        }   
-        
-        $this->Auth->flash($mensaje);
-        $this->redireccionar("usuarios/index");
-    }
-
-
-
     public function login()
     {
         try {
+            $this->plantilla('vacio');
+
             if (!empty($_POST)) {
                 
                 if (empty($_POST['email'])) {

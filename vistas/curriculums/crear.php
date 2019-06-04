@@ -18,8 +18,10 @@
 
                 <div class="card-body mt-2 px-lg-5 pt-0">
                     <form>
+                        <input type="hidden" name="usuario_id" value="<?php $_SESSION['usuario']['id'] ?>">
+
                         <div class="form-group row">
-                            <label for="titleCV" class="col-3 col-form-label">Titulo de CV</label>
+                            <label for="title" class="col-3 col-form-label">Titulo de CV</label>
                             <div class="col-9">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -27,25 +29,26 @@
                                             <i class="fas fa-pen"></i>
                                         </div>
                                     </div>
-                                    <input id="titleCV" name="titleCV" placeholder="Ej.: 13" type="text" aria-describedby="mataprobHelpBlock" required="required" class="form-control">
+                                    <input id="title" name="title" placeholder="Ej.: 13" type="text" aria-describedby="materias_aprobadasHelpBlock" required="required" class="form-control">
                                 </div>
-                                <span id="titleCVHelpBlock" class="form-text text-muted small">Para diferenciar tus CV, solo lo veras tu.</span>
+                                <span id="titleHelpBlock" class="form-text text-muted small">Para diferenciar tus CV, solo lo veras tu.</span>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="idcarrera" class="col-3 col-form-label">Carrera</label>
+                            <label for="id_carrera" class="col-3 col-form-label">Carrera</label>
                             <div class="col-9">
-                                <select id="idcarrera" name="idcarrera" class="custom-select" required="required">
-                                    <option value="0">ISI</option>
-                                    <option value="1">Civil</option>
-                                    <option value="2">Quimica</option>
-                                    <option value="3">Electronica</option>
-                                    <option value="4">Mecanica</option>
+                                <select id="id_carrera" name="id_carrera" class="custom-select" required="required">
+                                    <option value="">Seleccione una Carrera</option>
+                                    <?php if (!empty($carreras)) : ?>
+                                        <?php foreach ($carreras as $key => $value) : ?>
+                                            <option value="<?= $key ?>"><?= ucfirst($value) ?></option>
+                                        <?php endforeach ?>
+                                    <?php endif ?>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="mataprob" class="col-3 col-form-label">Materias Aprobadas</label>
+                            <label for="materias_aprobadas" class="col-3 col-form-label">Materias Aprobadas</label>
                             <div class="col-9">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -53,9 +56,9 @@
                                             <i class="fas fa-check-double"></i>
                                         </div>
                                     </div>
-                                    <input id="mataprob" name="mataprob" placeholder="Ej.: 13" type="text" aria-describedby="mataprobHelpBlock" required="required" class="form-control">
+                                    <input id="materias_aprobadas" name="materias_aprobadas" placeholder="Ej.: 13" type="text" aria-describedby="materias_aprobadasHelpBlock" required="required" class="form-control">
                                 </div>
-                                <span id="mataprobHelpBlock" class="form-text text-muted small">Ingresa un numero.</span>
+                                <span id="materias_aprobadasHelpBlock" class="form-text text-muted small">Ingresa un numero.</span>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -87,16 +90,16 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="explab" class="col-3 col-form-label">Experiencia Laboral</label>
+                            <label for="experiencia_laboral" class="col-3 col-form-label">Experiencia Laboral</label>
                             <div class="col-9">
-                                <textarea id="explab" name="explab" cols="40" rows="10" class="form-control"></textarea>
+                                <textarea id="experiencia_laboral" name="experiencia_laboral" cols="40" rows="10" class="form-control"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="intereses" class="col-3 col-form-label">Intereses / Objetivos</label>
+                            <label for="objetivos" class="col-3 col-form-label">Intereses / Objetivos</label>
                             <div class="col-9">
-                                <textarea id="intereses" name="intereses" cols="40" rows="5" class="form-control" aria-describedby="interesesHelpBlock"></textarea>
-                                <span id="interesesHelpBlock" class="form-text text-muted small">Se conciso.</span>
+                                <textarea id="objetivos" name="objetivos" cols="40" rows="5" class="form-control" aria-describedby="objetivosHelpBlock"></textarea>
+                                <span id="objetivosHelpBlock" class="form-text text-muted small">Se conciso.</span>
                             </div>
                         </div>
                         <div class="form-group row">

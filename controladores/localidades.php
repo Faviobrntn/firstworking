@@ -1,13 +1,12 @@
-<?php
+<?php  
 // namespace Controladores;
 // use  Modelos\Usuario;
 
-class Provincias extends Controlador
+class Localidades extends Controlador
 {
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
-        $this->loadModel('Provincia');
+        $this->loadModel('Localidad');
 
         $this->autorizacion();
     }
@@ -15,12 +14,16 @@ class Provincias extends Controlador
     public function index()
     {
         if (!empty($_GET['search'])) {
-            $provincias = $this->Provincia->buscar($_GET['search']);
-        } else {
-            $provincias = $this->Provincia->getAll();
+            $localidades = $this->Localidad->buscar($_GET['search']);
+        }else{
+            $localidades = $this->Localidad->getAll();
         }
-        $this->set(compact('provincias'));
-        $this->render('provincias/index');
+
+        $this->loadModel('Provincia');
+        $provincias = $this->Provincia->listado();
+
+        $this->set(compact('localidades', 'provincias'));
+        $this->render('localidades/index');
     }
 
 
@@ -31,15 +34,15 @@ class Provincias extends Controlador
                 if (empty($_POST['nombre'])) {
                     throw new \Exception("El nombre no puede ser vacio.");
                 }
-
-                if ($this->Provincia->alta($_POST)) {
+                
+                if($this->Localidad->alta($_POST)){
                     $this->Auth->flash("Se guardo con éxito!");
-                }
+                }            
             }
         } catch (\Exception $e) {
             $this->Auth->flash($e->getMessage());
         }
-        $this->redireccionar("provincias/index");
+        $this->redireccionar("localidades/index");
     }
 
 
@@ -49,29 +52,34 @@ class Provincias extends Controlador
             if (!empty($_POST['id'])) {
                 $id = $_POST['id'];
             }
-            if ($this->Provincia->actualizar($id, $_POST)) {
+            if($this->Localidad->actualizar($id, $_POST)){
                 $this->Auth->flash("Se guardo con éxito!");
-            }
-        }
-        $this->redireccionar("provincias/index");
+            }   
+        }        
+        $this->redireccionar("localidades/index");
     }
-
+    
     public function eliminar($id = null)
     {
         $mensaje = "";
-        $usuario = $this->Provincia->get($id);
+        $localidad = $this->Localidad->get($id);
 
-        if ($usuario) {
-            if ($this->Provincia->eliminar($usuario['id'])) {
+        if($localidad){
+            if($this->Localidad->eliminar($localidad['id'])){
                 $mensaje = "Se elimino con éxito";
-            } else {
+            }else{
                 $mensaje = "No se pudo eliminar";
             }
-        } else {
-            $mensaje = "No se encontro el usuario";
-        }
-
+        }else{
+            $mensaje = "No se encontro el localidad";
+        }   
+        
         $this->Auth->flash($mensaje);
-        $this->redireccionar("provincias/index");
+        $this->redireccionar("localidades/index");
     }
 }
+
+
+
+
+?>
