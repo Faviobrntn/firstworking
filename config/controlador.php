@@ -16,6 +16,7 @@ class Controlador
     public function autorizacion()
     {
         // var_dump($this->request);exit;
+        return true;
         if (in_array($_GET['url'], $this->Auth->permitir)) {
             return true;
         }

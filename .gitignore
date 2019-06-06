@@ -6,3 +6,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+/config/conexion.php
+config/conexion.php

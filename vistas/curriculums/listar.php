@@ -34,151 +34,44 @@
 
         <!-- Card -->
         <div class="row ">
-            <div class="col-sm">
-                <div class="card mx-1 my-1">
+            <?php if (!empty($curriculums)) : ?>
+                <?php foreach ($curriculums as $cv) : ?>
+                    <div class="col-sm">
+                        <div class="card mx-1 my-1">
 
-                    <!-- Card image -->
-                    <div class="view overlay">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" alt="Card image cap">
-                        <a href="#!">
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>
+                            <!-- Card image -->
+                            <div class="view overlay">
+                                <img class="card-img-top" src="<?= $cv['url_imagen'] ?>" alt="Card image cap">
+                                <a href="<?= HOST ?>curriculums/editar/<?= $cv['id'] ?>">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
 
-                    <!-- Card content -->
-                    <div class="card-body">
+                            <!-- Card content -->
+                            <div class="card-body">
 
-                        <!-- Title -->
-                        <h4 class="card-title">CV1</h4>
-                        <!-- Text -->
-                        <p class="card-text">resumen de cv aqui</p>
-                        <!-- Button -->
-                        <div class="btn-group btn-block">
-                            <a href="#" class="btn btn-danger">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                            <a href="#" class="btn btn-info">
-                                <i class="far fa-edit"></i>
-                            </a>
-                            <a href="#" class="btn btn-success">
-                                <i class="far fa-check-square"></i>
-                            </a>
+                                <!-- Title -->
+                                <h4 class="card-title"><?= $cv['titulo'] ?></h4>
+                                <!-- Text -->
+                                <p class="card-text"><?= $cv['resumen'] ?></p>
+                                <!-- Button -->
+                                <div class="btn-group btn-block">
+                                    <a onclick="borrar($(cv.id))" class="btn btn-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                    <a href="<?= HOST ?>curriculums/editar/<?= $cv['id'] ?>" class="btn btn-info">
+                                        <i class="far fa-edit"></i>
+                                    </a>
+                                    <a onclick="seleccionar($(cv.id))" class="btn btn-success">
+                                        <i class="far fa-check-square"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php endforeach ?>
+            <?php endif ?>
 
-            </div>
-            <!-- Card -->
-            <!-- Card -->
-            <div class="col-sm">
-                <div class="card mx-1 my-1">
-
-                    <!-- Card image -->
-                    <div class="view overlay">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" alt="Card image cap">
-                        <a href="#!">
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>
-
-                    <!-- Card content -->
-                    <div class="card-body">
-
-                        <!-- Title -->
-                        <h4 class="card-title">CV2</h4>
-                        <!-- Text -->
-                        <p class="card-text">resumen de cv aqui</p>
-                        <!-- Button -->
-                        <div class="btn-group btn-block">
-                            <a href="#" class="btn btn-danger">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                            <a href="#" class="btn btn-info">
-                                <i class="far fa-edit"></i>
-                            </a>
-                            <a href="#" class="btn btn-success">
-                                <i class="far fa-check-square"></i>
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-            <!-- Card -->
-            <!-- Card -->
-            <div class="col-sm">
-                <div class="card mx-1 my-1">
-
-                    <!-- Card image -->
-                    <div class="view overlay">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" alt="Card image cap">
-                        <a href="#!">
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>
-
-                    <!-- Card content -->
-                    <div class="card-body">
-
-                        <!-- Title -->
-                        <h4 class="card-title">CV3</h4>
-                        <!-- Text -->
-                        <p class="card-text">resumen de cv aqui</p>
-                        <!-- Button -->
-                        <div class="btn-group btn-block">
-                            <a href="#" class="btn btn-danger">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                            <a href="#" class="btn btn-info">
-                                <i class="far fa-edit"></i>
-                            </a>
-                            <a href="#" class="btn btn-success">
-                                <i class="far fa-check-square"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <!-- Card -->
-            <!-- Card -->
-            <div class="col-sm">
-                <div class="card mx-1 my-1">
-
-                    <!-- Card image -->
-                    <div class="view overlay">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" alt="Card image cap">
-                        <a href="#!">
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>
-
-                    <!-- Card content -->
-                    <div class="card-body">
-
-                        <!-- Title -->
-                        <h4 class="card-title">CV4</h4>
-                        <!-- Text -->
-                        <p class="card-text">resumen de cv aqui</p>
-                        <!-- Button -->
-                        <div class="btn-group btn-block">
-                            <a href="#" class="btn btn-danger">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                            <a href="#" class="btn btn-info">
-                                <i class="far fa-edit"></i>
-                            </a>
-                            <a href="#" class="btn btn-success">
-                                <i class="far fa-check-square"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <!-- Card -->
-        </div>
     </section>
 
     <div class="container">
@@ -221,6 +114,16 @@
             }
         }
     });
+
+var id = null;
+   
+   function seleccionar(){
+       
+    }
+
+   function borrar(){
+       
+    }
 </script>
 
 </html>

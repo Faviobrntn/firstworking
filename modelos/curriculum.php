@@ -20,7 +20,8 @@ class Curriculum extends Modelo
                 }
                 $query->close();
             }
-
+            // print_r($resultados);
+            // exit;
             return $resultados;
         } catch (\Exception $e) {
             // throw new Exception("Error: %s\n", $e->getMessage());

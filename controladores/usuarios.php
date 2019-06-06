@@ -121,21 +121,7 @@ class Usuarios extends Controlador
                     $this->Auth->flash("Ocurrio un error al registrarse. Por favor, intente nuevamente.");
                 }
             }
-                $mensaje = "";
-            $usuario = $this->Usuario->get($id);
-    
-            if($usuario){
-                if($this->Usuario->eliminar($usuario['id'])){
-                    $mensaje = "Se elimino con éxito";
-                }else{
-                    $mensaje = "No se pudo eliminar";
-                }
-            }else{
-                $mensaje = "No se encontro el usuario";
-            }   
             
-            $this->Auth->flash($mensaje);
-
             $this->loadModel('Localidad');
             $localidades = $this->Localidad->listado();
     
@@ -190,8 +176,3 @@ class Usuarios extends Controlador
     }
 
 }
-
-
-
-
-?>

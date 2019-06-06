@@ -11,8 +11,9 @@ class Localidad extends Modelo
     public function getAll()
     {
         try {
-            $resultados = null;
-            if($query = $this->db->query("SELECT * FROM localidades")){            
+            $resultados = [];
+            if($query = $this->db->query("SELECT * FROM localidades")){   
+        
                 // while ($row = $query->fetch_object()){
                 while ($row = $query->fetch_array()){
                     $resultados[] = $row;
@@ -56,7 +57,7 @@ class Localidad extends Modelo
             
             $query = $this->getAll();
             
-            if(count($query)){
+            if(\count($query)){
                 foreach ($query as $v) {
                     $resultados[$v['id']] = $v[$campo];
                 }
