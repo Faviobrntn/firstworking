@@ -44,18 +44,17 @@ class Curriculums extends Controlador
     public function editar($id = null)
     {
         if (!empty($_POST)) {
-
             // $this->debug($_POST);exit;
             if ($this->Curriculums->actualizar($id, $_POST)) {
                 $this->Auth->flash("Se guardo con éxito!");
-                $this->redireccionar("usuarios/index");
+                $this->redireccionar("curriculums/index");
             }
         }
 
         $curriculum = $this->Curriculums->get($id);
 
-        $this->set(compact('usuario'));
-        $this->render('usuarios/editar');
+        $this->set(compact('curriculum'));
+        $this->render('curriculums/editar');
     }
 
     public function eliminar($id = null)

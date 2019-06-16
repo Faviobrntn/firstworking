@@ -86,16 +86,31 @@ class Curriculum extends Modelo
     }
 
 
-    public function actualizar($id, $data)
+    public function actualizar($id_cv, $data)
     {
+        $usuario_id = $data['usuario_id'];
+        $titulo = $data['titulo'];
+        $resumen = $data['resumen'];
+        $id_carrera = $data['id_carrera'];
+        $materias_aprobadas = $data['materias_aprobadas'];
+        $promedio = $data['promedio'];
+        $experiencia_laboral = $data['experiencia_laboral'];
+        $conocimientos = $data['conocimientos'];
+        $objetivos = $data['objetivos'];
+        $creado = date('Y-m-d H:i:s');
         try {
-            /*
-            $nombre = strtolower($data['nombre']);
-            $apellido = strtolower($data['apellido']);
-            $email = strtolower($data['email']);
-            */
-            //Arma la instrucción SQL y luego la ejecuta
-            $sql = "UPDATE curriculums SET nombre='$nombre', apellido='$apellido', email='$email' WHERE id=$id";
+            $sql = "UPDATE curriculums SET 
+                usuario_id=$usuario_id,
+                titulo = $titulo,
+                resumen = $resumen,
+                id_carrera = $id_carrera,
+                materias_aprobadas = $materias_aprobadas,
+                promedio = $promedio,
+                experiencia_laboral = $experiencia_laboral,
+                conocimientos = $conocimientos,
+                objetivos = $objetivos,
+                creado = $creado
+            WHERE id=$id_cv";
 
             if ($this->db->query($sql) === TRUE) {
                 return true;

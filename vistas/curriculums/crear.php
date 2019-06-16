@@ -76,23 +76,17 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="conocimientos" class="col-3 col-form-label">Conocimientos</label>
+                        <label for="conocimientos" class="col-3 col-form-label">Conocimientos</label>
                             <div class="col-9">
-                                <select id="conocimientos" name="conocimientos" class="custom-select" aria-describedby="conocimientosHelpBlock" multiple="multiple">
-                                    <option value="php">PHP</option>
-                                    <option value="csharp">C#</option>
-                                    <option value="java">Java</option>
-                                    <option value="redes">Redes</option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                </select>
-                                <span id="conocimientosHelpBlock" class="form-text text-muted small">Puedes seleccionar muchos.</span>
+                                <textarea id="conocimientos" name="conocimientos" cols="40" rows="10" class="form-control"></textarea>
+                                <span id="conocimientossHelpBlock" class="form-text text-muted small">Te recomendamos listarlos con SHIFT+ENTER</span>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="experiencia_laboral" class="col-3 col-form-label">Experiencia Laboral</label>
                             <div class="col-9">
                                 <textarea id="experiencia_laboral" name="experiencia_laboral" cols="40" rows="10" class="form-control"></textarea>
+                                <span id="experiencia_laboralHelpBlock" class="form-text text-muted small">Ejemplo: Nombre empresa, (Fecha desde/hasta), Puesto, Funciones que realizaste.</span>
                             </div>
                         </div>
                         <div class="form-group row">
