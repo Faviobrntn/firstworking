@@ -116,6 +116,8 @@
                 <i class="fas fa-table mr-3"></i>Facultades</a>
             <a href="<?=HOST?>curriculums" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-table mr-3"></i>Curriculums</a>
+            <a href="<?=HOST?>ofertas" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-table mr-3"></i>Ofertas</a>
             
             <hr>
 
