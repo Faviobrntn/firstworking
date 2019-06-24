@@ -36,7 +36,7 @@
             <div class="card-body">
 
             <canvas id="myChart"></canvas>
-
+WIP
             </div>
 
         </div>
@@ -53,7 +53,7 @@
             <div class="card-header text-center">
                 Pie chart
             </div>
-
+          wip
             <!--Card content-->
             <div class="card-body"></div>
         </div>

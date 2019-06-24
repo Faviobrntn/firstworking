@@ -10,20 +10,17 @@
     <title>Scrolling Nav - Start Bootstrap Template</title>
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="<?=HOST?>vendor/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?=HOST?>vendor/css/scrolling-nav.css">
-    <link rel="stylesheet" href="<?=HOST?>vendor/css/mdb.min.css">
-    <link rel="stylesheet" href="<?=HOST?>vendor/css/style.min.css">
+    <link rel="stylesheet" href="<?= HOST ?>vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= HOST ?>vendor/css/scrolling-nav.css">
+
 
 </head>
 
 <body id="page-top">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img class="img-fluid" src="Untitled.png"
-                    style="height: 30px;"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img class="img-fluid" src="Untitled.png" style="height: 30px;"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -35,8 +32,14 @@
                         <a class="nav-link js-scroll-trigger" href="#services">Servicios</a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link js-scroll-trigger" data-toggle="modal"
-                            data-target="#modalLRForm">Acceder</a>
+                        <a href="<?= HOST ?>usuarios/login" class="nav-link js-scroll-trigger">Acceder</a>
+                        <!--<a href="" class="nav-link js-scroll-trigger" data-toggle="modal"
+                            data-target="#modalLRForm">Acceder</a>-->
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= HOST ?>usuarios/registro" class="nav-link js-scroll-trigger">Registrate</a>
+                        <!--<a href="" class="nav-link js-scroll-trigger" data-toggle="modal"
+                            data-target="#modalLRForm">Acceder</a>-->
                     </li>
                 </ul>
             </div>
@@ -64,8 +67,7 @@
 
                 <!-- Featured image -->
                 <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg"
-                        alt="Sample image">
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg" alt="Sample image">
                     <a>
                         <div class="mask rgba-white-slight"></div>
                     </a>
@@ -104,8 +106,7 @@
 
                 <!-- Featured image -->
                 <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/31.jpg"
-                        alt="Sample image">
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/31.jpg" alt="Sample image">
                     <a>
                         <div class="mask rgba-white-slight"></div>
                     </a>
@@ -145,8 +146,7 @@
 
                 <!-- Featured image -->
                 <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/52.jpg"
-                        alt="Sample image">
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/52.jpg" alt="Sample image">
                     <a>
                         <div class="mask rgba-white-slight"></div>
                     </a>
@@ -180,7 +180,7 @@
 
 
     <!---------------------------------------------------LOGIN------------------------------------------------->
-<!--     <section id="idFormLogin">
+    <!--     <section id="idFormLogin">
         
 
     </section> -->
@@ -239,31 +239,24 @@
 
     <!-- Footer -->
 
-    <footer id="footer" class="bg-dark">
-        <?php include("footer.php");?>
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; firstworking.utn 2019</p>
-        </div>
-        <!-- /.container -->
-    </footer>
 
 
-    
+
+
     <!-- Bootstrap core JavaScript -->
-    <script src="<?=HOST?>vendor/js/jquery.min.js"></script>
-    <script src="<?=HOST?>vendor/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= HOST ?>vendor/js/jquery.min.js"></script>
+    <script src="<?= HOST ?>vendor/js/bootstrap.bundle.min.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="<?=HOST?>vendor/js/jquery.easing.min.js"></script>
+    <script src="<?= HOST ?>vendor/js/jquery.easing.min.js"></script>
 
     <!-- Custom JavaScript for this theme -->
-    <script src="<?=HOST?>vendor/js/scrolling-nav.js"></script>
+    <script src="<?= HOST ?>vendor/js/scrolling-nav.js"></script>
 
 
 
     <!--Modal: Login / Register Form-->
-    <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog cascading-modal" role="document">
             <!--Content-->
             <div class="modal-content">
@@ -274,13 +267,11 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i
-                                    class="fas fa-user mr-1"></i>
+                            <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i class="fas fa-user mr-1"></i>
                                 Acceder</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i
-                                    class="fas fa-user-plus mr-1"></i>
+                            <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i class="fas fa-user-plus mr-1"></i>
                                 Registrarse</a>
                         </li>
                     </ul>
@@ -294,16 +285,14 @@
                             <div class="modal-body mb-1">
                                 <div class="md-form form-sm mb-5">
                                     <i class="fas fa-envelope prefix"></i>
-                                    <input type="email" id="modalLRInput10"
-                                        class="form-control form-control-sm validate">
+                                    <input type="email" id="modalLRInput10" class="form-control form-control-sm validate">
                                     <label data-error="wrong" data-success="right" for="modalLRInput10">Tu correo
                                         electronico</label>
                                 </div>
 
                                 <div class="md-form form-sm mb-4">
                                     <i class="fas fa-lock prefix"></i>
-                                    <input type="password" id="modalLRInput11"
-                                        class="form-control form-control-sm validate">
+                                    <input type="password" id="modalLRInput11" class="form-control form-control-sm validate">
                                     <label data-error="wrong" data-success="right" for="modalLRInput11">Tu
                                         contraseña</label>
                                 </div>
@@ -317,8 +306,7 @@
                                     <p>No eres miembro? <a href="#" class="blue-text">Registrate</a></p>
                                     <p>Olvidaste la <a href="#" class="blue-text">Contraseña?</a></p>
                                 </div>
-                                <button type="button" class="btn btn-outline-info waves-effect ml-auto"
-                                    data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Cerrar</button>
                             </div>
 
                         </div>
@@ -331,31 +319,27 @@
                             <div class="modal-body">
                                 <div class="md-form form-sm mb-5">
                                     <i class="fas fa-envelope prefix"></i>
-                                    <input type="email" id="modalLRInput12"
-                                        class="form-control form-control-sm validate">
+                                    <input type="email" id="modalLRInput12" class="form-control form-control-sm validate">
                                     <label data-error="wrong" data-success="right" for="modalLRInput12">Tu correo
                                         electronico</label>
                                 </div>
 
                                 <div class="md-form form-sm mb-5">
                                     <i class="fas fa-lock prefix"></i>
-                                    <input type="password" id="modalLRInput13"
-                                        class="form-control form-control-sm validate">
+                                    <input type="password" id="modalLRInput13" class="form-control form-control-sm validate">
                                     <label data-error="wrong" data-success="right" for="modalLRInput13">Tu
                                         contraseña</label>
                                 </div>
 
                                 <div class="md-form form-sm mb-4">
                                     <i class="fas fa-lock prefix"></i>
-                                    <input type="password" id="modalLRInput14"
-                                        class="form-control form-control-sm validate">
+                                    <input type="password" id="modalLRInput14" class="form-control form-control-sm validate">
                                     <label data-error="wrong" data-success="right" for="modalLRInput14">Repite la
                                         contraseña</label>
                                 </div>
 
                                 <div class="text-center form-sm mt-2">
-                                    <button class="btn btn-info">Registrate<i
-                                            class="fas fa-sign-in ml-1"></i></button>
+                                    <button class="btn btn-info">Registrate<i class="fas fa-sign-in ml-1"></i></button>
                                 </div>
 
                             </div>
@@ -365,8 +349,7 @@
                                     <p class="pt-1">Ya tienes una cuenta? <a href="#" class="blue-text">Acceder</a>
                                     </p>
                                 </div>
-                                <button type="button" class="btn btn-outline-info waves-effect ml-auto"
-                                    data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
                         <!--/.Panel 8-->
@@ -378,8 +361,13 @@
         </div>
     </div>
     <!--Modal: Login / Register Form-->
-
+    <footer id="footer" class="bg-dark">
+        <?php include("footer.php"); ?>
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; firstworking.utn 2019</p>
+        </div>
+        <!-- /.container -->
+    </footer>
 </body>
 
 </html>
-

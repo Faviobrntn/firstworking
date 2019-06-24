@@ -31,7 +31,7 @@
             <!--Card content-->
             <div class="card-body">
                 <div class="text-center p-3">
-                    <form action="<?=HOST?>facultades/alta" method="post">
+                    <form action="<?=HOST?>usuarios/alta" method="post">
                         <input type="text" name="nombre" class="form-control mb-4" placeholder="Nombre" value="<?=(!empty($_POST["nombre"])? $_POST["nombre"] : '')?>">
                         <input type="text" name="apellido" class="form-control mb-4" placeholder="Apellido" value="<?=(!empty($_POST["apellido"])? $_POST["apellido"] : '')?>">
                         <input type="email" name="email" class="form-control mb-4" placeholder="E-mail" value="<?=(!empty($_POST["email"])? $_POST["email"] : '')?>">
@@ -45,7 +45,7 @@
                                 <?php endforeach ?>
                             <?php endif ?>
                         </select>
-                        <select name="localidad_id" id="localidad-id" class="form-control mb-4">
+                        <select name="rol" id="rol" class="form-control mb-4">
                             <option value="">Seleccione una opción</option>
                             <?php if(!empty($roles)): ?>
                                 <?php foreach($roles as $key => $value): ?>
