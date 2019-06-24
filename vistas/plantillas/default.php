@@ -114,6 +114,8 @@
                 <i class="fas fa-table mr-3"></i>Localidades</a>
             <a href="<?=HOST?>facultades" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-table mr-3"></i>Facultades</a>
+            <a href="<?=HOST?>carreras" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-table mr-3"></i>Carreras</a>
             <a href="<?=HOST?>curriculums" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-table mr-3"></i>Curriculums</a>
             <a href="<?=HOST?>ofertas" class="list-group-item list-group-item-action waves-effect">

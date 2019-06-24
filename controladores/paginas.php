@@ -11,10 +11,11 @@ class Paginas extends Controlador
     public function index()
     {
         $this->plantilla('publico');
-        $vista = "usuarios ";
 
+        $this->loadModel('Oferta');
+        $ofertas = $this->Ofertas->getAll();
 
-        $this->set(compact('vista'));
+        $this->set(compact('ofertas'));
         $this->render('paginas/index');
         // Vista::render('paginas/index');
     }

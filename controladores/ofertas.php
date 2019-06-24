@@ -25,20 +25,41 @@ class Ofertas extends Controlador
 
     public function alta()
     {
-        if($this->Oferta->alta($_POST)){
-            $this->Auth->flash("Se guardo con éxito!");
-            $this->redireccionar("ofertas/index");
-            }            
+        if (!empty($_POST)) {
+            if($this->Oferta->alta($_POST)){
+                $this->Auth->flash("Se guardo con éxito!");
+                $this->redireccionar("ofertas/index");
+            }
+        }
+
+        $this->loadModel('Localidad');
+        $localidades = $this->Localidad->listado();
+        $this->loadModel('Carrera');
+        $carreras = $this->Carrera->listado();
+
+        $this->set(compact('localidades', 'carreras'));
+        $this->render('ofertas/alta');
     }
 
     public function editar($id = null)
     {
+        $oferta = $this->Ofertas->get($id);
 
-        if($this->Facultad->actualizar($id, $_POST)){
-            $this->Auth->flash("Se guardo con éxito!");
-            $this->redireccionar("ofertas/index");
-                }   
+        if(!empty($_POST)){
+            if($this->Ofertas->actualizar($id, $_POST)){
+                $this->Auth->flash("Se guardo con éxito!");
+                $this->redireccionar("ofertas/index");
+            }   
         }
+
+        $this->loadModel('Localidad');
+        $localidades = $this->Localidad->listado();
+        $this->loadModel('Carrera');
+        $carreras = $this->Carrera->listado();
+
+        $this->set(compact('localidades', 'oferta', 'carreras'));
+        $this->render('ofertas/editar');
+    }
 
     
     
