@@ -1,29 +1,3 @@
-<!DOCTYPE html>
-
-<head>
-    <title>Cargar Oferta</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.1/css/mdb.min.css" rel="stylesheet">
-    <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.1/js/mdb.min.js"></script>
-
-    <!--<link rel="stylesheet" href="../vendor/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../vendor/css/floating-labels.css">-->
-</head>
-
-<body>
 <div class="container">
     <div class="row">
         <div class="col-sm-2">
@@ -41,7 +15,7 @@
 <div class="card-body px-lg-5 pt-0">
 
     <!-- Form -->
-    <form class="text-left" style="color: #757575;">
+    <form action="<?=HOST?>ofertas/alta" method="post" class="text-left" style="color: #757575;">
 
         <!-- Titulo -->
         <div class="md-form mt-3">
@@ -59,16 +33,29 @@
 
         <!--Localidad-->
         <div class="md-form">
-            <label for="localidad"><strong>Localidad</strong></label></br>
-            <input type="text" id="localidad" class="form-control">      
+            <label for="localidad-id"><strong>Localidad</strong></label></br>
+            <select name="localidad_id" id="localidad-id" class="form-control">
+                <?php if(!empty($localidades)): ?>
+                    <?php foreach($localidades as $key => $value): ?>
+                        <?php $check = ((!empty($_POST["localidad_id"]) AND ($_POST["localidad_id"] = $key))? 'selected' : '')?>; ?>
+                        <option value="<?=$key?>" <?=$check?> ><?= ucfirst($value) ?></option>
+                    <?php endforeach ?>
+                <?php endif ?>
+            </select>
             <p>&nbsp;</p>      
         </div>
 
         <!--Carrera-->
         <div class="md-form">
-            <label for="carrera"><strong>Carrera</strong></label></br>
-            <input type="text" id="carrera" class="form-control">      
-
+            <label for="carrera-id"><strong>Carrera</strong></label></br>
+            <select name="carrera_id" id="carrera-id" class="form-control mb-4">
+                <?php if(!empty($carreras)): ?>
+                    <?php foreach($carreras as $key => $value): ?>
+                        <?php $check = ((!empty($_POST["carrera_id"]) AND ($_POST["carrera_id"] = $key))? 'selected' : '')?>; ?>
+                        <option value="<?=$key?>" <?=$check?> ><?= ucfirst($value) ?></option>
+                    <?php endforeach ?>
+                <?php endif ?>
+            </select>
         </div>
 
         <!--Modalidad-->

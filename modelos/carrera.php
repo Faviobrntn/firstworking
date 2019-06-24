@@ -78,11 +78,11 @@ class Carrera extends Modelo
             $nombre = strtolower($data['nombre']);
             $descripcion = strtolower($data['descripcion']);
             $creado = date('Y-m-d H:i:s');
-            $provincia_id = $data['provincia_id'];
+            $facultad_id = $data['facultad_id'];
     
             //Arma la instrucción SQL y luego la ejecuta
-            $sql = "INSERT INTO carreras (nombre, descripcion,  creado, provincia_id) 
-                    VALUES ('$nombre',  '$descripcion',  '$creado',  '$provincia_id')";
+            $sql = "INSERT INTO carreras (nombre, descripcion,  creado, facultad_id) 
+                    VALUES ('$nombre',  '$descripcion',  '$creado',  '$facultad_id')";
             
             // mysqli_query($this->db, $sql) or die (mysqli_error($this->db));
             
@@ -105,9 +105,10 @@ class Carrera extends Modelo
             
             $nombre = strtolower($data['nombre']);
             $descripcion = strtolower($data['descripcion']);
+            $facultad_id = $data['facultad_id'];
                 
             //Arma la instrucción SQL y luego la ejecuta
-            $sql = "UPDATE carreras SET nombre='$nombre', descripcion='$descripcion' WHERE id=$id";
+            $sql = "UPDATE carreras SET nombre='$nombre', descripcion='$descripcion', facultad_id='$facultad_id' WHERE id=$id";
                     
             if ($this->db->query($sql) === TRUE) {
                 return true;

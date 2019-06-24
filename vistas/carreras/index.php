@@ -47,8 +47,8 @@
                                     <td><?= ucwords($carrera['nombre']) ?></td>
                                     <td><?= !empty($carrera['facultad'])? $carrera['facultad']['nombre'] : '' ?></td>
                                     <td><?= $carrera['descripcion'] ?></td>
-                                    <td class="text-center"><a class="btn btn-sm btn-primary" href="<?=HOST?>localidades/editar/<?=$carrera['id']?>">Editar</a></td>
-                                    <td class="text-center"><a class="btn btn-sm btn-danger" href="<?=HOST?>localidades/eliminar/<?=$carrera['id']?>">Eliminar</a></td>
+                                    <td class="text-center"><a class="btn btn-sm btn-primary" href="<?=HOST?>carreras/editar/<?=$carrera['id']?>">Editar</a></td>
+                                    <td class="text-center"><a class="btn btn-sm btn-danger" href="<?=HOST?>carreras/eliminar/<?=$carrera['id']?>">Eliminar</a></td>
                                 </tr>
                             <?php endforeach ?>
                         <?php endif ?>

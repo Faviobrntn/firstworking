@@ -13,7 +13,7 @@ class Paginas extends Controlador
         $this->plantilla('publico');
 
         $this->loadModel('Oferta');
-        $ofertas = $this->Ofertas->getAll();
+        $ofertas = $this->Oferta->getAll();
 
         $this->set(compact('ofertas'));
         $this->render('paginas/index');
