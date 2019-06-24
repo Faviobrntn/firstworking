@@ -1,124 +1,66 @@
-<!DOCTYPE html>
+<!-- Heading -->
+<div class="card mb-4 wow fadeIn">
 
-<head>
-    <title>Cargar Oferta</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.1/css/mdb.min.css" rel="stylesheet">
-    <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.1/js/mdb.min.js"></script>
+    <!--Card content-->
+    <div class="card-body d-sm-flex justify-content-between">
 
-    <!--<link rel="stylesheet" href="../vendor/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../vendor/css/floating-labels.css">-->
-</head>
+        <h4 class="mb-2 mb-sm-0 pt-1">
+            <span>Ofertas/editar/<?=$oferta['id']?></span>
+        </h4>
 
-<body>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-2">
-
-        </div>
-        <div class="col-sm-8">
-            <!-- Material form contact -->
-<div class="card">
-
-<h5 class="card-header info-color white-text text-center py-4">
-    <strong>Nueva Oferta</strong>
-</h5>
-
-<!--Card content-->
-<div class="card-body px-lg-5 pt-0">
-
-    <!-- Form -->
-    <form action="<?=HOST?>ofertas/alta" method="post" class="text-left" style="color: #757575;">
-
-        <!-- Titulo -->
-        <div class="md-form mt-3">
-            <label for="titulo"><strong>Titulo</strong></label></br>
-            <input type="text" id="titulo" class="form-control" autofocus>
-            <p>&nbsp;</p>
-        </div>  
-
-        <!-- Descripcion -->
-        <div class="md-form">
-            <label for="descripcion"><strong>Descripcion</strong></label></br>
-            <textarea id="descripcion" class="form-control md-textarea" rows="3"></textarea>  
-            <p>&nbsp;</p>          
+        <div class="d-flex justify-content-center">
+            <a href="<?=HOST?>ofertas" class="btn btn-dark btn-sm my-0 p">
+                Volver
+            </a>
         </div>
 
-        <!--Localidad-->
-        <div class="md-form">
-            <label for="localidad-id"><strong>Localidad</strong></label></br>
-            <select name="localidad_id" id="localidad-id" class="form-control">
-                <?php if(!empty($localidades)): ?>
-                    <?php foreach($localidades as $key => $value): ?>
-                        <?php $check = ((!empty($_POST["localidad_id"]) AND ($_POST["localidad_id"] = $key))? 'selected' : '')?>; ?>
-                        <option value="<?=$key?>" <?=$check?> ><?= ucfirst($value) ?></option>
-                    <?php endforeach ?>
-                <?php endif ?>
-            </select>
-            <p>&nbsp;</p>      
-        </div>
-
-        <!--Carrera-->
-        <div class="md-form">
-            <label for="carrera-id"><strong>Carrera</strong></label></br>
-            <select name="carrera_id" id="carrera-id" class="form-control mb-4">
-                <?php if(!empty($carreras)): ?>
-                    <?php foreach($carreras as $key => $value): ?>
-                        <?php $check = ((!empty($_POST["carrera_id"]) AND ($_POST["carrera_id"] = $key))? 'selected' : '')?>; ?>
-                        <option value="<?=$key?>" <?=$check?> ><?= ucfirst($value) ?></option>
-                    <?php endforeach ?>
-                <?php endif ?>
-            </select>
-        </div>
-
-        <!--Modalidad-->
-        <div class="md-form">
-            <label for="modalidad"><strong>Modalidad</strong></label></br>
-            <input type="text" id="modalidad" class="form-control">    
-
-        </div>
-
-        <!--Horario Laboral-->
-        <div class="md-form">
-            <label for="horarioLaboral"><strong>Laboral</strong></label></br>
-            <input type="text" id="horarioLaboral" class="form-control"> 
-            <p>&nbsp;</p>          
-        </div>
-
-        <!--Remuneracion-->
-        <div class="md-form">
-            <label for="remuneracion"><strong>Remuneracion</strong></label></br></br>
-            <input type="float" id="remuneracion" class="form-control">     
-            <p>&nbsp;</p>
-        </div>
-
-        <!--Fecha Creacion-->
-        <div class="md-form">
-            <label for="creado"><strong>Fecha Creacion</strong></label></br></br>
-            <input type="datetime" id="creado" class="form-control">      
-            <p>&nbsp;</p>      
-        </div>
-
-        <!-- Send button -->
-        <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit">Registrar</button>
-
-    </form>
-    <!-- Form -->
+    </div>
 
 </div>
-</body>
+<!-- Heading -->
 
-</html>
+<div class="row wow fadeIn">
+
+    <div class="col-md-6 mb-4">
+        <!--Card-->
+        <div class="card">
+            <div class="card-header text-center">
+                Editar
+            </div>
+
+            <!--Card content-->
+            <div class="card-body">
+                <div class="text-center p-3">
+                    <form action="<?=HOST?>ofertas/editar/<?=$oferta['id']?>" method="post">
+                        <input type="text" name="titulo" class="form-control mb-4" placeholder="Titulo" value="<?=(!empty($oferta["titulo"])? $oferta["titulo"] : '')?>">
+                        <input type="text" name="modalidad" class="form-control mb-4" placeholder="Modalidad" value="<?=(!empty($oferta["modalidad"])? $oferta["modalidad"] : '')?>">
+                        <input type="text" name="horario_laboral" class="form-control mb-4" placeholder="Horario laboral" value="<?=(!empty($oferta["horario_laboral"])? $oferta["horario_laboral"] : '')?>">
+                        <input type="number" name="remuneracion" class="form-control mb-4" placeholder="Remuneracion" value="<?=(!empty($oferta["remuneracion"])? $oferta["remuneracion"] : '')?>">
+                        <select name="localidad_id" id="localidad-id" class="form-control mb-4">
+                            <option value="">Seleccione localidad</option>
+                            <?php if(!empty($localidades)): ?>
+                                <?php foreach($localidades as $key => $value): ?>
+                                    <?php $check = ((!empty($oferta["localidad_id"]) AND ($oferta["localidad_id"] = $key))? 'selected' : '')?>; ?>
+                                    <option value="<?=$key?>" <?=$check?> ><?= ucfirst($value) ?></option>
+                                <?php endforeach ?>
+                            <?php endif ?>
+                        </select>
+                        <select name="carrera_id" id="carrera-id" class="form-control mb-4">
+                            <option value="">Seleccione Carrera</option>
+                            <?php if(!empty($carreras)): ?>
+                                <?php foreach($carreras as $key => $value): ?>
+                                    <?php $check = ((!empty($oferta["carrera_id"]) AND ($oferta["carrera_id"] = $key))? 'selected' : '')?>; ?>
+                                    <option value="<?=$key?>" <?=$check?> ><?= ucfirst($value) ?></option>
+                                <?php endforeach ?>
+                            <?php endif ?>
+                        </select>
+                        <textarea name="descripcion" class="form-control mb-4" rows="3" placeholder="Descripción"><?php if(!empty($oferta["descripcion"])) echo $oferta["descripcion"]; ?></textarea>
+                        
+                        <button class="btn btn-info float-right my-4" type="submit">Guardar</button>
+                    </form>
+                </form>
+            </div>
+        </div>
+        <!--/.Card-->
+    </div>
+</div>

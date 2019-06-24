@@ -43,10 +43,10 @@ class Ofertas extends Controlador
 
     public function editar($id = null)
     {
-        $oferta = $this->Ofertas->get($id);
+        $oferta = $this->Oferta->get($id);
 
         if(!empty($_POST)){
-            if($this->Ofertas->actualizar($id, $_POST)){
+            if($this->Oferta->actualizar($id, $_POST)){
                 $this->Auth->flash("Se guardo con éxito!");
                 $this->redireccionar("ofertas/index");
             }   
