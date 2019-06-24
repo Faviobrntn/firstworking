@@ -8,7 +8,7 @@ class Modelo extends Conexion
     public function __construct() {
         
         try {
-            $this->db = new \mysqli($this->host, $this->user, $this->pass, $this->db) or die('Error al conectar'. mysqli_errno($this->db));
+            $this->db = new \mysqli($this->host, $this->user, $this->pass, $this->database) or die('Error al conectar'. mysqli_errno($this->db));
             
             if ($this->db->connect_errno) {
                 throw new \Exception("Falló la conexión: %s\n", $this->db->connect_error);
