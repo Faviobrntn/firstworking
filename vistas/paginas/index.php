@@ -46,15 +46,15 @@
         </div>
     </nav>
     <header class="bg-primary text-white">
-        <div class="container text-center" style="height: 540px;">
+        <div class="container text-center" style="height: 300px;">
             <h1>Problemas buscando trabajo?</h1>
             <img class="img-fluid" src="Untitled3.png" style="height: 250px;">
             <p class="lead">La bolsa de trabajo diseñada para estudiantes de la UTN, por estudiantes.</p>
         </div>
     </header>
-    <section class="my-5 mx-5">
+    <section class=" mx-5">
         <!-- Section heading -->
-        <h2 class="h1-responsive font-weight-bold text-center my-5">Ofertas Destacadas Recientes</h2>
+        <h2 class="h1-responsive font-weight-bold text-center">Ofertas Destacadas Recientes</h2>
         <!-- Section description -->
         <p class="text-center dark-grey-text w-responsive mx-auto mb-5">Seleccionamos estas ofertas de acuerdo a tus
             preferencias!</p>
