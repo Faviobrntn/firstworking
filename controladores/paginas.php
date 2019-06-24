@@ -13,7 +13,11 @@ class Paginas extends Controlador
         $this->plantilla('publico');
 
         $this->loadModel('Oferta');
-        $ofertas = $this->Oferta->getAll();
+        if (!empty($_GET['search'])) {
+            $ofertas = $this->Oferta->buscar($_GET['search']);
+        }else{
+            $ofertas = $this->Oferta->getAll();
+        }
 
         $this->set(compact('ofertas'));
         $this->render('paginas/index');

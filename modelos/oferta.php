@@ -127,4 +127,32 @@ class Oferta extends Modelo
             throw $e;
         }
     }
+
+
+    public function buscar($search)
+    {
+        try {
+            if (empty($search)) { throw new \Exception("Falta un parametro"); }
+
+            $resultados = null;
+            $sql = "SELECT * FROM ofertas WHERE 
+                id = '$search' OR
+                titulo LIKE '%$search%' OR
+                descripcion LIKE '%$search%' ";
+
+            $query = $this->db->query($sql);
+            
+            if($query){
+                 while ($row = $query->fetch_array()){
+                    $resultados[] = $row;
+                }
+                $query->close();
+            }
+           
+            return $resultados;
+        
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
 }
