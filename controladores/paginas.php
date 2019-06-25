@@ -36,6 +36,18 @@ class Paginas extends Controlador
     {
         $this->Auth->clearFlash(); exit;
     }
+    
+    
+    public function consulta()
+    {
+        if(!empty($_POST)){
+            $mensaje = "";
+            $mensaje .= "Nombre: ".$_POST['nombre']."\n";
+            $mensaje .= "E-mail: ".$_POST['email']."\n";
+            $mensaje .= "Mensaje: ".$_POST['mensaje']."\n";
+            mail("soporte@firstworking.com", "Consulta en la pagina", $mensaje);
+        }
+    }
 
 
 }
