@@ -46,15 +46,24 @@
         </div>
     </nav>
     <header class="bg-primary text-white">
-        <div class="container text-center" style="height: 540px;">
+        <div class="container text-center" style="height: 300px;">
             <h1>Problemas buscando trabajo?</h1>
             <img class="img-fluid" src="Untitled3.png" style="height: 250px;">
             <p class="lead">La bolsa de trabajo diseñada para estudiantes de la UTN, por estudiantes.</p>
+            <form action="" method="get">
+                <div class="input-group md-form form-sm form-1 pl-0">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text cyan lighten-2" id="basic-text1"><i class="fas fa-search text-white" aria-hidden="true"></i></span>
+                    </div>
+                    <input class="form-control my-0 py-1" name="search" type="text" placeholder="Ingresa tu consulta aqui!" aria-label="Search">
+                    <button type="submit">Buscar</button>
+                </div>
+            </form>
         </div>
     </header>
     <section class="my-5 mx-5">
         <!-- Section heading -->
-        <h2 class="h1-responsive font-weight-bold text-center my-5">Ofertas Destacadas Recientes</h2>
+        <h2 class="h1-responsive font-weight-bold text-center">Ofertas Destacadas Recientes</h2>
         <!-- Section description -->
         <p class="text-center dark-grey-text w-responsive mx-auto mb-5">Seleccionamos estas ofertas de acuerdo a tus
             preferencias!</p>
