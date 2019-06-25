@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="utf-8">
@@ -31,6 +30,10 @@
         position:absolute;
     }
   </style>
+
+    <script>
+        const HOST = '<?=HOST?>';
+    </script>
 </head>
 
 <body class="grey lighten-3">
@@ -98,7 +101,7 @@
         <!-- Sidebar -->
         <div class="sidebar-fixed position-fixed">
 
-        <a class="logo-wrapper waves-effect bg-dark">
+        <a class="logo-wrapper waves-effect bg-dark mb-4">
             <img src="Untitled.png" class="img-fluid" alt="">
         </a>
 

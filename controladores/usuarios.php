@@ -115,6 +115,7 @@ class Usuarios extends Controlador
                 // $this->debug($_POST);exit;
                 $usuario = $this->Usuario->registro($_POST);
                 if($usuario){
+                    mail($usuario['email'], "Registro exitoso", "Bienvenido a FirstWorking!");
                     $this->Auth->flash("Se guardo con éxito!");
                     $this->redireccionar("usuarios/login");
                 }else{
