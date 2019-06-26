@@ -12,6 +12,12 @@
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="<?= HOST ?>vendor/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= HOST ?>vendor/css/scrolling-nav.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.3/css/mdb.min.css" rel="stylesheet">
 
 
 </head>
@@ -52,11 +58,11 @@
             <p class="lead">La bolsa de trabajo diseñada para estudiantes de la UTN, por estudiantes.</p>
             <form action="" method="get">
                 <div class="input-group md-form form-sm form-1 pl-0">
-                    <div class="input-group-prepend">
+                    <div class="input-group-prepend bg-secondary">
                         <span class="input-group-text cyan lighten-2" id="basic-text1"><i class="fas fa-search text-white" aria-hidden="true"></i></span>
                     </div>
                     <input class="form-control my-0 py-1" name="search" type="text" placeholder="Ingresa tu consulta aqui!" aria-label="Search">
-                    <button type="submit">Buscar</button>
+                    <button type="submit" class="btn aqua-gradient btn-rounded btn-sm my-0 waves-effect waves-light">Buscar</button>
                 </div>
             </form>
         </div>
@@ -200,17 +206,12 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <h2>Acerca de Firstworking</h2>
-                    <p class="lead">This is a great place to talk about your webpage. This template is purposefully
-                        unstyled so
-                        you can use it as a boilerplate or starting point for you own landing page designs! This
-                        template features:
+                    <p class="lead">“Firstworking”, tiene como finalidad impulsar a los estudiantes a una oportunidad laboral, de acuerdo a los requerimientos de las empresas públicas o privadas, para ocupar puestos vinculados con las carreras estudiadas.
                     </p>
                     <ul>
-                        <li>Clickable nav links that smooth scroll to page sections</li>
-                        <li>Responsive behavior when clicking nav links perfect for a one page website</li>
-                        <li>Bootstrap's scrollspy feature which highlights which section of the page you're on in the
-                            navbar</li>
-                        <li>Minimal custom CSS so you are free to explore your own unique design options</li>
+                        <li>Hacer conocer oportunidades de desarrollo profesional, para mejorar la calidad de vida de los estudiantes.</li>
+                        <li>Motivar a los estudiantes a la participación en procesos de selección que les permitan ser activos en el mundo laboral.</li>
+                        <li>Establecer convenios con empresas para que tengan a los estudiantes como primera opción en los procesos de selección.</li>
                     </ul>
                 </div>
             </div>
@@ -222,11 +223,7 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <h2>Inicia tus contrataciones aqui!</h2>
-                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore,
-                        expedita
-                        quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum
-                        vel, labore
-                        ut velit dignissimos.</p>
+                    <p class="lead">La gran ventaja de las bolsas de trabajo reside en la facilidad de acceso a las ofertas de trabajo, cada usuario puede acceder a una gran cantidad de ofertas de trabajo y presentar diferentes solicitudes desde un ordenador. Por otro lado, el hecho de que sea una herramienta gratuita, hace que cada persona interesada en encontrar empleo pueda postularse a los diversos puestos de su interés</p>
                 </div>
             </div>
         </div>
@@ -237,10 +234,17 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <h2>Contactanos</h2>
-                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat
-                        voluptatem dolor,
-                        provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa
-                        exercitationem, in, quo totam.</p>
+                    <p class="lead">Comunicate directamente con nosotros</p>
+                    <form action="<?= HOST ?>/paginas/consulta" method="post">
+                        <label class="my-2" for="email">Tu Email: </label>
+                        <input class="form-control " type="email" name="email" id="email" required>
+                        <label class="my-2" for="nombre">Tu Nombre: </label>
+                        <input class="form-control " type="text" name="nombre" id="nombre">
+                        <label class="my-2" for="mensaje">Tu Mensaje: </label>
+                        <textarea class="form-control " name="mensaje" id="mensaje" required> Ingresa tu mensaje aqui.
+                        </textarea>
+                        <button class="btn btn-primary float-right my-2" type="submit">Enviar</button>
+                    </form>
                 </div>
             </div>
         </div>
