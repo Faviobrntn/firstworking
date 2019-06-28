@@ -46,7 +46,10 @@ class Paginas extends Controlador
             $mensaje .= "E-mail: ".$_POST['email']."\n";
             $mensaje .= "Mensaje: ".$_POST['mensaje']."\n";
             mail("soporte@firstworking.com", "Consulta en la pagina", $mensaje);
+            $this->Auth->flash("Su consulta ha sido enviada! Gracias.");
         }
+
+        $this->redireccionar("paginas");
     }
 
 

@@ -9,3 +9,5 @@ dkms.conf
 
 /config/conexion.php
 config/conexion.php
+
+.idea/*
