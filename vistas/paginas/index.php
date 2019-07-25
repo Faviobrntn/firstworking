@@ -162,7 +162,7 @@
         </div>
         <div class="bg-dark px-0 py-3">
             <form action="" method="get">
-                <div class="row my-0 py-1">
+                <div class="row my-0 mx-0 py-1">
                     <div class="col-sm searchDiv input-group md-form form-sm form-1 offset-3 col-6">
                         <input class="form-control border-0 white-text text-center" name="search" type="text"
                             placeholder="Ingresa tu consulta aqui!" aria-label="Search">
