@@ -19,6 +19,107 @@
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.3/css/mdb.min.css" rel="stylesheet">
 
+    <style>
+        .searchDiv {
+            position: relative;
+        }
+
+        input {
+            width: 6.5em;
+            color: white;
+            font-size: inherit;
+            font-family: inherit;
+            background-color: transparent;
+            border: 1px solid transparent;
+            border-bottom-color: hsla(341, 97%, 59%, 0.2);
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        input::placeholder {
+            color: hsla(0, 0%, 100%, 0.6);
+        }
+
+        span {
+            position: absolute;
+            top: 98%;
+            bottom: 0;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            opacity: 0;
+            background-color: #4285F4;
+            transform-origin: center;
+            transform: translate(-50%, 0) scaleX(0);
+            transition: all 0.3s ease;
+        }
+
+        input:focus~span {
+            transform: translate(-50%, 0) scaleX(1);
+            opacity: 1;
+        }
+
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-30px);
+            }
+
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+
+        button {
+            z-index: 1;
+            font-size: inherit;
+            font-family: inherit;
+            color: white;
+            padding: 0.5em 1em;
+            outline: none;
+            border: none;
+            background-color: hsl(236, 32%, 26%);
+        }
+
+        button:hover {
+            cursor: pointer;
+            animation: jelly 0.5s;
+        }
+
+        @keyframes jelly {
+
+            0%,
+            100% {
+                transform: scale(1, 1);
+            }
+
+            25% {
+                transform: scale(0.9, 1.1);
+            }
+
+            50% {
+                transform: scale(1.1, 0.9);
+            }
+
+            75% {
+                transform: scale(0.95, 1.05);
+            }
+        }
+    </style>
 
 </head>
 
@@ -52,22 +153,32 @@
         </div>
     </nav>
     <header class="bg-primary text-white">
-        <div class="container text-center" style="height: 300px;">
+        <div class="container text-center" style="height: 55vh;">
             <h1>Problemas buscando trabajo?</h1>
-            <img class="img-fluid" src="Untitled3.png" style="height: 250px;">
+            <img class="img-fluid" src="Untitled3.png" style="height: 25vh;">
             <p class="lead">La bolsa de trabajo diseñada para estudiantes de la UTN, por estudiantes.</p>
+        </div>
+        <div class="bg-dark px-0 py-3">
             <form action="" method="get">
-                <div class="input-group md-form form-sm form-1 pl-0">
-                    <div class="input-group-prepend bg-secondary">
-                        <span class="input-group-text cyan lighten-2" id="basic-text1"><i class="fas fa-search text-white" aria-hidden="true"></i></span>
+                <div class="row my-0 py-1">
+                    <div class="col-sm searchDiv input-group md-form form-sm form-1 offset-3 col-6">
+                        <input class="form-control border-0 white-text text-center" name="search" type="text" placeholder="Ingresa tu consulta aqui!" aria-label="Search">
+                        <span></span>
                     </div>
-                    <input class="form-control my-0 py-1" name="search" type="text" placeholder="Ingresa tu consulta aqui!" aria-label="Search">
-                    <button type="submit" class="btn aqua-gradient btn-rounded btn-sm my-0 waves-effect waves-light">Buscar</button>
+                    <div class="col-sm" style="display: flex; align-items: center;">
+                        <button type="submit" class="btn btn-rounded btn-primary"><i class="fas fa-search pr-2" aria-hidden="true"></i>Buscar</button>
+                    </div>
                 </div>
             </form>
         </div>
+
+        <div class=" text-center py-5">
+            <a class="js-scroll-trigger" href="#ofertasDestacadas">
+                <i class="bounce fas fa-angle-double-down fa-3x white-text"></i>
+            </a>
+        </div>
     </header>
-    <section class="my-5 mx-5">
+    <section id="ofertasDestacadas" class="my-5 mx-5">
         <!-- Section heading -->
         <h2 class="h1-responsive font-weight-bold text-center">Ofertas Destacadas Recientes</h2>
         <!-- Section description -->
