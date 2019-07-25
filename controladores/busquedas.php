@@ -2,7 +2,7 @@
 // namespace Controladores;
 // use  Modelos\Usuario;
 
-class Carreras extends Controlador
+class Busquedas extends Controlador
 {
     public function __construct() {
         parent::__construct();
