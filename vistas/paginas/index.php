@@ -202,7 +202,7 @@
                 <div class="col-lg-7 col-xl-8">    
                     <h3 class="font-weight-bold mb-3"><strong>' . $oferta["titulo"] . '</strong></h3> 
                     <p class="dark-grey-text">' . $oferta["descripcion"] . '</p>                
-                    <p>Hecha por <a class="font-weight-bold">' . $oferta["ofertante"] . '</a>, ' . $oferta["creado"] . '</p>
+                    <p>Hecha por <a class="font-weight-bold">Nombre Ofertante Aqui</a>, ' . $oferta["creado"] . '</p>
                     <form action="'); ?>
             <?= HOST ?>usuarios/postularse'
             <?php echo ('" method="POST">
@@ -217,122 +217,19 @@
 
         ?>
 
-        <div class="row">
+        <!-- Grid column -->
+        <div class="col-lg-5 col-xl-4">
 
-
-            <!-- Grid column -->
-            <div class="col-lg-5 col-xl-4">
-
-                <!-- Featured image -->
-                <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg" alt="Sample image">
-                    <a>
-                        <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>
-
+            <!-- Featured image -->
+            <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
+                <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg" alt="Sample image">
+                <a>
+                    <div class="mask rgba-white-slight"></div>
+                </a>
             </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-            <div class="col-lg-7 col-xl-8">
-
-                <!-- Post title -->
-                <h3 class="font-weight-bold mb-3"><strong>Programador PHP</strong></h3>
-                <!-- Excerpt -->
-                <p class="dark-grey-text">Negroris busca programador PHP, condiciones de trabajo basicas, pago minimo,
-                    12 horas, con disponibilidad para viajar a la frontera y no volver cuando decidamos no pagarte mas.
-                </p>
-                <!-- Post data -->
-                <p>by <a class="font-weight-bold">Jessica Clark</a>, 19/04/2019</p>
-                <!-- Read more button -->
-                <a class="btn btn-primary btn-md">Ver Oferta</a>
-
-            </div>
-            <!-- Grid column -->
 
         </div>
-        <!-- Grid row -->
 
-        <hr class="my-5">
-
-        <!-- Grid row -->
-        <div class="row">
-
-            <!-- Grid column -->
-            <div class="col-lg-5 col-xl-4">
-
-                <!-- Featured image -->
-                <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/31.jpg" alt="Sample image">
-                    <a>
-                        <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>
-
-            </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-            <div class="col-lg-7 col-xl-8">
-
-                <!-- Post title -->
-                <h3 class="font-weight-bold mb-3"><strong>Desarrollador Web Full-stack Java</strong></h3>
-                <!-- Excerpt -->
-                <p class="dark-grey-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                    praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint
-                    occaecati
-                    cupiditate non provident et accusamus iusto odio dignissimos et dolorum fuga.</p>
-                <!-- Post data -->
-                <p>by <a class="font-weight-bold">Jessica Clark (totally not the one at negroris)</a>, 16/04/2018</p>
-                <!-- Read more button -->
-                <a class="btn btn-primary btn-md">Ver Oferta</a>
-
-            </div>
-            <!-- Grid column -->
-
-        </div>
-        <!-- Grid row -->
-
-        <hr class="my-5">
-
-        <!-- Grid row -->
-        <div class="row">
-
-            <!-- Grid column -->
-            <div class="col-lg-5 col-xl-4">
-
-                <!-- Featured image -->
-                <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/52.jpg" alt="Sample image">
-                    <a>
-                        <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>
-
-            </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-            <div id="ultima" class="col-lg-7 col-xl-8">
-
-                <!-- Post title -->
-                <h3 class="font-weight-bold mb-3"><strong>Analista de Procesos</strong></h3>
-                <!-- Excerpt -->
-                <p class="dark-grey-text">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
-                    sed
-                    quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est,
-                    qui dolorem ipsum quia dolor sit amet, psam voluptatem quia consectetur.</p>
-                <!-- Post data -->
-                <p>by <a class="font-weight-bold">Jessica Clark (i swear, not me again)</a>, 12/04/2018</p>
-                <!-- Read more button -->
-                <a class="btn btn-primary btn-md">Ver en Computrabajo</a>
-
-            </div>
-            <!-- Grid column -->
-
-        </div>
-        <!-- Grid row -->
 
     </section>
 
@@ -341,10 +238,10 @@
     <!--     <section id="idFormLogin">
         
 
-    </section> -->
-    <?php echo "<pre>";
+    </section> 
+    ?php echo "<pre>";
     print_r($ofertas);
-    echo "</pre>" ?>
+    echo "</pre>" -->
 
     <section id="about">
         <div class="container">
