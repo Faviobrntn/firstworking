@@ -122,14 +122,12 @@
     </style>
 
 </head>
-<?php print_r($ofertas);?>
+
 <body id="page-top">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img class="img-fluid" src="Untitled.png"
-                    style="height: 30px;"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img class="img-fluid" src="Untitled.png" style="height: 30px;"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -164,13 +162,11 @@
             <form action="" method="get">
                 <div class="row my-0 mx-0 py-1">
                     <div class="col-sm searchDiv input-group md-form form-sm form-1 offset-3 col-6">
-                        <input class="form-control border-0 white-text text-center" name="search" type="text"
-                            placeholder="Ingresa tu consulta aqui!" aria-label="Search">
+                        <input class="form-control border-0 white-text text-center" name="search" type="text" placeholder="Ingresa tu consulta aqui!" aria-label="Search">
                         <span></span>
                     </div>
                     <div class="col-sm" style="display: flex; align-items: center;">
-                        <button type="submit" class="btn btn-rounded btn-primary"><i class="fas fa-search pr-2"
-                                aria-hidden="true"></i>Buscar</button>
+                        <button type="submit" class="btn btn-rounded btn-primary"><i class="fas fa-search pr-2" aria-hidden="true"></i>Buscar</button>
                     </div>
                 </div>
             </form>
@@ -188,38 +184,39 @@
         <!-- Section description -->
         <p class="text-center dark-grey-text w-responsive mx-auto mb-5">Seleccionamos estas ofertas de acuerdo a tus
             preferencias!</p>
-            
+
 
         <!-- Grid row -->
         <?php
-           echo ('
-                <hr class="my-5">
-                <div class="row">
-                    <div class="col-lg-5 col-xl-4">
-                        <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-                            
-                            <a>
-                                <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
+        foreach ($ofertas as $oferta) {
+            echo ('
+            <hr class="my-5">
+            <div class="row">
+                <div class="col-lg-5 col-xl-4">
+                    <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">                            
+                        <a>
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
                     </div>
-                    <div class="col-lg-7 col-xl-8">    
-                        <h3 class="font-weight-bold mb-3"><strong>'.$ofertas["oferta"]["titulo"].'</strong></h3> 
-                        <p class="dark-grey-text">'.$_SESSION["oferta"]["descripcion"].'</p>                
-                        <p>Hecha por <a class="font-weight-bold">'.$_SESSION["oferta"]["ofertante"].'</a>, '.$_SESSION["oferta"]["creado"].'</p>
-                        <a class="btn btn-primary btn-md">Postulame!</a>
-                        <form action="');?>
-                            <?= HOST ?>usuarios/login'
-                            <?php echo('" method="POST">
-                            <input type="hidden" name="postulante" value="'.$_SESSION["usuario"]["id"].'" />
-                            <input type="hidden" name="cv" value="'.$_SESSION["usuario"]["cv_seleccionado"].'" />
-                            <button class="btn btn-primary btn-md" type="submit">Postulame!</button>
-                        </form>
-                    </div>                    
-                </div>               
-           ');
+                </div>
+                <div class="col-lg-7 col-xl-8">    
+                    <h3 class="font-weight-bold mb-3"><strong>' . $oferta["titulo"] . '</strong></h3> 
+                    <p class="dark-grey-text">' . $oferta["descripcion"] . '</p>                
+                    <p>Hecha por <a class="font-weight-bold">' . $oferta["ofertante"] . '</a>, ' . $oferta["creado"] . '</p>
+                    <form action="'); ?>
+            <?= HOST ?>usuarios/postularse'
+            <?php echo ('" method="POST">
+                        <input type="hidden" name="postulante" value="' . $_SESSION["usuario"]["id"] . '" />
+                        <input type="hidden" name="cv" value="' . $_SESSION["usuario"]["cv_seleccionado"] . '" />
+                        <button class="btn btn-primary btn-md" type="submit">Postulame!</button>
+                    </form>
+                </div>                    
+            </div>               
+            ');
+        }
+
         ?>
-        
+
         <div class="row">
 
 
@@ -228,8 +225,7 @@
 
                 <!-- Featured image -->
                 <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg"
-                        alt="Sample image">
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg" alt="Sample image">
                     <a>
                         <div class="mask rgba-white-slight"></div>
                     </a>
@@ -268,8 +264,7 @@
 
                 <!-- Featured image -->
                 <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/31.jpg"
-                        alt="Sample image">
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/31.jpg" alt="Sample image">
                     <a>
                         <div class="mask rgba-white-slight"></div>
                     </a>
@@ -309,8 +304,7 @@
 
                 <!-- Featured image -->
                 <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/52.jpg"
-                        alt="Sample image">
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/52.jpg" alt="Sample image">
                     <a>
                         <div class="mask rgba-white-slight"></div>
                     </a>
@@ -348,7 +342,9 @@
         
 
     </section> -->
-
+    <?php echo "<pre>";
+    print_r($ofertas);
+    echo "</pre>" ?>
 
     <section id="about">
         <div class="container">
@@ -427,8 +423,7 @@
 
 
     <!--Modal: Login / Register Form-->
-    <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog cascading-modal" role="document">
             <!--Content-->
             <div class="modal-content">
@@ -439,13 +434,11 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i
-                                    class="fas fa-user mr-1"></i>
+                            <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i class="fas fa-user mr-1"></i>
                                 Acceder</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i
-                                    class="fas fa-user-plus mr-1"></i>
+                            <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i class="fas fa-user-plus mr-1"></i>
                                 Registrarse</a>
                         </li>
                     </ul>
@@ -459,16 +452,14 @@
                             <div class="modal-body mb-1">
                                 <div class="md-form form-sm mb-5">
                                     <i class="fas fa-envelope prefix"></i>
-                                    <input type="email" id="modalLRInput10"
-                                        class="form-control form-control-sm validate">
+                                    <input type="email" id="modalLRInput10" class="form-control form-control-sm validate">
                                     <label data-error="wrong" data-success="right" for="modalLRInput10">Tu correo
                                         electronico</label>
                                 </div>
 
                                 <div class="md-form form-sm mb-4">
                                     <i class="fas fa-lock prefix"></i>
-                                    <input type="password" id="modalLRInput11"
-                                        class="form-control form-control-sm validate">
+                                    <input type="password" id="modalLRInput11" class="form-control form-control-sm validate">
                                     <label data-error="wrong" data-success="right" for="modalLRInput11">Tu
                                         contraseña</label>
                                 </div>
@@ -482,8 +473,7 @@
                                     <p>No eres miembro? <a href="#" class="blue-text">Registrate</a></p>
                                     <p>Olvidaste la <a href="#" class="blue-text">Contraseña?</a></p>
                                 </div>
-                                <button type="button" class="btn btn-outline-info waves-effect ml-auto"
-                                    data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Cerrar</button>
                             </div>
 
                         </div>
@@ -496,24 +486,21 @@
                             <div class="modal-body">
                                 <div class="md-form form-sm mb-5">
                                     <i class="fas fa-envelope prefix"></i>
-                                    <input type="email" id="modalLRInput12"
-                                        class="form-control form-control-sm validate">
+                                    <input type="email" id="modalLRInput12" class="form-control form-control-sm validate">
                                     <label data-error="wrong" data-success="right" for="modalLRInput12">Tu correo
                                         electronico</label>
                                 </div>
 
                                 <div class="md-form form-sm mb-5">
                                     <i class="fas fa-lock prefix"></i>
-                                    <input type="password" id="modalLRInput13"
-                                        class="form-control form-control-sm validate">
+                                    <input type="password" id="modalLRInput13" class="form-control form-control-sm validate">
                                     <label data-error="wrong" data-success="right" for="modalLRInput13">Tu
                                         contraseña</label>
                                 </div>
 
                                 <div class="md-form form-sm mb-4">
                                     <i class="fas fa-lock prefix"></i>
-                                    <input type="password" id="modalLRInput14"
-                                        class="form-control form-control-sm validate">
+                                    <input type="password" id="modalLRInput14" class="form-control form-control-sm validate">
                                     <label data-error="wrong" data-success="right" for="modalLRInput14">Repite la
                                         contraseña</label>
                                 </div>
@@ -529,8 +516,7 @@
                                     <p class="pt-1">Ya tienes una cuenta? <a href="#" class="blue-text">Acceder</a>
                                     </p>
                                 </div>
-                                <button type="button" class="btn btn-outline-info waves-effect ml-auto"
-                                    data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
                         <!--/.Panel 8-->
