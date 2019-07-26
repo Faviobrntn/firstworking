@@ -32,14 +32,15 @@
                 
                 <form class="form-signin" action="" method="post">                        
 
-                    <label for="inputNombre">Nombre</label>
-                    <input type="text" name="nombre" class="form-control mb-4" placeholder="Nombre" value="<?=(!empty($usuario["nombre"])? $usuario["nombre"] : '')?>">
-                    <label for="inputApellido">Apellido</label>
-                    <input type="text" name="apellido" class="form-control mb-4" placeholder="Apellido" value="<?=(!empty($usuario["apellido"])? $usuario["apellido"] : '')?>">
-                    <label for="inputEmail">E-mail</label>
-                    <input type="email" name="email" class="form-control mb-4" placeholder="E-mail" value="<?=(!empty($usuario["email"])? $usuario["email"] : '')?>">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre" class="form-control mb-4" placeholder="Nombre" value="<?=(!empty($usuario["nombre"])? $usuario["nombre"] : '')?>">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" name="apellido" id="apellido" class="form-control mb-4" placeholder="Apellido" value="<?=(!empty($usuario["apellido"])? $usuario["apellido"] : '')?>">
+                    <label for="email">E-mail</label>
+                    <input type="email" name="email" id="email" class="form-control mb-4" placeholder="E-mail" value="<?=(!empty($usuario["email"])? $usuario["email"] : '')?>">
+                    <label for="localidad-id">Localidad</label>
                     <select name="localidad_id" id="localidad-id" class="form-control mb-4">
-                        <option value="">Seleccione una opción</option>
+                        <option value="">Seleccione una localidad</option>
                         <?php if(!empty($localidades)): ?>
                             <?php foreach($localidades as $key => $value): ?>
                                 <?php $check = ((!empty($usuario["localidad_id"]) AND ($usuario["localidad_id"] = $key))? 'selected' : '')?>; ?>
@@ -47,8 +48,9 @@
                             <?php endforeach ?>
                         <?php endif ?>
                     </select>
-                    <select name="localidad_id" id="localidad-id" class="form-control mb-4">
-                        <option value="">Seleccione una opción</option>
+                    <label for="rol">Rol</label>
+                    <select name="rol" id="rol" class="form-control mb-4">
+                        <option value="">Seleccione un rol</option>
                         <?php if(!empty($roles)): ?>
                             <?php foreach($roles as $key => $value): ?>
                                 <?php $check = ((!empty($usuario["rol"]) AND ($usuario["rol"] = $key))? 'selected' : '')?>; ?>

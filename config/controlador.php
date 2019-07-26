@@ -55,6 +55,9 @@ class Controlador
     public function set($var = [])
     {
         if (is_array($var)) {
+            if ($this->Auth->check()) {
+                $var['current_user'] = $this->Auth->user();
+            }
             $this->vista->variables = $var;
         }else{
             throw new \Exception("La función set solo recibe array");

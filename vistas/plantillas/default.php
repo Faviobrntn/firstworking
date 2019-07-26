@@ -102,38 +102,59 @@
         <div class="sidebar-fixed position-fixed">
 
         <a class="logo-wrapper waves-effect bg-dark mb-4">
-            <img src="Untitled.png" class="img-fluid" alt="">
+            <img src="<?=HOST?>Untitled.png" class="img-fluid" alt="">
         </a>
 
         <div class="list-group list-group-flush">
-            <a href="<?=HOST?>paginas/dashboard" class="list-group-item active waves-effect">
-                <i class="fas fa-chart-pie mr-3"></i>Dashboard
-            </a>
-            <a href="<?=HOST?>usuarios" class="list-group-item list-group-item-action waves-effect">
-                <i class="fas fa-user mr-3"></i>Usuarios</a>
-            <a href="<?=HOST?>provincias" class="list-group-item list-group-item-action waves-effect">
-                <i class="fas fa-table mr-3"></i>Provincias</a>
-            <a href="<?=HOST?>localidades" class="list-group-item list-group-item-action waves-effect">
-                <i class="fas fa-table mr-3"></i>Localidades</a>
-            <a href="<?=HOST?>facultades" class="list-group-item list-group-item-action waves-effect">
-                <i class="fas fa-table mr-3"></i>Facultades</a>
-            <a href="<?=HOST?>carreras" class="list-group-item list-group-item-action waves-effect">
-                <i class="fas fa-table mr-3"></i>Carreras</a>
-            <a href="<?=HOST?>curriculums" class="list-group-item list-group-item-action waves-effect">
-                <i class="fas fa-table mr-3"></i>Curriculums</a>
-            <a href="<?=HOST?>ofertas" class="list-group-item list-group-item-action waves-effect">
-                <i class="fas fa-table mr-3"></i>Ofertas</a>
-            
-            <hr>
+            <?php if (!empty($_SESSION['Usuario'])): ?>
+                <?php if ($_SESSION['Usuario']['rol'] == 'admin'): ?>
+                    <a href="<?=HOST?>paginas/dashboard" class="list-group-item active waves-effect">
+                        <i class="fas fa-chart-pie mr-3"></i>Dashboard
+                    </a>
+                    <a href="<?=HOST?>usuarios" class="list-group-item list-group-item-action waves-effect">
+                        <i class="fas fa-user mr-3"></i>Usuarios</a>
+                    <a href="<?=HOST?>provincias" class="list-group-item list-group-item-action waves-effect">
+                        <i class="fas fa-table mr-3"></i>Provincias</a>
+                    <a href="<?=HOST?>localidades" class="list-group-item list-group-item-action waves-effect">
+                        <i class="fas fa-table mr-3"></i>Localidades</a>
+                    <a href="<?=HOST?>facultades" class="list-group-item list-group-item-action waves-effect">
+                        <i class="fas fa-table mr-3"></i>Facultades</a>
+                    <a href="<?=HOST?>carreras" class="list-group-item list-group-item-action waves-effect">
+                        <i class="fas fa-table mr-3"></i>Carreras</a>
+                    <a href="<?=HOST?>curriculums" class="list-group-item list-group-item-action waves-effect">
+                        <i class="fas fa-table mr-3"></i>Curriculums</a>
+                    <a href="<?=HOST?>ofertas" class="list-group-item list-group-item-action waves-effect">
+                        <i class="fas fa-table mr-3"></i>Ofertas</a>
+                <?php endif ?>
 
-            <a href="<?=HOST?>usuarios/logout" class="list-group-item active waves-effect"
-                onclick="return confirm('Se va a cerrar sesión. ¿Desea continuar?');">
-                <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión
-            </a>
-            <!-- <a href="#" class="list-group-item list-group-item-action waves-effect">
-                <i class="fas fa-map mr-3"></i>Maps</a>
-            <a href="#" class="list-group-item list-group-item-action waves-effect">
-                <i class="fas fa-money-bill-alt mr-3"></i>Orders</a> -->
+                <?php if ($_SESSION['Usuario']['rol'] == 'ofertante'): ?>
+                    <a href="<?=HOST?>usuarios/perfil" class="list-group-item active waves-effect">
+                        <i class="fas fa-user mr-3"></i>Mi perfil
+                    </a>
+                    <a href="<?=HOST?>ofertas" class="list-group-item list-group-item-action waves-effect">
+                        <i class="fas fa-table mr-3"></i>Ofertas</a>
+                <?php endif ?>
+
+                <?php if ($_SESSION['Usuario']['rol'] == 'postulante'): ?>
+                    <a href="<?=HOST?>usuarios/perfil" class="list-group-item active waves-effect">
+                        <i class="fas fa-user mr-3"></i>Mi perfil
+                    </a>
+                    <a href="<?=HOST?>curriculums" class="list-group-item list-group-item-action waves-effect">
+                        <i class="fas fa-table mr-3"></i>Curriculums</a>
+                <?php endif ?>
+
+
+                
+                <hr>
+
+                <a href="<?=HOST?>usuarios/logout" class="list-group-item active waves-effect"
+                    onclick="return confirm('Se va a cerrar sesión. ¿Desea continuar?');">
+                    <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión
+                </a>
+
+
+                
+            <?php endif ?>
         </div>
 
         </div>

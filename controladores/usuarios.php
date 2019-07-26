@@ -156,7 +156,15 @@ class Usuarios extends Controlador
                     
                     $this->Auth->flash("Bienvenido ".$usuario['nombre']);
 
-                    $this->redireccionar("usuarios/index");
+                    if ($usuario['rol'] == 'admin') {
+                        $this->redireccionar("usuarios/index");
+                    }
+                    if ($usuario['rol'] == 'ofertante') {
+                        $this->redireccionar("ofertas/index");
+                    }
+                    if ($usuario['rol'] == 'postulante') {
+                        $this->redireccionar("curriculums/index");
+                    }
                 }else {
                     $this->Auth->flash("Email ó contraseña incorrectos.");
                 }

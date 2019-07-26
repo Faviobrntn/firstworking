@@ -29,6 +29,8 @@
             
         
         <button class="btn btn-lg btn-success btn-block" type="submit">Iniciar Sesión</button>
+        <a href="<?=HOST?>usuarios/registro" class="btn btn-lg btn-primary btn-block">No tengo cuenta</a>
+        <a href="<?=HOST?>" class="btn btn-lg btn-secondary btn-block">Volver</a>
         <!-- <p class="mt-5 mb-3 text-muted text-center">© 2017-2019</p> -->
     </form>
 

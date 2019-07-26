@@ -7,7 +7,7 @@ require_once 'config/controlador.php';
 require_once 'config/vista.php';
 require_once 'config/modelo.php';
 
-// echo "<script> const HOST = '".HOST."';</script>";
+echo "<script> const HOST = '".HOST."';</script>";
 
 $app = new App();
 
