@@ -15,13 +15,20 @@ class Controlador
 
     public function autorizacion()
     {
-        // var_dump($this->request);exit;
-        // return true;
         if (in_array($_GET['url'], $this->Auth->permitir)) {
             return true;
         }
         if ($this->Auth->check()) {
-            return true;
+            if ($this->Auth->user('rol') == 'admin') {
+                return true;
+            }
+            if ($this->Auth->user('rol') == 'postulante') {
+                return true;
+            }
+            if ($this->Auth->user('rol') == 'ofertante') {
+                return true;
+            }
+            // return false;
         }
         return $this->redireccionar('usuarios/login');
     }

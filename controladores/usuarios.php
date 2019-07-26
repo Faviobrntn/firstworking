@@ -35,7 +35,7 @@ class Usuarios extends Controlador
                 $usuario = $this->Usuario->alta($_POST);
                 if($usuario){
                     $this->Auth->flash("Se guardo con éxito!");
-                    $this->redireccionar("usuarios/login");
+                    $this->redireccionar("usuarios/index");
                 }else{
                     $this->Auth->flash("Ocurrio un error al registrarse. Por favor, intente nuevamente.");
                 }
@@ -167,6 +167,18 @@ class Usuarios extends Controlador
                     }
                 }else {
                     $this->Auth->flash("Email ó contraseña incorrectos.");
+                }
+            }
+
+            if ($this->Auth->check()) {
+                if ($this->Auth->user('rol') == 'admin') {
+                    $this->redireccionar("usuarios/index");
+                }
+                if ($this->Auth->user('rol') == 'ofertante') {
+                    $this->redireccionar("ofertas/index");
+                }
+                if ($this->Auth->user('rol') == 'postulante') {
+                    $this->redireccionar("curriculums/index");
                 }
             }
         } catch (\Exception $e) {

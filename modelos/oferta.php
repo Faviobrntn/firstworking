@@ -137,9 +137,9 @@ class Oferta extends Modelo
 
             $resultados = null;
             $sql = "SELECT * FROM ofertas WHERE 
-                id = '$search' OR
-                titulo LIKE '%$search%' OR
-                descripcion LIKE '%$search%' ";
+                (id = '$search' OR
+                 titulo LIKE '%$search%' OR
+                 descripcion LIKE '%$search%') ";
 
             $query = $this->db->query($sql);
             
