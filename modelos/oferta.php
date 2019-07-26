@@ -12,7 +12,12 @@ class Oferta extends Modelo
     {
         try {
             $resultados = null;
-            if($query = $this->db->query("SELECT * FROM ofertas")){            
+
+            $sql = "SELECT * FROM ofertas";
+            if(!empty($_SESSION['Usuario']) AND $_SESSION['Usuario']['rol'] != 'admin'){
+                $sql .= " WHERE usuario_id = ".$_SESSION['Usuario']['id'];
+            }
+            if($query = $this->db->query($sql)){            
                 // while ($row = $query->fetch_object()){
                 while ($row = $query->fetch_array()){
                     $resultados[] = $row;
@@ -140,6 +145,10 @@ class Oferta extends Modelo
                 (id = '$search' OR
                  titulo LIKE '%$search%' OR
                  descripcion LIKE '%$search%') ";
+
+            if(!empty($_SESSION['Usuario']) AND $_SESSION['Usuario']['rol'] != 'admin'){
+                $sql .= " AND usuario_id = ".$_SESSION['Usuario']['id'];
+            }
 
             $query = $this->db->query($sql);
             
