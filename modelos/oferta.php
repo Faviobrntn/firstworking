@@ -61,10 +61,11 @@ class Oferta extends Modelo
             $horario_laboral = strtolower($data['horario_laboral']);
             $remuneracion = strtolower($data['remuneracion']);
             $creado = date('Y-m-d H:i:s');
+            $usuario_id = $_SESSION['Usuario']['id'];
     
             //Arma la instrucción SQL y luego la ejecuta
-            $sql = "INSERT INTO ofertas (titulo, descripcion, localidad_id, carrera_id, modalidad, horario_laboral, remuneracion, creado) 
-                    VALUES ('$titulo', '$descripcion', '$localidad_id', '$carrera_id', '$modalidad', '$horario_laboral', '$remuneracion', '$creado')";
+            $sql = "INSERT INTO ofertas (titulo, descripcion, usuario_id, localidad_id, carrera_id, modalidad, horario_laboral, remuneracion, creado) 
+                    VALUES ('$titulo', '$descripcion', '$usuario_id', '$localidad_id', '$carrera_id', '$modalidad', '$horario_laboral', '$remuneracion', '$creado')";
             
             // mysqli_query($this->db, $sql) or die (mysqli_error($this->db));
             
@@ -136,9 +137,9 @@ class Oferta extends Modelo
 
             $resultados = null;
             $sql = "SELECT * FROM ofertas WHERE 
-                id = '$search' OR
-                titulo LIKE '%$search%' OR
-                descripcion LIKE '%$search%' ";
+                (id = '$search' OR
+                 titulo LIKE '%$search%' OR
+                 descripcion LIKE '%$search%') ";
 
             $query = $this->db->query($sql);
             

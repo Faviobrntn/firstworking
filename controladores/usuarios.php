@@ -35,7 +35,7 @@ class Usuarios extends Controlador
                 $usuario = $this->Usuario->alta($_POST);
                 if($usuario){
                     $this->Auth->flash("Se guardo con éxito!");
-                    $this->redireccionar("usuarios/login");
+                    $this->redireccionar("usuarios/index");
                 }else{
                     $this->Auth->flash("Ocurrio un error al registrarse. Por favor, intente nuevamente.");
                 }
@@ -156,9 +156,29 @@ class Usuarios extends Controlador
                     
                     $this->Auth->flash("Bienvenido ".$usuario['nombre']);
 
-                    $this->redireccionar("usuarios/index");
+                    if ($usuario['rol'] == 'admin') {
+                        $this->redireccionar("usuarios/index");
+                    }
+                    if ($usuario['rol'] == 'ofertante') {
+                        $this->redireccionar("ofertas/index");
+                    }
+                    if ($usuario['rol'] == 'postulante') {
+                        $this->redireccionar("curriculums/index");
+                    }
                 }else {
                     $this->Auth->flash("Email ó contraseña incorrectos.");
+                }
+            }
+
+            if ($this->Auth->check()) {
+                if ($this->Auth->user('rol') == 'admin') {
+                    $this->redireccionar("usuarios/index");
+                }
+                if ($this->Auth->user('rol') == 'ofertante') {
+                    $this->redireccionar("ofertas/index");
+                }
+                if ($this->Auth->user('rol') == 'postulante') {
+                    $this->redireccionar("curriculums/index");
                 }
             }
         } catch (\Exception $e) {
@@ -166,6 +186,34 @@ class Usuarios extends Controlador
         }
 
         $this->render('usuarios/login');
+    }
+
+
+
+    public function perfil()
+    {
+        try {
+            $id = $this->Auth->user('id');
+
+            if (!empty($_POST)) {
+                // $this->debug($_POST);exit;
+                if($this->Usuario->actualizar($id, $_POST)){
+                    $this->Auth->flash("Se guardo con éxito!");
+                    // $this->redireccionar("usuarios/perfil");
+                }
+            }
+            
+            $usuario = $this->Usuario->get($id);
+            
+            $this->loadModel('Localidad');
+            $localidades = $this->Localidad->listado();
+
+            $this->set(compact('usuario', 'localidades'));
+        
+        } catch (\Exception $e) {
+            $this->Auth->flash($e->getMessage());
+        }    
+        $this->render('usuarios/perfil');
     }
 
 

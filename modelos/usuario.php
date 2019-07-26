@@ -6,7 +6,8 @@ class Usuario extends Modelo
 
     public $roles = [
         'admin' => 'Administrador',
-        'usuario' => 'Usuario'
+        'postulante' => 'Postulante',
+        'ofertante' => 'Ofertante'
     ];
     
     public function __construct() {

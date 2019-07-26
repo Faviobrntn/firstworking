@@ -29,9 +29,8 @@ CREATE TABLE `carreras` (
   `facultad_id` int(11) NOT NULL,
   `creado` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fkFacu` (`facultad_id`),
-  CONSTRAINT `fkFacu` FOREIGN KEY (`facultad_id`) REFERENCES `facultades` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  FOREIGN KEY (`facultad_id`) REFERENCES `facultades` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +38,7 @@ CREATE TABLE `carreras` (
 --
 
 LOCK TABLES `carreras` WRITE;
+INSERT INTO `carreras` (`id`, `nombre`, `descripcion`, `facultad_id`, `creado`) VALUES ('1', 'Ingeniería en Sistemas de Información', 'El Ingeniero en Sistemas de Información es un profesional de sólida formación analítica que le permite la interpretación y resolución de problemas mediante el empleo de metodologías de sistemas y tecnologías de procesamiento de información.', '1', '2019-07-25 00:00:00');
 /*!40000 ALTER TABLE `carreras` DISABLE KEYS */;
 /*!40000 ALTER TABLE `carreras` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -64,12 +64,9 @@ CREATE TABLE `cv` (
   `archivo` blob,
   `creado` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `FKidUsuario` (`usuario_id`),
-  KEY `FKidCarrera_idx` (`idcarrera`),
-  KEY `FKCV_idCarrera_idx` (`idcarrera`),
-  CONSTRAINT `FKCV_idCarrera` FOREIGN KEY (`idcarrera`) REFERENCES `carreras` (`id`),
-  CONSTRAINT `FKidUsuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  FOREIGN KEY (`idcarrera`) REFERENCES `carreras` (`id`),
+  FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,9 +94,8 @@ CREATE TABLE `facultades` (
   `localidad_id` int(11) NOT NULL,
   `creado` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_facus_localidad` (`localidad_id`),
-  CONSTRAINT `fk_facus_localidad` FOREIGN KEY (`localidad_id`) REFERENCES `localidades` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  FOREIGN KEY (`localidad_id`) REFERENCES `localidades` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,37 +103,11 @@ CREATE TABLE `facultades` (
 --
 
 LOCK TABLES `facultades` WRITE;
+INSERT INTO `facultades` (`id`, `nombre`, `direccion`, `email`, `descripcion`, `localidad_id`, `creado`) VALUES ('1', 'Universidad Tecnológica Nacional - regional rosario', 'Zeballos 1341', 'consulta@frro.utn.edu.ar', 'FACULTAD REGIONAL ROSARIO\r\nUniversidad Tecnológica Nacional', '1', '2019-07-25 00:00:00');
 /*!40000 ALTER TABLE `facultades` DISABLE KEYS */;
 /*!40000 ALTER TABLE `facultades` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `localidades`
---
-
-DROP TABLE IF EXISTS `localidades`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `localidades` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(11) NOT NULL,
-  `descripcion` text,
-  `provincia_id` int(11) NOT NULL,
-  `creado` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_LocalProv` (`provincia_id`),
-  CONSTRAINT `fk_LocalProv` FOREIGN KEY (`provincia_id`) REFERENCES `provincias` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `localidades`
---
-
-LOCK TABLES `localidades` WRITE;
-/*!40000 ALTER TABLE `localidades` DISABLE KEYS */;
-/*!40000 ALTER TABLE `localidades` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `ofertas`
@@ -148,6 +118,7 @@ DROP TABLE IF EXISTS `ofertas`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `ofertas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario_id` int(11) NOT NULL,
   `carrera_id` int(11) NOT NULL,
   `localidad_id` int(11) NOT NULL,
   `titulo` varchar(150) NOT NULL,
@@ -157,11 +128,10 @@ CREATE TABLE `ofertas` (
   `descripcion` text,
   `creado` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_ofertas_localidad` (`localidad_id`),
-  KEY `fk_ofertas_carrera` (`carrera_id`),
-  CONSTRAINT `fk_ofertas_carrera` FOREIGN KEY (`carrera_id`) REFERENCES `carreras` (`id`),
-  CONSTRAINT `fk_ofertas_localidad` FOREIGN KEY (`localidad_id`) REFERENCES `localidades` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  FOREIGN KEY (`carrera_id`) REFERENCES `carreras` (`id`),
+  FOREIGN KEY (`localidad_id`) REFERENCES `localidades` (`id`),
+  FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -184,10 +154,9 @@ CREATE TABLE `postulaciones` (
   `usuario_id` int(11) NOT NULL,
   `oferta_id` int(11) NOT NULL,
   PRIMARY KEY (`oferta_id`,`usuario_id`),
-  KEY `FKidUsuarios` (`usuario_id`),
-  CONSTRAINT `FKidOfertas` FOREIGN KEY (`oferta_id`) REFERENCES `ofertas` (`id`),
-  CONSTRAINT `FKidUsuarios` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  FOREIGN KEY (`oferta_id`) REFERENCES `ofertas` (`id`),
+  FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -212,7 +181,7 @@ CREATE TABLE `provincias` (
   `descripcion` text,
   `creado` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -220,9 +189,42 @@ CREATE TABLE `provincias` (
 --
 
 LOCK TABLES `provincias` WRITE;
+INSERT INTO `provincias` (`id`, `nombre`, `descripcion`, `creado`) VALUES ('1', 'santa fe', 'lorem ipsum dolor sit amet consectetur adipisicing elit. placeat, magnam quibusdam.', '2019-05-21 03:36:19');
+INSERT INTO `provincias` (`id`, `nombre`, `descripcion`, `creado`) VALUES ('2', 'cordoba', 'lorem ipsum dolor sit amet consectetur adipisicing elit. placeat, magnam quibusdam.', '2019-05-21 03:36:19');
 /*!40000 ALTER TABLE `provincias` DISABLE KEYS */;
 /*!40000 ALTER TABLE `provincias` ENABLE KEYS */;
 UNLOCK TABLES;
+
+
+--
+-- Table structure for table `localidades`
+--
+
+DROP TABLE IF EXISTS `localidades`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `localidades` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(11) NOT NULL,
+  `descripcion` text,
+  `provincia_id` int(11) NOT NULL,
+  `creado` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`provincia_id`) REFERENCES `provincias` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `localidades`
+--
+
+LOCK TABLES `localidades` WRITE;
+INSERT INTO `localidades` (`id`, `nombre`, `descripcion`, `provincia_id`, `creado`) VALUES ('1', 'rosario', 'lorem ipsum dolor sit amet consectetur adipisicing elit.', '1', '2019-05-27 02:02:14');
+INSERT INTO `localidades` (`id`, `nombre`, `descripcion`, `provincia_id`, `creado`) VALUES ('2', 'cordoba', 'lorem ipsum dolor sit amet consectetur adipisicing elit.', '2', '2019-05-27 02:02:14');
+/*!40000 ALTER TABLE `localidades` DISABLE KEYS */;
+/*!40000 ALTER TABLE `localidades` ENABLE KEYS */;
+UNLOCK TABLES;
+
 
 --
 -- Table structure for table `usuarios`
@@ -245,11 +247,9 @@ CREATE TABLE `usuarios` (
   `localidad_id` int(11) NOT NULL,
   `creado` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_usuarios_local` (`localidad_id`),
-  KEY `fk_usuarios_carrera` (`carrera_id`),
-  CONSTRAINT `fk_usuarios_carrera` FOREIGN KEY (`carrera_id`) REFERENCES `carreras` (`id`),
-  CONSTRAINT `fk_usuarios_local` FOREIGN KEY (`localidad_id`) REFERENCES `localidades` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  FOREIGN KEY (`carrera_id`) REFERENCES `carreras` (`id`),
+  FOREIGN KEY (`localidad_id`) REFERENCES `localidades` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -259,6 +259,9 @@ CREATE TABLE `usuarios` (
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+
+-- LA CONTRASEÑA ES: 123
+INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `rol`, `telefono`, `dni`, `domicilio`, `carrera_id`, `localidad_id`, `creado`) VALUES (NULL, 'usuario', 'administrador', 'admin@firstworking.com', '202cb962ac59075b964b07152d234b70', 'admin', NULL, NULL, NULL, NULL, '1', '2019-07-25 00:00:00');
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

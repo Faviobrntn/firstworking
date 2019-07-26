@@ -51,6 +51,8 @@
         </div>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Registrarme!</button>
+        <a href="<?=HOST?>usuarios/login" class="btn btn-lg btn-success btn-block">Ya tengo cuenta</a>
+        <a href="<?=HOST?>" class="btn btn-lg btn-secondary btn-block">Volver</a>
         <p class="mt-5 mb-3 text-muted text-center">© 2017-2019</p>
     </form>
 
