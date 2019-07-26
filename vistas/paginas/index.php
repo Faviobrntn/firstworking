@@ -201,7 +201,17 @@
                 </div>
                 <div class="col-lg-7 col-xl-8">    
                     <h3 class="font-weight-bold mb-3"><strong>' . $oferta["titulo"] . '</strong></h3> 
-                    <p class="dark-grey-text">' . $oferta["descripcion"] . '</p>                
+                    <p class="dark-grey-text" style="word-wrap: break-word;">' . $oferta["descripcion"] . '.</p>
+                    <p class="dark-grey-text">Remuneracion: ');
+                       if ($oferta["remuneracion"] == "0" or $oferta["remuneracion"] == "" or !isset($oferta["remuneracion"])) {
+                           echo("A Convenir");
+                       } else {
+                           echo("$".$oferta["remuneracion"]);
+                       }
+            echo ('.</p>   
+                    <p class="dark-grey-text">Horario Laboral: ' . $oferta["horario_laboral"] . '.</p>   
+                    <p class="dark-grey-text">Modalidad: ' . $oferta["modalidad"] . '.</p>   
+                    <p class="dark-grey-text">LOCALIDAD ACA</p>                
                     <p>Hecha por <a class="font-weight-bold">Nombre Ofertante Aqui</a>, ' . $oferta["creado"] . '</p>
                     <form action="'); ?>
             <?= HOST ?>usuarios/postularse'
@@ -235,13 +245,13 @@
 
 
     <!---------------------------------------------------LOGIN------------------------------------------------->
-    <!--     <section id="idFormLogin">
-        
+    <!--     <section id="idFormLogin">-->
 
-    </section> 
-    ?php echo "<pre>";
+
+    </section>
+    <?php echo "<pre>";
     print_r($ofertas);
-    echo "</pre>" -->
+    echo "</pre>" ?>
 
     <section id="about">
         <div class="container">
