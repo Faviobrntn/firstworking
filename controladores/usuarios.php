@@ -177,6 +177,34 @@ class Usuarios extends Controlador
     }
 
 
+
+    public function perfil()
+    {
+        try {
+            $id = $this->Auth->user('id');
+
+            if (!empty($_POST)) {
+                // $this->debug($_POST);exit;
+                if($this->Usuario->actualizar($id, $_POST)){
+                    $this->Auth->flash("Se guardo con éxito!");
+                    // $this->redireccionar("usuarios/perfil");
+                }
+            }
+            
+            $usuario = $this->Usuario->get($id);
+            
+            $this->loadModel('Localidad');
+            $localidades = $this->Localidad->listado();
+
+            $this->set(compact('usuario', 'localidades'));
+        
+        } catch (\Exception $e) {
+            $this->Auth->flash($e->getMessage());
+        }    
+        $this->render('usuarios/perfil');
+    }
+
+
     public function logout()
     {
         $this->Auth->logout();
