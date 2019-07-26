@@ -188,13 +188,18 @@
 
         <!-- Grid row -->
         <?php
+        
         foreach ($ofertas as $oferta) {
+            $rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
+            $color = $rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)];
+    
             echo ('
             <hr class="my-5">
             <div class="row">
-                <div class="col-lg-5 col-xl-4">
+                <div class="offset-md-1 col-xl-2">
                     <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">                            
                         <a>
+                            <img class="img-fluid" src="https://dummyimage.com/300.png/'.$color.'/fff/&text='.$oferta["titulo"][0].'" alt="Sample image">
                             <div class="mask rgba-white-slight"></div>
                         </a>
                     </div>
@@ -202,56 +207,45 @@
                 <div class="col-lg-7 col-xl-8">    
                     <h3 class="font-weight-bold mb-3"><strong>' . $oferta["titulo"] . '</strong></h3> 
                     <p class="dark-grey-text" style="word-wrap: break-word;">' . $oferta["descripcion"] . '.</p>
-                    <p class="dark-grey-text">Remuneracion: ');
-                       if ($oferta["remuneracion"] == "0" or $oferta["remuneracion"] == "" or !isset($oferta["remuneracion"])) {
-                           echo("A Convenir");
-                       } else {
-                           echo("$".$oferta["remuneracion"]);
-                       }
-            echo ('.</p>   
-                    <p class="dark-grey-text">Horario Laboral: ' . $oferta["horario_laboral"] . '.</p>   
-                    <p class="dark-grey-text">Modalidad: ' . $oferta["modalidad"] . '.</p>   
-                    <p class="dark-grey-text">LOCALIDAD ACA</p>                
-                    <p>Hecha por <a class="font-weight-bold">Nombre Ofertante Aqui</a>, ' . $oferta["creado"] . '</p>
-                    <form action="'); ?>
-            <?= HOST ?>usuarios/postularse'
-            <?php echo ('" method="POST">
-                        <input type="hidden" name="postulante" value="' . $_SESSION["usuario"]["id"] . '" />
-                        <input type="hidden" name="cv" value="' . $_SESSION["usuario"]["cv_seleccionado"] . '" />
-                        <button class="btn btn-primary btn-md" type="submit">Postulame!</button>
-                    </form>
+                    <div style="display: flex;">
+                        <div style="flex-grow: 1;">
+                            <p class="dark-grey-text">Remuneracion: ');
+                               if ($oferta["remuneracion"] == "0" or $oferta["remuneracion"] == "" or !isset($oferta["remuneracion"])) {
+                                   echo("A Convenir");
+                               } else {
+                                   echo("$".$oferta["remuneracion"]);
+                               }
+                            echo ('.</p>   
+                            <p class="dark-grey-text">Horario Laboral: ' . $oferta["horario_laboral"] . '.</p>   
+                            <p class="dark-grey-text">Modalidad: ' . $oferta["modalidad"] . '.</p>   
+                            <p class="dark-grey-text">LOCALIDAD ACA</p>                
+                            <p>Hecha por <a class="font-weight-bold">Nombre Ofertante Aqui</a>, ' . $oferta["creado"] . '</p>
+                        </div>
+                        <div class="pt-5 mt-5 col-lg-6 text-right">
+                            <form action="'); ?>
+                                <?= HOST ?>usuarios/postularse'
+                                <?php echo ('" method="POST">
+                                <input type="hidden" name="postulante" value="' . $_SESSION["usuario"]["id"] . '" />
+                                <input type="hidden" name="cv" value="' . $_SESSION["usuario"]["cv_seleccionado"] . '" />
+                                <button class="btn btn-primary btn-lg" type="submit">Postulame!</button>
+                            </form>
+                        </div>
+                    </div>                    
                 </div>                    
             </div>               
             ');
         }
-
         ?>
-
-        <!-- Grid column -->
-        <div class="col-lg-5 col-xl-4">
-
-            <!-- Featured image -->
-            <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-                <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg" alt="Sample image">
-                <a>
-                    <div class="mask rgba-white-slight"></div>
-                </a>
-            </div>
-
-        </div>
-
-
     </section>
 
 
     <!---------------------------------------------------LOGIN------------------------------------------------->
-    <!--     <section id="idFormLogin">-->
+    <!--     <section id="idFormLogin">
 
 
-    </section>
-    <?php echo "<pre>";
+    php echo "<pre>";
     print_r($ofertas);
-    echo "</pre>" ?>
+    echo "</pre>" ?>-->
 
     <section id="about">
         <div class="container">
