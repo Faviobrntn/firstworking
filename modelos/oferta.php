@@ -139,7 +139,6 @@ class Oferta extends Modelo
     {
         try {
             if (empty($search)) { throw new \Exception("Falta un parametro"); }
-
             $resultados = null;
             $sql = "SELECT * FROM ofertas WHERE 
                 (id = '$search' OR
@@ -161,6 +160,37 @@ class Oferta extends Modelo
            
             return $resultados;
         
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
+
+    public function busqueda()
+    {
+        try {
+
+            $resultados = null;
+            $sql = "SELECT * FROM ofertas WHERE 1";
+
+            if(!empty($_GET['search'])){
+                $search = $_GET['search'];
+                $sql .= " AND (id = '$search' OR titulo LIKE '%$search%' OR descripcion LIKE '%$search%')";
+            }
+
+            $this->paginar($sql);
+
+            $query = $this->db->query($sql);
+
+            if($query){
+                while ($row = $query->fetch_array()){
+                    $resultados[] = $row;
+                }
+                $query->close();
+            }
+
+            return $resultados;
+
         } catch (\Exception $e) {
             throw $e;
         }

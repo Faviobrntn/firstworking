@@ -4,6 +4,13 @@ require_once 'conexion.php';
 class Modelo extends Conexion
 {
     public $db;
+    public $limite = 20;
+    public $paginacion = [
+        'actual' => 1,
+        'cantidad' => 0,
+        'paginas' => 1,
+        'cant_por_pagina' => 1
+    ];
 
     public function __construct() {
         
@@ -41,5 +48,45 @@ class Modelo extends Conexion
     public function __destruct() {
         //print "Destruyendo " . $this->name . "\n";
         $this->db->close();
+    }
+
+
+    public function cantidad($tabla){
+        $sql = "SELECT COUNT(*) as total FROM $tabla";
+        $cantidad = 0;
+
+        $query = $this->db->query($sql);
+
+        if($query){
+            $cantidad = $query->fetch_array()['total'];
+        }
+        $query->close();
+        return $cantidad;
+    }
+
+    public function paginar(&$sql){
+        $this->paginacion['actual'] = 1;
+        if (!empty($_GET['page'])){ $this->paginacion['actual'] = $_GET['page']; }
+
+        $this->paginacion['cant_por_pagina'] = $this->limite;
+        $this->paginacion['cantidad'] = $this->cantidad('ofertas');
+
+        $this->paginacion['paginas'] = ceil(($this->paginacion['cantidad'] / $this->limite));
+
+        $pagina = ($this->paginacion['actual'] * $this->limite);
+        $sql .= " LIMIT ($pagina, {$this->limite})";
+
+
+        if(($this->paginacion['actual'] - 1)){
+            $this->paginacion['anterior'] = $this->paginacion['actual'] - 1;
+        }else{
+            $this->paginacion['anterior'] = false;
+        }
+
+        if (($this->paginacion['actual'] + 1) <=  $this->paginacion['paginas']){
+            $this->paginacion['siguiente'] = $this->paginacion['actual'] + 1;
+        }else{
+            $this->paginacion['siguiente'] = false;
+        }
     }
 }
