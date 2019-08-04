@@ -42,6 +42,11 @@ class Vista
 
         require $this->contenido;
     }
+
+    public function paginador()
+    {
+        require 'vistas/plantillas/paginador.php';
+    }
     
     public function plantilla($nombre = "default")
     {

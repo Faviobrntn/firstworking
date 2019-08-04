@@ -5,6 +5,17 @@ class Carrera extends Modelo
 {
     public function __construct() {
         parent::__construct();
+
+        $this->tabla = "carreras";
+        $this->pk = "id";
+
+        $this->asociaciones = [
+            'Facultad' => [
+                'pk' => 'id',
+                'fk' => 'facultad_id',
+                'tabla' => 'facultades'
+            ]
+        ];
     }
 
 
@@ -15,7 +26,7 @@ class Carrera extends Modelo
             if($query = $this->db->query("SELECT * FROM carreras")){   
         
                 // while ($row = $query->fetch_object()){
-                while ($row = $query->fetch_array()){
+                while ($row = $query->fetch_assoc()){
                     $resultados[] = $row;
                 }
                 $query->close();
@@ -29,16 +40,34 @@ class Carrera extends Modelo
         }
     }
 
-    public function get($id)
+    /*public function get($id, $asociaciones = [])
     {
         try {
             if (empty($id)) { throw new \Exception("Falta un parametro"); }
             $resultados = null;
-            $sql = "SELECT * FROM carreras WHERE id = $id LIMIT 1";
+            $sql = "SELECT * FROM {$this->tabla} WHERE id = $id LIMIT 1";
+
             $query = $this->db->query($sql);
             if($query){
-                $resultados = $query->fetch_array();
+                $resultados = $query->fetch_assoc();
                 $query->close();
+            }
+
+            if (!empty($asociaciones)) {
+                foreach ($asociaciones as $asoc) {
+                    if (array_key_exists($asoc, $this->asociaciones)) {
+                        $this->loadModel($asoc);
+                    }
+                }
+                $adjunto = [];
+                foreach ($asociaciones as $asoc) {
+                    if (array_key_exists($asoc, $this->asociaciones)) {
+                        $fk = $this->asociaciones[$asoc]['fk'];
+                        $adjunto[$asoc] = $this->get($resultados[$fk]);
+                    }
+                }
+
+                array_push($resultados, $adjuntos);
             }
            
             return $resultados;
@@ -47,7 +76,7 @@ class Carrera extends Modelo
             // throw new Exception("Error: %s\n", $e->getMessage());
             throw $e;
         }
-    }
+    }*/
 
 
     public function listado($campo = "nombre")
@@ -151,7 +180,7 @@ class Carrera extends Modelo
             $sql = "SELECT * FROM carreras WHERE nombre LIKE '%$search%' LIMIT 1";
             $query = $this->db->query($sql);
             if($query){
-                 while ($row = $query->fetch_array()){
+                 while ($row = $query->fetch_assoc()){
                     $resultados[] = $row;
                 }
                 $query->close();

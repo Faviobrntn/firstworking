@@ -233,6 +233,7 @@
             </div>               
 
         <?php endforeach; ?>
+        <?php $this->paginador() ?>
         <?php endif; ?>
     </section>
 

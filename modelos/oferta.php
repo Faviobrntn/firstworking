@@ -5,26 +5,66 @@ class Oferta extends Modelo
 {
     public function __construct() {
         parent::__construct();
+
+        $this->tabla = "ofertas";
+        $this->pk = "id";
+
+        $this->asociaciones = [
+            'Carrera' => [
+                'pk' => 'id',
+                'fk' => 'carrera_id',
+                'tabla' => 'carreras'
+            ],
+            'Localidad' => [
+                'pk' => 'id',
+                'fk' => 'localidad_id',
+                'tabla' => 'localidades'
+            ],
+            'Usuario' => [
+                'pk' => 'id',
+                'fk' => 'usuario_id',
+                'tabla' => 'usuarios'
+            ]
+        ];
     }
 
 
-    public function getAll()
+    public function getAll($asociaciones = [])
     {
         try {
             $resultados = null;
 
-            $sql = "SELECT * FROM ofertas";
+            $sql = "SELECT * FROM {$this->tabla}";
+
             if(!empty($_SESSION['Usuario']) AND $_SESSION['Usuario']['rol'] != 'admin'){
                 $sql .= " WHERE usuario_id = ".$_SESSION['Usuario']['id'];
             }
             if($query = $this->db->query($sql)){            
                 // while ($row = $query->fetch_object()){
-                while ($row = $query->fetch_array()){
+                while ($row = $query->fetch_assoc()){
                     $resultados[] = $row;
                 }
                 $query->close();
             }
-            
+
+            if ((!empty($resultados) AND !empty($asociaciones))) {
+                foreach ($asociaciones as $asoc) {
+                    if (array_key_exists($asoc, $this->asociaciones)) {
+                        $this->loadModel($asoc);
+                    }
+                }
+                foreach ($resultados as $k => $r) {
+                    $adjunto = [];
+                    foreach ($asociaciones as $asoc) {
+                        if (array_key_exists($asoc, $this->asociaciones)) {
+                            $fk = $this->asociaciones[$asoc]['fk'];
+                            $adjunto[strtolower($asoc)] = $this->{$asoc}->get($r[$fk]);
+                        }
+                    }
+                    $resultados[$k] = $resultados[$k] + $adjunto;
+                }
+            }
+
             return $resultados;
         
         } catch (\Exception $e) {
@@ -33,16 +73,34 @@ class Oferta extends Modelo
         }
     }
 
-    public function get($id)
+    /*public function get($id, $asociaciones = [])
     {
         try {
             if (empty($id)) { throw new \Exception("Falta un parametro"); }
             $resultados = null;
-            $sql = "SELECT * FROM ofertas WHERE id = $id LIMIT 1";
+            $sql = "SELECT * FROM {$this->tabla} WHERE id = $id LIMIT 1";
+
             $query = $this->db->query($sql);
             if($query){
-                $resultados = $query->fetch_array();
+                $resultados = $query->fetch_assoc();
                 $query->close();
+            }
+
+            if (!empty($asociaciones)) {
+                foreach ($asociaciones as $asoc) {
+                    if (array_key_exists($asoc, $this->asociaciones)) {
+                        $this->loadModel($asoc);
+                    }
+                }
+                $adjunto = [];
+                foreach ($asociaciones as $asoc) {
+                    if (array_key_exists($asoc, $this->asociaciones)) {
+                        $fk = $this->asociaciones[$asoc]['fk'];
+                        $adjunto[strtolower($asoc)] = $this->{$asoc}->get($resultados[$fk]);
+                    }
+                }
+
+                array_push($resultados, $adjuntos);
             }
            
             return $resultados;
@@ -51,7 +109,7 @@ class Oferta extends Modelo
             // throw new Exception("Error: %s\n", $e->getMessage());
             throw $e;
         }
-    }
+    }*/
 
     
     public function alta($data)
@@ -152,7 +210,7 @@ class Oferta extends Modelo
             $query = $this->db->query($sql);
             
             if($query){
-                 while ($row = $query->fetch_array()){
+                 while ($row = $query->fetch_assoc()){
                     $resultados[] = $row;
                 }
                 $query->close();

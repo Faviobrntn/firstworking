@@ -261,7 +261,8 @@ LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 -- LA CONTRASEÑA ES: 123
-INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `rol`, `telefono`, `dni`, `domicilio`, `carrera_id`, `localidad_id`, `creado`) VALUES (NULL, 'usuario', 'administrador', 'admin@firstworking.com', '202cb962ac59075b964b07152d234b70', 'admin', NULL, NULL, NULL, NULL, '1', '2019-07-25 00:00:00');
+INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `rol`, `telefono`, `dni`, `domicilio`, `carrera_id`, `localidad_id`, `creado`) 
+  VALUES (NULL, 'usuario', 'administrador', 'admin@firstworking.com', '202cb962ac59075b964b07152d234b70', 'admin', NULL, NULL, NULL, NULL, '1', '2019-07-25 00:00:00');
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

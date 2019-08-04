@@ -16,8 +16,12 @@ class Ofertas extends Controlador
         if (!empty($_GET['search'])) {
             $ofertas = $this->Oferta->buscar($_GET['search']);
         }else{
-            $ofertas = $this->Oferta->getAll();
+            $ofertas = $this->Oferta->getAll(['Carrera', 'Localidad']);
         }
+        /*echo "<pre>";
+        print_r($ofertas);
+        echo "</pre>";
+        exit;*/
         $this->set(compact('ofertas'));
         $this->render('ofertas/index');
     }

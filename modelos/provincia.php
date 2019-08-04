@@ -14,7 +14,7 @@ class Provincia extends Modelo
             $resultados = null;
             if($query = $this->db->query("SELECT * FROM provincias")){            
                 // while ($row = $query->fetch_object()){
-                while ($row = $query->fetch_array()){
+                while ($row = $query->fetch_assoc()){
                     $resultados[] = $row;
                 }
                 $query->close();
@@ -36,7 +36,7 @@ class Provincia extends Modelo
             $sql = "SELECT * FROM provincias WHERE id = $id LIMIT 1";
             $query = $this->db->query($sql);
             if($query){
-                $resultados = $query->fetch_array();
+                $resultados = $query->fetch_assoc();
                 $query->close();
             }
            
@@ -148,7 +148,7 @@ class Provincia extends Modelo
             $sql = "SELECT * FROM provincias WHERE nombre LIKE '%$search%' LIMIT 1";
             $query = $this->db->query($sql);
             if($query){
-                 while ($row = $query->fetch_array()){
+                 while ($row = $query->fetch_assoc()){
                     $resultados[] = $row;
                 }
                 $query->close();

@@ -3,6 +3,7 @@
 define('DS', DIRECTORY_SEPARATOR);
 
 define('ROOT', dirname(__DIR__));
+define('MODELOS', ROOT . DS . 'modelos' . DS);
 
 define('APPNAME', 'firstworking');
 

@@ -5,6 +5,17 @@ class Localidad extends Modelo
 {
     public function __construct() {
         parent::__construct();
+
+        $this->tabla = "localidades";
+        $this->pk = "id";
+
+        $this->asociaciones = [
+            'Provincia' => [
+                'pk' => 'id',
+                'fk' => 'provincia_id',
+                'tabla' => 'provincias'
+            ]
+        ];
     }
 
 
@@ -15,7 +26,7 @@ class Localidad extends Modelo
             if($query = $this->db->query("SELECT * FROM localidades")){   
         
                 // while ($row = $query->fetch_object()){
-                while ($row = $query->fetch_array()){
+                while ($row = $query->fetch_assoc()){
                     $resultados[] = $row;
                 }
                 $query->close();
@@ -29,7 +40,7 @@ class Localidad extends Modelo
         }
     }
 
-    public function get($id)
+    /*public function get($id)
     {
         try {
             if (empty($id)) { throw new \Exception("Falta un parametro"); }
@@ -37,7 +48,7 @@ class Localidad extends Modelo
             $sql = "SELECT * FROM localidades WHERE id = $id LIMIT 1";
             $query = $this->db->query($sql);
             if($query){
-                $resultados = $query->fetch_array();
+                $resultados = $query->fetch_assoc();
                 $query->close();
             }
            
@@ -47,7 +58,7 @@ class Localidad extends Modelo
             // throw new Exception("Error: %s\n", $e->getMessage());
             throw $e;
         }
-    }
+    }*/
 
 
     public function listado($campo = "nombre")
@@ -150,7 +161,7 @@ class Localidad extends Modelo
             $sql = "SELECT * FROM localidades WHERE nombre LIKE '%$search%' LIMIT 1";
             $query = $this->db->query($sql);
             if($query){
-                 while ($row = $query->fetch_array()){
+                 while ($row = $query->fetch_assoc()){
                     $resultados[] = $row;
                 }
                 $query->close();

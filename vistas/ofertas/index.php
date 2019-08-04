@@ -27,7 +27,7 @@
     <div class="col-md-12 mb-4">
         <div class="card">
             <div class="card-body">
-                <a class="btn btn-primary float-right" href="<?=HOST?>facultades/alta">Nuevo</a>
+                <a class="btn btn-primary float-right" href="<?=HOST?>ofertas/alta">Nuevo</a>
                 <table class="table table-hover">
                     <thead class="blue-grey lighten-4">
                         <tr>
