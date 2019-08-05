@@ -33,7 +33,13 @@ class Modelo extends Conexion
         // }
     }
 
-
+    /**
+     * LoadModel
+     * carga el modelo que recibe como parametro
+     * @param string $model
+     * @return void
+     * @throws Exception Si no se encuentra
+     */
     public function loadModel($model)
     {
         $archivo = MODELOS . strtolower($model) .'.php';
@@ -47,6 +53,15 @@ class Modelo extends Conexion
     }
 
     
+    /**
+     * Get
+     * Obtiene un registro del modelo que lo usa,
+     * con sus asociaciones
+     * @param string $id
+     * @param array $asociaciones
+     * @return array $resultados
+     * @throws Exception
+     */
     public function get($id, $asociaciones = [])
     {
         try {
@@ -74,18 +89,23 @@ class Modelo extends Conexion
                     }
                 }
 
-                array_push($resultados, $adjuntos);
+                $resultados = $resultados + $adjuntos;
             }
            
             return $resultados;
                     
         } catch (\Exception $e) {
-            // throw new Exception("Error: %s\n", $e->getMessage());
             throw $e;
         }
     }
 
 
+    /**
+     * Cantidad
+     * Obtiene la cantidad de registros del modelo que lo usa,
+     * @param string $tabla
+     * @return int $cantidad
+     */
     public function cantidad($tabla){
         $sql = "SELECT COUNT(*) as total FROM $tabla";
         $cantidad = 0;
@@ -99,6 +119,14 @@ class Modelo extends Conexion
         return $cantidad;
     }
 
+
+    /**
+     * Paginar
+     * Añade sentencia SQL para poder paginar,
+     * ademas construye la variable de clase de tipo array
+     * @param string &$slq
+     * @return void
+     */
     public function paginar(&$sql){
         $this->paginacion['actual'] = 1;
         if (!empty($_GET['page'])){ $this->paginacion['actual'] = $_GET['page']; }

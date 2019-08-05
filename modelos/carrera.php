@@ -24,8 +24,6 @@ class Carrera extends Modelo
         try {
             $resultados = [];
             if($query = $this->db->query("SELECT * FROM carreras")){   
-        
-                // while ($row = $query->fetch_object()){
                 while ($row = $query->fetch_assoc()){
                     $resultados[] = $row;
                 }
@@ -54,7 +52,6 @@ class Carrera extends Modelo
             return $resultados;
         
         } catch (\Exception $e) {
-            // throw new Exception("Error: %s\n", $e->getMessage());
             throw $e;
         }
     }

@@ -13,6 +13,12 @@ class Controlador
         $this->Auth = new Auth();
     }
 
+    /**
+     * Autorizacion
+     * Verifica la sesion y checkea si las url tienen permiso
+     * @return bool
+     * @throws Exception Si no se encuentra
+     */
     public function autorizacion()
     {
         if (in_array($_GET['url'], $this->Auth->permitir)) {
@@ -33,6 +39,14 @@ class Controlador
         return $this->redireccionar('usuarios/login');
     }
 
+
+    /**
+     * LoadModel
+     * carga el modelo que recibe como parametro
+     * @param string $model
+     * @return void
+     * @throws Exception Si no se encuentra
+     */
     public function loadModel($model)
     {
         $archivo = 'modelos/'. strtolower($model) .'.php';
@@ -40,25 +54,43 @@ class Controlador
         if (file_exists($archivo)) {
             require_once $archivo;
             $model = ucwords(strtolower($model));
-            // $this->modelo = new $model();
             $this->$model = new $model();
         }else {
             throw new \Exception("No se encontro el modelo");
         }
     }
 
+    /**
+     * Plantilla
+     * carga en el objeto vista la plantilla a utilizar
+     * @param string $nombre
+     * @return void
+     */
     public function plantilla($nombre)
     {
         $this->vista->plantilla($nombre);
     }
 
     
+    /**
+     * Render
+     * carga en el objeto vista la vista que se va a renderizar
+     * @param string $nombre
+     * @return void
+     */
     public function render($nombre)
     {
         $this->vista->render($nombre);
     }
 
 
+    /**
+     * Set
+     * carga en el objeto vista las variables
+     * que se enviaran a la vista
+     * @param array $var
+     * @return void
+     */
     public function set($var = [])
     {
         if (is_array($var)) {
@@ -72,7 +104,12 @@ class Controlador
         }
     }
 
-
+    /**
+     * Redireccionar
+     * redireccion PHP a una ruta dada
+     * @param string $url
+     * @return void
+     */
     public function redireccionar($url)
     {
         header("Location: ".HOST.$url);
