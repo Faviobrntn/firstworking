@@ -12,43 +12,59 @@ class Usuario extends Modelo
     
     public function __construct() {
         parent::__construct();
+
+        $this->tabla = "usuarios";
+        $this->pk = "id";
+
+        $this->asociaciones = [
+            'Carrera' => [
+                'pk' => 'id',
+                'fk' => 'carrera_id',
+                'tabla' => 'carreras'
+            ],
+            'Localidad' => [
+                'pk' => 'id',
+                'fk' => 'localidad_id',
+                'tabla' => 'localidades'
+            ]
+        ];
     }
 
 
-    public function getAll()
+    public function getAll($asociaciones = [])
     {
         try {
             $resultados = null;
-            if($query = $this->db->query("SELECT * FROM usuarios")){            
-                // while ($row = $query->fetch_object()){
-                while ($row = $query->fetch_assoc()){
+
+            $sql = "SELECT * FROM {$this->tabla}";
+
+            if ($query = $this->db->query($sql)) {
+                while ($row = $query->fetch_assoc()) {
                     $resultados[] = $row;
                 }
                 $query->close();
             }
-            
-            return $resultados;
-        
-        } catch (\Exception $e) {
-            // throw new Exception("Error: %s\n", $e->getMessage());
-            throw $e;
-        }
-    }
 
-    public function get($id)
-    {
-        try {
-            if (empty($id)) { throw new \Exception("Falta un parametro"); }
-            $resultados = null;
-            $sql = "SELECT * FROM usuarios WHERE id = $id LIMIT 1";
-            $query = $this->db->query($sql);
-            if($query){
-                $resultados = $query->fetch_assoc();
-                $query->close();
+            if ((!empty($resultados) AND !empty($asociaciones))) {
+                foreach ($asociaciones as $asoc) {
+                    if (array_key_exists($asoc, $this->asociaciones)) {
+                        $this->loadModel($asoc);
+                    }
+                }
+                foreach ($resultados as $k => $r) {
+                    $adjunto = [];
+                    foreach ($asociaciones as $asoc) {
+                        if (array_key_exists($asoc, $this->asociaciones)) {
+                            $fk = $this->asociaciones[$asoc]['fk'];
+                            $adjunto[strtolower($asoc)] = $this->{$asoc}->get($r[$fk]);
+                        }
+                    }
+                    $resultados[$k] = $resultados[$k] + $adjunto;
+                }
             }
-           
+
             return $resultados;
-                    
+
         } catch (\Exception $e) {
             // throw new Exception("Error: %s\n", $e->getMessage());
             throw $e;

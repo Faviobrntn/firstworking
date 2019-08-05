@@ -1,6 +1,13 @@
 <?php 
 session_start();
 
+function debug($data)
+{
+    echo "<pre>";
+    print_r($data);
+    echo "</pre><br />";
+}
+
 require_once 'config/constantes.php';
 require_once 'config/app.php';
 require_once 'config/controlador.php';

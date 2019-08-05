@@ -18,10 +18,6 @@ class Ofertas extends Controlador
         }else{
             $ofertas = $this->Oferta->getAll(['Carrera', 'Localidad']);
         }
-        /*echo "<pre>";
-        print_r($ofertas);
-        echo "</pre>";
-        exit;*/
         $this->set(compact('ofertas'));
         $this->render('ofertas/index');
     }

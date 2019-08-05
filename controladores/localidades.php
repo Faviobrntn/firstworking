@@ -16,7 +16,7 @@ class Localidades extends Controlador
         if (!empty($_GET['search'])) {
             $localidades = $this->Localidad->buscar($_GET['search']);
         }else{
-            $localidades = $this->Localidad->getAll();
+            $localidades = $this->Localidad->getAll(['Provincia']);
         }
 
         $this->loadModel('Provincia');

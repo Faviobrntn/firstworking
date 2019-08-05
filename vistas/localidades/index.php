@@ -78,7 +78,7 @@
                                     <td><?= $localidad['id'] ?></td>
                                     <td><?= ucwords($localidad['nombre']) ?></td>
                                     <td><?= $localidad['descripcion'] ?></td>
-                                    <td><?= ucwords($localidad['provincia_id']) ?></td>
+                                    <td><?= (!empty($localidad['provincia'])) ? ucwords($localidad['provincia']['nombre']) : '' ?></td>
                                     <td class="text-center">
                                         <button type="button" class="btn btn-sm btn-primary" 
                                             data-toggle="modal" 

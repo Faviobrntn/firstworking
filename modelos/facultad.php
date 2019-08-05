@@ -5,56 +5,54 @@ class Facultad extends Modelo
 {
     public function __construct() {
         parent::__construct();
+
+        $this->tabla = "facultades";
+        $this->pk = "id";
+
+        $this->asociaciones = [
+            'Localidad' => [
+                'pk' => 'id',
+                'fk' => 'localidad_id',
+                'tabla' => 'localidades'
+            ]
+        ];
     }
 
 
-    public function getAll($asociacion = [])
+    public function getAll($asociaciones = [])
     {
         try {
-            if (!empty($asociacion)) {
-                foreach ($asociacion as $as) {
-                    $this->loadModel($as);
-                }
-            }
             $resultados = null;
-            if($query = $this->db->query("SELECT * FROM facultades")){            
-                // while ($row = $query->fetch_object()){
-                while ($row = $query->fetch_assoc()){
-                    $asociar = [];
-                    if (!empty($asociacion)) {
-                        foreach ($asociacion as $as) {
-                            $fk = strtolower($as).'_id';
-                            $asociar[$as] = $this->$as->get($row[$fk]);
+
+            $sql = "SELECT * FROM {$this->tabla}";
+
+            if ($query = $this->db->query($sql)) {
+                while ($row = $query->fetch_assoc()) {
+                    $resultados[] = $row;
+                }
+                $query->close();
+            }
+
+            if ((!empty($resultados) AND !empty($asociaciones))) {
+                foreach ($asociaciones as $asoc) {
+                    if (array_key_exists($asoc, $this->asociaciones)) {
+                        $this->loadModel($asoc);
+                    }
+                }
+                foreach ($resultados as $k => $r) {
+                    $adjunto = [];
+                    foreach ($asociaciones as $asoc) {
+                        if (array_key_exists($asoc, $this->asociaciones)) {
+                            $fk = $this->asociaciones[$asoc]['fk'];
+                            $adjunto[strtolower($asoc)] = $this->{$asoc}->get($r[$fk]);
                         }
                     }
-
-                    $resultados[] = $row + $asociar;
+                    $resultados[$k] = $resultados[$k] + $adjunto;
                 }
-                $query->close();
             }
-            
-            return $resultados;
-        
-        } catch (\Exception $e) {
-            // throw new Exception("Error: %s\n", $e->getMessage());
-            throw $e;
-        }
-    }
 
-    public function get($id)
-    {
-        try {
-            if (empty($id)) { throw new \Exception("Falta un parametro"); }
-            $resultados = null;
-            $sql = "SELECT * FROM facultades WHERE id = $id LIMIT 1";
-            $query = $this->db->query($sql);
-            if($query){
-                $resultados = $query->fetch_assoc();
-                $query->close();
-            }
-           
             return $resultados;
-                    
+
         } catch (\Exception $e) {
             // throw new Exception("Error: %s\n", $e->getMessage());
             throw $e;

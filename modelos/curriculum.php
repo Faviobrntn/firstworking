@@ -6,49 +6,69 @@ class Curriculum extends Modelo
     public function __construct()
     {
         parent::__construct();
+
+        $this->tabla = "cv";
+        $this->pk = "id";
+
+        $this->asociaciones = [
+            'Carrera' => [
+                'pk' => 'id',
+                'fk' => 'idcarrera',
+                'tabla' => 'carreras'
+            ],
+            'Usuario' => [
+                'pk' => 'id',
+                'fk' => 'usuario_id',
+                'tabla' => 'usuarios'
+            ]
+        ];
     }
 
 
-    public function getAll($usuario_id)
+    public function getAll($asociaciones = [])
     {
         try {
             $resultados = null;
-            if ($query = $this->db->query("SELECT * FROM curriculums WHERE usuario_id = $usuario_id;")) {
+
+            $sql = "SELECT * FROM {$this->tabla}";
+
+            if(!empty($_SESSION['Usuario']) AND $_SESSION['Usuario']['rol'] != 'admin'){
+                $sql .= " WHERE usuario_id = ".$_SESSION['Usuario']['id'];
+            }
+            if ($query = $this->db->query($sql)) {
                 // while ($row = $query->fetch_object()){
                 while ($row = $query->fetch_assoc()) {
                     $resultados[] = $row;
                 }
                 $query->close();
             }
-            // print_r($resultados);
-            // exit;
+
+            if ((!empty($resultados) AND !empty($asociaciones))) {
+                foreach ($asociaciones as $asoc) {
+                    if (array_key_exists($asoc, $this->asociaciones)) {
+                        $this->loadModel($asoc);
+                    }
+                }
+                foreach ($resultados as $k => $r) {
+                    $adjunto = [];
+                    foreach ($asociaciones as $asoc) {
+                        if (array_key_exists($asoc, $this->asociaciones)) {
+                            $fk = $this->asociaciones[$asoc]['fk'];
+                            $adjunto[strtolower($asoc)] = $this->{$asoc}->get($r[$fk]);
+                        }
+                    }
+                    $resultados[$k] = $resultados[$k] + $adjunto;
+                }
+            }
+
             return $resultados;
+
         } catch (\Exception $e) {
             // throw new Exception("Error: %s\n", $e->getMessage());
             throw $e;
         }
     }
 
-    public function get($id)
-    {
-        try {
-            if (empty($id)) {
-                throw new \Exception("Falta un parametro");
-            }
-            $resultados = null;
-            $sql = "SELECT * FROM curriculums WHERE id = $id LIMIT 1";
-            $query = $this->db->query($sql);
-            if ($query) {
-                $resultados = $query->fetch_assoc();
-                $query->close();
-            }
-
-            return $resultados;
-        } catch (\Exception $e) {
-            // throw new Exception("Error: %s\n", $e->getMessage());
-            throw $e;
-        }
-    }
 
 
     public function alta($data)

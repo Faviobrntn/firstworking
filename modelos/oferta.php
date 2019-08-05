@@ -73,43 +73,6 @@ class Oferta extends Modelo
         }
     }
 
-    /*public function get($id, $asociaciones = [])
-    {
-        try {
-            if (empty($id)) { throw new \Exception("Falta un parametro"); }
-            $resultados = null;
-            $sql = "SELECT * FROM {$this->tabla} WHERE id = $id LIMIT 1";
-
-            $query = $this->db->query($sql);
-            if($query){
-                $resultados = $query->fetch_assoc();
-                $query->close();
-            }
-
-            if (!empty($asociaciones)) {
-                foreach ($asociaciones as $asoc) {
-                    if (array_key_exists($asoc, $this->asociaciones)) {
-                        $this->loadModel($asoc);
-                    }
-                }
-                $adjunto = [];
-                foreach ($asociaciones as $asoc) {
-                    if (array_key_exists($asoc, $this->asociaciones)) {
-                        $fk = $this->asociaciones[$asoc]['fk'];
-                        $adjunto[strtolower($asoc)] = $this->{$asoc}->get($resultados[$fk]);
-                    }
-                }
-
-                array_push($resultados, $adjuntos);
-            }
-           
-            return $resultados;
-                    
-        } catch (\Exception $e) {
-            // throw new Exception("Error: %s\n", $e->getMessage());
-            throw $e;
-        }
-    }*/
 
     
     public function alta($data)

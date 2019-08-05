@@ -19,7 +19,7 @@ class Carrera extends Modelo
     }
 
 
-    public function getAll()
+    public function getAll($asociaciones = [])
     {
         try {
             $resultados = [];
@@ -31,6 +31,25 @@ class Carrera extends Modelo
                 }
                 $query->close();
             }
+
+
+            if ((!empty($resultados) AND !empty($asociaciones))) {
+                foreach ($asociaciones as $asoc) {
+                    if (array_key_exists($asoc, $this->asociaciones)) {
+                        $this->loadModel($asoc);
+                    }
+                }
+                foreach ($resultados as $k => $r) {
+                    $adjunto = [];
+                    foreach ($asociaciones as $asoc) {
+                        if (array_key_exists($asoc, $this->asociaciones)) {
+                            $fk = $this->asociaciones[$asoc]['fk'];
+                            $adjunto[strtolower($asoc)] = $this->{$asoc}->get($r[$fk]);
+                        }
+                    }
+                    $resultados[$k] = $resultados[$k] + $adjunto;
+                }
+            }
             
             return $resultados;
         
@@ -39,44 +58,6 @@ class Carrera extends Modelo
             throw $e;
         }
     }
-
-    /*public function get($id, $asociaciones = [])
-    {
-        try {
-            if (empty($id)) { throw new \Exception("Falta un parametro"); }
-            $resultados = null;
-            $sql = "SELECT * FROM {$this->tabla} WHERE id = $id LIMIT 1";
-
-            $query = $this->db->query($sql);
-            if($query){
-                $resultados = $query->fetch_assoc();
-                $query->close();
-            }
-
-            if (!empty($asociaciones)) {
-                foreach ($asociaciones as $asoc) {
-                    if (array_key_exists($asoc, $this->asociaciones)) {
-                        $this->loadModel($asoc);
-                    }
-                }
-                $adjunto = [];
-                foreach ($asociaciones as $asoc) {
-                    if (array_key_exists($asoc, $this->asociaciones)) {
-                        $fk = $this->asociaciones[$asoc]['fk'];
-                        $adjunto[$asoc] = $this->get($resultados[$fk]);
-                    }
-                }
-
-                array_push($resultados, $adjuntos);
-            }
-           
-            return $resultados;
-                    
-        } catch (\Exception $e) {
-            // throw new Exception("Error: %s\n", $e->getMessage());
-            throw $e;
-        }
-    }*/
 
 
     public function listado($campo = "nombre")
