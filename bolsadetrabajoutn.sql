@@ -30,7 +30,7 @@ CREATE TABLE `carreras` (
   `creado` datetime NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`facultad_id`) REFERENCES `facultades` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `cv` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`idcarrera`) REFERENCES `carreras` (`id`),
   FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +95,7 @@ CREATE TABLE `facultades` (
   `creado` datetime NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`localidad_id`) REFERENCES `localidades` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,7 +131,7 @@ CREATE TABLE `ofertas` (
   FOREIGN KEY (`carrera_id`) REFERENCES `carreras` (`id`),
   FOREIGN KEY (`localidad_id`) REFERENCES `localidades` (`id`),
   FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,7 +156,7 @@ CREATE TABLE `postulaciones` (
   PRIMARY KEY (`oferta_id`,`usuario_id`),
   FOREIGN KEY (`oferta_id`) REFERENCES `ofertas` (`id`),
   FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -181,7 +181,7 @@ CREATE TABLE `provincias` (
   `descripcion` text,
   `creado` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -211,7 +211,7 @@ CREATE TABLE `localidades` (
   `creado` datetime NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`provincia_id`) REFERENCES `provincias` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -249,7 +249,7 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`carrera_id`) REFERENCES `carreras` (`id`),
   FOREIGN KEY (`localidad_id`) REFERENCES `localidades` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -275,3 +275,13 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2019-05-26 15:08:29
+
+
+/*ALTER TABLE carreras DEFAULT CHARSET=utf8 COLLATE utf8_spanish_ci;
+ALTER TABLE cv DEFAULT CHARSET=utf8 COLLATE utf8_spanish_ci;
+ALTER TABLE facultades DEFAULT CHARSET=utf8 COLLATE utf8_spanish_ci;
+ALTER TABLE localidades DEFAULT CHARSET=utf8 COLLATE utf8_spanish_ci;
+ALTER TABLE ofertas DEFAULT CHARSET=utf8 COLLATE utf8_spanish_ci;
+ALTER TABLE postulaciones DEFAULT CHARSET=utf8 COLLATE utf8_spanish_ci;
+ALTER TABLE provincias DEFAULT CHARSET=utf8 COLLATE utf8_spanish_ci;
+ALTER TABLE usuarios DEFAULT CHARSET=utf8 COLLATE utf8_spanish_ci;*/
