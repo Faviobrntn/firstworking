@@ -31,7 +31,7 @@ class Usuario extends Modelo
     }
 
 
-    public function getAll($asociaciones = [])
+    /*public function getAll($asociaciones = [])
     {
         try {
             $resultados = null;
@@ -69,7 +69,7 @@ class Usuario extends Modelo
             // throw new Exception("Error: %s\n", $e->getMessage());
             throw $e;
         }
-    }
+    }*/
 
     
     public function alta($data)

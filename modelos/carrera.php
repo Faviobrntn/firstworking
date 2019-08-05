@@ -17,45 +17,7 @@ class Carrera extends Modelo
             ]
         ];
     }
-
-
-    public function getAll($asociaciones = [])
-    {
-        try {
-            $resultados = [];
-            if($query = $this->db->query("SELECT * FROM carreras")){   
-                while ($row = $query->fetch_assoc()){
-                    $resultados[] = $row;
-                }
-                $query->close();
-            }
-
-
-            if ((!empty($resultados) AND !empty($asociaciones))) {
-                foreach ($asociaciones as $asoc) {
-                    if (array_key_exists($asoc, $this->asociaciones)) {
-                        $this->loadModel($asoc);
-                    }
-                }
-                foreach ($resultados as $k => $r) {
-                    $adjunto = [];
-                    foreach ($asociaciones as $asoc) {
-                        if (array_key_exists($asoc, $this->asociaciones)) {
-                            $fk = $this->asociaciones[$asoc]['fk'];
-                            $adjunto[strtolower($asoc)] = $this->{$asoc}->get($r[$fk]);
-                        }
-                    }
-                    $resultados[$k] = $resultados[$k] + $adjunto;
-                }
-            }
-            
-            return $resultados;
-        
-        } catch (\Exception $e) {
-            throw $e;
-        }
-    }
-
+    
 
     public function listado($campo = "nombre")
     {

@@ -16,7 +16,7 @@ class Carreras extends Controlador
         if (!empty($_GET['search'])) {
             $carreras = $this->Carrera->buscar($_GET['search']);
         }else{
-            $carreras = $this->Carrera->getAll();
+            $carreras = $this->Carrera->getAll(['Facultad']);
         }
 
         $this->loadModel('Facultad');
