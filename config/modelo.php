@@ -100,6 +100,14 @@ class Modelo extends Conexion
     }
 
 
+    /**
+     * GetAll
+     * Obtiene todos los registros del modelo que lo usa,
+     * con sus asociaciones
+     * @param array $asociaciones
+     * @return array $resultados
+     * @throws Exception
+     */
     public function getAll($asociaciones = [])
     {
         try {
@@ -113,7 +121,6 @@ class Modelo extends Conexion
                 }
             }
             if($query = $this->db->query($sql)){            
-                // while ($row = $query->fetch_object()){
                 while ($row = $query->fetch_assoc()){
                     $resultados[] = $row;
                 }
