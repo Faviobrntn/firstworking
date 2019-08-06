@@ -21,12 +21,14 @@ class Localidad extends Modelo
 
 
     public function listado($campo = "nombre")
-    {
+    {   
         try {
             $resultados = [];
             
             $query = $this->getAll();
             
+            #print_r($query);
+            #exit;
             if(\count($query)){
                 foreach ($query as $v) {
                     $resultados[$v['id']] = $v[$campo];

@@ -116,7 +116,7 @@ class Usuario extends Modelo
             $creado = date('Y-m-d H:i:s');
     
             //Arma la instrucción SQL y luego la ejecuta
-            $sql = "INSERT INTO usuarios (nombre, apellido,  email,  password, localidad_id, 'rol',  creado) 
+            $sql = "INSERT INTO usuarios (nombre, apellido,  email,  password, localidad_id, rol,  creado) 
                     VALUES ('$nombre', '$apellido',  '$email',  '$password', '$local', '$rol', '$creado')";
             
             // mysqli_query($this->db, $sql) or die (mysqli_error($this->db));
