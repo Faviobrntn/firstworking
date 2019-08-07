@@ -163,7 +163,7 @@ class Usuarios extends Controlador
                         $this->redireccionar("ofertas/index");
                     }
                     if ($usuario['rol'] == 'postulante') {
-                        $this->redireccionar("paginas/index");
+                        $this->redireccionar("/");
                     }
                 }else {
                     $this->Auth->flash("Email ó contraseña incorrectos.");
@@ -178,7 +178,7 @@ class Usuarios extends Controlador
                     $this->redireccionar("ofertas/index");
                 }
                 if ($this->Auth->user('rol') == 'postulante') {
-                    $this->redireccionar("curriculums/index");
+                    $this->redireccionar("/");
                 }
             }
         } catch (\Exception $e) {

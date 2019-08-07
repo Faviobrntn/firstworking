@@ -139,16 +139,16 @@
                         <a class="nav-link js-scroll-trigger" href="#services">Servicios</a>
                     </li>
                     <li class="nav-item">
-                        <?php if (empty($_SESSION["usuario"])) : ?>
+                        <?php if (empty($_SESSION["Usuario"])) : ?>
                             <a href="<?= HOST ?>usuarios/login" class="nav-link js-scroll-trigger">Acceder</a>
-                        <?php elseif ($_SESSION["usuario"]["rol"] == "postulante") : ?>
+                        <?php elseif ($_SESSION["Usuario"]["rol"] == "postulante") : ?>
                             <a href="<?= HOST ?>usuarios/perfil" class="nav-link js-scroll-trigger">Mis CV</a>
                         <?php else : ?>
                             <a href="<?= HOST ?>usuarios/perfil" class="nav-link js-scroll-trigger">Mis Ofertas</a>
                         <?php endif; ?>
                     </li>
                     <li class="nav-item">
-                        <?php if (empty($_SESSION["usuario"])) : ?>
+                        <?php if (empty($_SESSION["Usuario"])) : ?>
                             <a href="<?= HOST ?>usuarios/registro" class="nav-link js-scroll-trigger">Registrate</a>
                         <?php else : ?>
                             <a href="<?= HOST ?>usuarios/logout" class="nav-link js-scroll-trigger">Salir</a>
@@ -229,8 +229,8 @@
                             </div>
                             <div class="pt-5 mt-5 col-lg-6 text-right">
                                 <form action="<?= HOST ?>usuarios/postularse" method="POST">
-                                    <input type="hidden" name="postulante" value="<?= $_SESSION["usuario"]["id"] ?>" />
-                                    <input type="hidden" name="cv" value="<?= $_SESSION["usuario"]["cv_seleccionado"] ?>" />
+                                    <input type="hidden" name="postulante" value="<?= $_SESSION["Usuario"]["id"] ?>" />
+                                    <input type="hidden" name="cv" value="<?= $_SESSION["Usuario"]["cv_seleccionado"] ?>" />
                                     <button class="btn btn-primary btn-lg" type="submit">Postulame!</button>
                                 </form>
                             </div>
