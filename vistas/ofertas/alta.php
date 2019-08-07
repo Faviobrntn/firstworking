@@ -49,7 +49,7 @@
                             <option value="">Seleccione Carrera</option>
                             <?php if(!empty($carreras)): ?>
                                 <?php foreach($carreras as $key => $value): ?>
-                                    <?php $check = ((!empty($_POST["carrera_id"]) AND ($_POST["carrera_id"] = $key))? 'selected' : '')?>; ?>
+                                    <?php $check = ((!empty($_POST["carrera_id"]) AND ($_POST["carrera_id"] = $key))? 'selected' : '')?>
                                     <option value="<?=$key?>" <?=$check?> ><?= ucfirst($value) ?></option>
                                 <?php endforeach ?>
                             <?php endif ?>

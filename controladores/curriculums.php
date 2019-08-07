@@ -14,11 +14,24 @@ class Curriculums extends Controlador
 
     public function index()
     {
+        if (!empty($_GET['search'])) {
+            $curriculums = $this->Curriculum->buscar($_GET['search']);
+        }else{
+            $curriculums = $this->Curriculum->getAll(['Carrera']);
+        }
+        $this->loadModel('Carrera');
+        $carreras = $this->Carrera->listado();
+
+        $this->set(compact('curriculums', 'carreras'));
+        $this->render('curriculums/index');
+
+
+
         //Auth->user($id)!= null
         // if (isset($_SESSION['Usuario']['id'])) {
-        $curriculums = $this->Curriculum->getAll($_SESSION['Usuario']['id']);
-        $this->set(compact('curriculums'));
-        $this->render('curriculums/index');
+         //   $curriculums = $this->Curriculum->getAll($_SESSION['Usuario']['id']);
+         //   $this->set(compact('curriculums'));
+          //  $this->render('curriculums/index');
         // } else {
         //     $this->Auth->flash("Necesitas loguearte para ver tus CV");
         //     $this->redireccionar("usuarios/login");
@@ -35,18 +48,20 @@ class Curriculums extends Controlador
     }
 
 
-    public function crear()
+    public function alta()
     {
         if (!empty($_POST)) {
 
             // $this->debug($_POST);exit;
-            $curriculum = $this->Curriculums->alta($_POST);
+            $curriculum = $this->Curriculum->alta($_POST);
 
             // $this->set(compact('usuario'));
+            if ($curriculum) {
+                $this->Auth->flash("Se guardo con éxito!");
 
-            $this->Auth->flash("Se guardo con éxito!");
+            }
         }
-        $this->render('curriculums/index');
+        $this->redireccionar("curriculums/index");
     }
 
 
@@ -54,13 +69,13 @@ class Curriculums extends Controlador
     {
         if (!empty($_POST)) {
             // $this->debug($_POST);exit;
-            if ($this->Curriculums->actualizar($id, $_POST)) {
+            if ($this->Curriculum->actualizar($id, $_POST)) {
                 $this->Auth->flash("Se guardo con éxito!");
                 $this->redireccionar("curriculums/index");
             }
         }
 
-        $curriculum = $this->Curriculums->get($id);
+        $curriculum = $this->Curriculum->get($id);
 
         $this->set(compact('curriculum'));
         $this->render('curriculums/editar');
@@ -69,10 +84,10 @@ class Curriculums extends Controlador
     public function eliminar($id = null)
     {
         $mensaje = "";
-        $curriculum = $this->Curriculums->get($id);
+        $curriculum = $this->Curriculum->get($id);
 
         if ($curriculum) {
-            if ($this->Curriculums->eliminar($curriculum['id'])) {
+            if ($this->Curriculum->eliminar($curriculum['id'])) {
                 $mensaje = "Se elimino con éxito";
             } else {
                 $mensaje = "No se pudo eliminar";
@@ -82,6 +97,6 @@ class Curriculums extends Controlador
         }
 
         $this->Auth->flash($mensaje);
-        $this->redireccionar("usuarios/index");
+        $this->redireccionar("curriculums/index");
     }
 }

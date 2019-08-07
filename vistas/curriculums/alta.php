@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Crear CV</title>
+    <title>Alta CV</title>
 
 </head>
 
@@ -17,8 +17,8 @@
 
 
                 <div class="card-body mt-2 px-lg-5 pt-0">
-                    <form>
-                        <input type="hidden" name="usuario_id" value="<?php $_SESSION['usuario']['id'] ?>">
+                    <form method="POST" action="<?=HOST?>curriculums/alta">
+                        <input type="hidden" name="usuario_id" value="<?php $_SESSION['Usuario']['id'] ?>">
 
                         <div class="form-group row">
                             <label for="title" class="col-3 col-form-label">Titulo de CV</label>
@@ -37,11 +37,12 @@
                         <div class="form-group row">
                             <label for="id_carrera" class="col-3 col-form-label">Carrera</label>
                             <div class="col-9">
-                                <select id="id_carrera" name="id_carrera" class="custom-select" required="required">
+                                <select id="id_carrera" name="id_carrera" class="form-control mb-4" required="required">
                                     <option value="">Seleccione una Carrera</option>
                                     <?php if (!empty($carreras)) : ?>
                                         <?php foreach ($carreras as $key => $value) : ?>
-                                            <option value="<?= $key ?>"><?= ucfirst($value) ?></option>
+                                        <?php $check = ((!empty($_POST["carrera_id"]) AND ($_POST["carrera_id"] = $key))? 'selected' : '')?>
+                                        <option value="<?=$key?>" <?=$check?> ><?= ucfirst($value) ?></option>
                                         <?php endforeach ?>
                                     <?php endif ?>
                                 </select>
@@ -94,6 +95,13 @@
                             <div class="col-9">
                                 <textarea id="objetivos" name="objetivos" cols="40" rows="5" class="form-control" aria-describedby="objetivosHelpBlock"></textarea>
                                 <span id="objetivosHelpBlock" class="form-text text-muted small">Se conciso.</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="resumen" class="col-3 col-form-label">Resumen</label>
+                            <div class="col-9">
+                                <textarea id="resumen" name="resumen" cols="40" rows="10" class="form-control"></textarea>
+                                <span id="conocimientossHelpBlock" class="form-text text-muted small"></span>
                             </div>
                         </div>
                         <div class="form-group row">

@@ -45,7 +45,7 @@
         <!-- Panel 2 -->
         <div class="tab-pane fade" id="panelCrear" role="tabpanel">
             <div class="container-fluid border-primary rounded">
-                <div id="divCrear"><?php require_once 'crear.php'; ?></div>
+                <div id="divCrear"><?php require_once 'alta.php'; ?></div>
             </div>
         </div>
         <!-- Panel 2 -->
