@@ -142,12 +142,12 @@ class Oferta extends Modelo
     }
 
 
-    public function busqueda()
+    public function busqueda($asociaciones = [])
     {
         try {
 
             $resultados = null;
-            $sql = "SELECT * FROM ofertas WHERE 1";
+            $sql = "SELECT * FROM ofertas";
 
             if(!empty($_GET['search'])){
                 $search = $_GET['search'];
@@ -155,16 +155,35 @@ class Oferta extends Modelo
             }
 
             $this->paginar($sql);
-
+            // debug($sql); exit;
             $query = $this->db->query($sql);
-
+            // debug($query); exit;
             if($query){
-                while ($row = $query->fetch_array()){
+                while ($row = $query->fetch_assoc()){
                     $resultados[] = $row;
                 }
                 $query->close();
             }
 
+            if ((!empty($resultados) AND !empty($asociaciones))) {
+                foreach ($asociaciones as $asoc) {
+                    if (array_key_exists($asoc, $this->asociaciones)) {
+                        $this->loadModel($asoc);
+                    }
+                }
+                foreach ($resultados as $k => $r) {
+                    $adjunto = [];
+                    foreach ($asociaciones as $asoc) {
+                        if (array_key_exists($asoc, $this->asociaciones)) {
+                            $fk = $this->asociaciones[$asoc]['fk'];
+                            $adjunto[strtolower($asoc)] = $this->{$asoc}->get($r[$fk]);
+                        }
+                    }
+                    $resultados[$k] = $resultados[$k] + $adjunto;
+                }
+            }
+
+            // debug($resultados); exit;
             return $resultados;
 
         } catch (\Exception $e) {

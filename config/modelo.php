@@ -181,7 +181,7 @@ class Modelo extends Conexion
      * @return void
      */
     public function paginar(&$sql){
-        $this->paginacion['actual'] = 1;
+        $this->paginacion['actual'] = 0;
         if (!empty($_GET['page'])){ $this->paginacion['actual'] = $_GET['page']; }
 
         $this->paginacion['cant_por_pagina'] = $this->limite;
@@ -190,7 +190,7 @@ class Modelo extends Conexion
         $this->paginacion['paginas'] = ceil(($this->paginacion['cantidad'] / $this->limite));
 
         $pagina = ($this->paginacion['actual'] * $this->limite);
-        $sql .= " LIMIT ($pagina, {$this->limite})";
+        $sql .= " LIMIT {$this->limite} OFFSET $pagina";
 
 
         if(($this->paginacion['actual'] - 1)){

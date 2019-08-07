@@ -14,12 +14,11 @@ class Paginas extends Controlador
 
         $this->loadModel('Oferta');
 
-        $ofertas = $this->Oferta->busqueda();
+        $ofertas = $this->Oferta->busqueda(['Localidad', 'Usuario']);
         $paginacion = $this->Oferta->paginacion;
 
         $this->set(compact('ofertas', 'paginacion'));
         $this->render('paginas/index');
-        // Vista::render('paginas/index');
     }
 
 
@@ -27,9 +26,9 @@ class Paginas extends Controlador
     {
 
         $this->render('paginas/dashboard');
-        // Vista::render('paginas/index');
     }
     
+
     public function limpiarSesion()
     {
         $this->Auth->clearFlash(); exit;
@@ -47,7 +46,7 @@ class Paginas extends Controlador
             $this->Auth->flash("Su consulta ha sido enviada! Gracias.");
         }
 
-        $this->redireccionar("paginas");
+        $this->redireccionar("/");
     }
 
 
