@@ -15,8 +15,8 @@ class Curriculums extends Controlador
     public function index()
     {
         //Auth->user($id)!= null
-        // if (isset($_SESSION['usuario']['id'])) {
-            $curriculums = $this->Curriculum->getAll($_SESSION['usuario']['id']);
+        // if (isset($_SESSION['Usuario']['id'])) {
+            $curriculums = $this->Curriculum->getAll($_SESSION['Usuario']['id']);
             $this->set(compact('curriculums'));
             $this->render('curriculums/index');
         // } else {
