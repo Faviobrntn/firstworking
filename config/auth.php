@@ -57,6 +57,9 @@
             if (!empty($_SESSION['Usuario'])) {
                 unset($_SESSION['Usuario']);
             }
+            if (!empty($_SESSION['usuario'])) {
+                unset($_SESSION['usuario']);
+            }
         }
     }
     
