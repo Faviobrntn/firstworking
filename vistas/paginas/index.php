@@ -140,24 +140,48 @@
                     </li>
                     <li class="nav-item">
                         <?php if (empty($_SESSION["Usuario"])) : ?>
-                            <a href="<?= HOST ?>usuarios/login" class="nav-link js-scroll-trigger">Acceder</a>
+                            <a id="acceder" href="<?= HOST ?>usuarios/login" class="nav-link js-scroll-trigger">Acceder</a>
                         <?php elseif ($_SESSION["Usuario"]["rol"] == "postulante") : ?>
-                            <a href="<?= HOST ?>curriculums" class="nav-link js-scroll-trigger">Mis CV</a>
+                            <a id="curriculums" class="nav-link js-scroll-trigger">Mis CV</a>
                         <?php else : ?>
-                            <a href="<?= HOST ?>ofertas" class="nav-link js-scroll-trigger">Mis Ofertas</a>
+                            <a id="ofertas" class="nav-link js-scroll-trigger">Mis Ofertas</a>
                         <?php endif; ?>
                     </li>
                     <li class="nav-item">
                         <?php if (empty($_SESSION["Usuario"])) : ?>
-                            <a href="<?= HOST ?>usuarios/registro" class="nav-link js-scroll-trigger">Registrate</a>
+                            <a id="registrate" href="<?= HOST ?>usuarios/registro" class="nav-link js-scroll-trigger">Registrate</a>
                         <?php else : ?>
-                            <a href="<?= HOST ?>usuarios/logout" class="nav-link js-scroll-trigger">Salir</a>
+                            <a id="salir" href="<?= HOST ?>usuarios/logout" class="nav-link js-scroll-trigger">Salir</a>
                         <?php endif; ?>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <!-- __________________________________________ MODALES __________________________________________ -->
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Post</h4>
+                </div>
+                <div class="modal-body" id="mymodelbody">
+
+                    // include the posts.php here
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <header class="bg-primary text-white">
         <div class="container text-center" style="height: 55vh;">
             <h1>Problemas buscando trabajo?</h1>
@@ -204,7 +228,7 @@
                     <div class="offset-md-1 col-xl-2">
                         <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
                             <a>
-                                <img class="img-fluid" src="https://dummyimage.com/300.png/'.$color.'/fff/&text='<?= $oferta["titulo"][0] ?>" alt="Sample image">
+                                <img class="img-fluid" src="https://dummyimage.com/300.png/<?= $color ?>/fff/&text=<?= $oferta["titulo"][0] ?>" alt="Sample image">
                                 <div class="mask rgba-white-slight"></div>
                             </a>
                         </div>
@@ -224,8 +248,8 @@
                                     ?></p>
                                 <p class="dark-grey-text">Horario Laboral: <?= $oferta["horario_laboral"] ?>.</p>
                                 <p class="dark-grey-text">Modalidad: <?= $oferta["modalidad"] ?>.</p>
-                                <p class="dark-grey-text">LOCALIDAD ACA</p>
-                                <p>Hecha por <a class="font-weight-bold">Nombre Ofertante Aqui</a>, <?= $oferta["creado"] ?></p>
+                                <p class="dark-grey-text">Localidad: <?= $oferta["localidad"]["nombre"] ?>.</p>
+                                <p>Hecha por <a class="font-weight-bold"><?= $oferta["usuario"]["nombre"] ?> <?= $oferta["usuario"]["apellido"] ?></a>, <?= $oferta["creado"] ?></p>
                             </div>
                             <div class="pt-5 mt-5 col-lg-6 text-right">
                                 <form action="<?= HOST ?>usuarios/postularse" method="POST">
@@ -444,3 +468,28 @@
 </body>
 
 </html>
+
+<script type="text/javascript">
+    $(".nav-link").click(function() {
+        var dyid = $(this).attr("id");
+        var dyurl;
+        switch (dyid) {
+            case "curriculums":
+                dyurl = "<?= HOST ?>curriculums";
+                break;
+            case "ofertas":
+                dyurl = "<?= HOST ?>ofertas";
+                break;
+            default:
+                break;
+        }
+        $.ajax({
+            url: dyurl,
+            type: "get",
+            success: function(data) {
+                $('#myModalbody').html('');
+                $("#mymodelbody").html(data);
+            }
+        });
+    });
+</script>
