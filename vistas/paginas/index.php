@@ -142,9 +142,9 @@
                         <?php if (empty($_SESSION["Usuario"])) : ?>
                             <a id="acceder" href="<?= HOST ?>usuarios/login" class="nav-link js-scroll-trigger">Acceder</a>
                         <?php elseif ($_SESSION["Usuario"]["rol"] == "postulante") : ?>
-                            <a id="curriculums" class="nav-link js-scroll-trigger">Mis CV</a>
+                            <a id="navCurriculums" class="nav-link js-scroll-trigger">Mis CV</a>
                         <?php else : ?>
-                            <a id="ofertas" class="nav-link js-scroll-trigger">Mis Ofertas</a>
+                            <a id="ofertas" href="<?= HOST ?>ofertas" class="nav-link js-scroll-trigger">Mis Ofertas</a>
                         <?php endif; ?>
                     </li>
                     <li class="nav-item">
@@ -158,27 +158,8 @@
             </div>
         </div>
     </nav>
-    <!-- __________________________________________ MODALES __________________________________________ -->
 
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Post</h4>
-                </div>
-                <div class="modal-body" id="mymodelbody">
 
-                    // include the posts.php here
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 
@@ -208,6 +189,7 @@
             </a>
         </div>
     </header>
+    <?php print_r($ofertas); ?>
     <section id="ofertasDestacadas" class="my-5 mx-5">
         <!-- Section heading -->
         <h2 class="h1-responsive font-weight-bold text-center">Ofertas Destacadas Recientes</h2>
@@ -465,31 +447,50 @@
         </div>
         <!-- /.container -->
     </footer>
+    <!-- __________________________________________ MODALES __________________________________________ -->
+
+
+    <div class="modal fade right" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+        <!-- Add class .modal-full-height and then add class .modal-right (or other classes from list above) to set a position to the modal -->
+        <div class="modal-dialog modal-full-height modal-right" role="document">
+
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
 
 <script type="text/javascript">
-    $(".nav-link").click(function() {
-        var dyid = $(this).attr("id");
-        var dyurl;
-        switch (dyid) {
-            case "curriculums":
-                dyurl = "<?= HOST ?>curriculums";
-                break;
-            case "ofertas":
-                dyurl = "<?= HOST ?>ofertas";
-                break;
-            default:
-                break;
-        }
+    $("#navCurriculums").click(function() {
+        $("#myModal").show();
+        /*
+        dyurl = "<?= HOST ?>/curriculums/api";
         $.ajax({
             url: dyurl,
             type: "get",
             success: function(data) {
                 $('#myModalbody').html('');
                 $("#mymodelbody").html(data);
+                alert(data);
+                $('#myModal').show();
             }
-        });
+        });*/
     });
 </script>

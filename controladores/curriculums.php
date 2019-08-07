@@ -16,13 +16,22 @@ class Curriculums extends Controlador
     {
         //Auth->user($id)!= null
         // if (isset($_SESSION['Usuario']['id'])) {
-            $curriculums = $this->Curriculum->getAll($_SESSION['Usuario']['id']);
-            $this->set(compact('curriculums'));
-            $this->render('curriculums/index');
+        $curriculums = $this->Curriculum->getAll($_SESSION['Usuario']['id']);
+        $this->set(compact('curriculums'));
+        $this->render('curriculums/index');
         // } else {
         //     $this->Auth->flash("Necesitas loguearte para ver tus CV");
         //     $this->redireccionar("usuarios/login");
         // }
+    }
+
+    public function api()
+    {
+        $curriculums = $this->Curriculum->getAll($_SESSION['Usuario']['id']);
+        print_r($curriculums);
+        exit;
+        $this->set(compact('curriculums'));
+        $this->render('curriculums/api');
     }
 
 

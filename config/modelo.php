@@ -4,7 +4,7 @@ require_once 'conexion.php';
 class Modelo extends Conexion
 {
     public $db;
-    public $limite = 20;
+    public $limite = 3;
     public $tabla = '';
     public $pk = '';
     public $asociaciones = [];
