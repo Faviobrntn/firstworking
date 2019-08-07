@@ -35,10 +35,19 @@
         <div class="form-label-group">
             <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Contraseña" required="required">
             <label for="inputPassword">Contraseña</label>
-        </div>            
+        </div>
+
+        <div class="form-label-group">
+            <select name="rol" id="rol" class="form-control mb-4" required="required">
+                <option value="">Seleccione su rol</option>
+                <option value="postulante">Postulante</option>
+                <option value="ofertante">Ofertante</option>
+            </select>
+            <!-- <label for="localidad-id">Localidad</label> -->
+        </div>
         
         <div class="form-label-group">
-            <select name="localidad_id" id="localidad-id" class="form-control mb-4">
+            <select name="localidad_id" id="localidad-id" class="form-control mb-4" required="required">
                 <option value="">Seleccione su localidad</option>
                 <?php if(!empty($localidades)): ?>
                     <?php foreach($localidades as $key => $value): ?>

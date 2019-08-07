@@ -112,7 +112,8 @@ class Usuario extends Modelo
             $email = strtolower($data['email']);
             $password = md5(strtolower($data['password']));
             $local = strtolower($data['localidad_id']);
-            $rol = 'usuario';
+            // $rol = 'usuario';
+            $rol = strtolower($data['rol']);
             $creado = date('Y-m-d H:i:s');
     
             //Arma la instrucción SQL y luego la ejecuta

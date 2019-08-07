@@ -163,7 +163,7 @@ class Usuarios extends Controlador
                         $this->redireccionar("ofertas/index");
                     }
                     if ($usuario['rol'] == 'postulante') {
-                        $this->redireccionar("curriculums/index");
+                        $this->redireccionar("paginas/index");
                     }
                 }else {
                     $this->Auth->flash("Email ó contraseña incorrectos.");
