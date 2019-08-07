@@ -37,6 +37,10 @@ class Curriculums extends Controlador
 
             $this->Auth->flash("Se guardo con éxito!");
         }
+        $this->loadModel('Carrera');
+        $carreras = $this->Carrera->listado();
+
+        $this->set(compact('carreras'));
         $this->render('curriculums/index');
     }
 
