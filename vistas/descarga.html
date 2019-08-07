@@ -35,29 +35,7 @@
             window.print();
         });
 
-    </script>
-        $("#descargar").click(function(){
-            var canvasF = "";
-              //var context = canvasF.getContext('2d');
-            html2canvas($('#contenedor'), {
-                background :'#FFFFFF',
-                height : 720,
-                width : 1125,
-                onrendered: function(canvas) {
-                    canvasF = canvas;
-                    var imgData = canvasF.toDataURL("image/jpeg", 1.0);
-                    var pdf = new jsPDF('l','pt','a4');
-                    pdf.addImage(imgData,'JPEG', 0, 0);
-                    pdf.save("download.pdf");
-              }
-            });
-        });
-
-        $("#imprimir").click(function(){
-            window.print();
-        });
-
-</script>		    
+    </script>		    
 </body>
 </html>
 
