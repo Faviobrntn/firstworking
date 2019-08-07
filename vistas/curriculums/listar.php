@@ -56,7 +56,7 @@
                                 <p class="card-text"><?= $cv['resumen'] ?></p>
                                 <!-- Button -->
                                 <div class="btn-group btn-block">
-                                    <a onclick="borrar($(cv.id))" class="btn btn-danger">
+                                    <a href="<?= HOST ?>curriculums/eliminar/<?= $cv['id'] ?>" class="btn btn-danger">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                     <a href="<?= HOST ?>curriculums/editar/<?= $cv['id'] ?>" class="btn btn-info">
