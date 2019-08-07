@@ -142,9 +142,9 @@
                         <?php if (empty($_SESSION["Usuario"])) : ?>
                             <a href="<?= HOST ?>usuarios/login" class="nav-link js-scroll-trigger">Acceder</a>
                         <?php elseif ($_SESSION["Usuario"]["rol"] == "postulante") : ?>
-                            <a href="<?= HOST ?>usuarios/perfil" class="nav-link js-scroll-trigger">Mis CV</a>
+                            <a href="<?= HOST ?>curriculums" class="nav-link js-scroll-trigger">Mis CV</a>
                         <?php else : ?>
-                            <a href="<?= HOST ?>usuarios/perfil" class="nav-link js-scroll-trigger">Mis Ofertas</a>
+                            <a href="<?= HOST ?>ofertas" class="nav-link js-scroll-trigger">Mis Ofertas</a>
                         <?php endif; ?>
                     </li>
                     <li class="nav-item">
