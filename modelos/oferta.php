@@ -147,11 +147,11 @@ class Oferta extends Modelo
         try {
 
             $resultados = null;
-            $sql = "SELECT * FROM ofertas";
+            $sql = "SELECT * FROM ofertas WHERE 1";
 
             if(!empty($_GET['search'])){
                 $search = $_GET['search'];
-                $sql .= " AND (id = '$search' OR titulo LIKE '%$search%' OR descripcion LIKE '%$search%')";
+                $sql .= " AND (titulo LIKE '%$search%' OR descripcion LIKE '%$search%')";
             }
 
             $this->paginar($sql);

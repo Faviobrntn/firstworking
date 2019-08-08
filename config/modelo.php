@@ -183,6 +183,7 @@ class Modelo extends Conexion
     public function paginar(&$sql){
         $this->paginador['actual'] = 1;
         if (!empty($_GET['page'])){ $this->paginador['actual'] = $_GET['page']; }
+        if (!empty($_GET['search'])){ $this->paginador['actual'] = 1; unset($_GET['page']); }
 
         $this->paginador['cant_por_pagina'] = $this->limite;
         $this->paginador['cantidad'] = $this->cantidad('ofertas');
