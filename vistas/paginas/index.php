@@ -140,18 +140,18 @@
                     </li>
                     <li class="nav-item">
                         <?php if (empty($_SESSION["Usuario"])) : ?>
-                            <a id="acceder" href="<?= HOST ?>usuarios/login" class="nav-link js-scroll-trigger">Acceder</a>
+                            <a href="<?= HOST ?>usuarios/login" class="nav-link">Acceder</a>
                         <?php elseif ($_SESSION["Usuario"]["rol"] == "postulante") : ?>
-                            <a id="navCurriculums" class="nav-link js-scroll-trigger">Mis CV</a>
+                            <a id="navCurriculums" class="nav-link ">Mis CV</a>
                         <?php else : ?>
-                            <a id="ofertas" href="<?= HOST ?>ofertas" class="nav-link js-scroll-trigger">Mis Ofertas</a>
+                            <a href="<?= HOST ?>ofertas" class="nav-link">Mis Ofertas</a>
                         <?php endif; ?>
                     </li>
                     <li class="nav-item">
                         <?php if (empty($_SESSION["Usuario"])) : ?>
-                            <a id="registrate" href="<?= HOST ?>usuarios/registro" class="nav-link js-scroll-trigger">Registrate</a>
+                            <a href="<?= HOST ?>usuarios/registro" class="nav-link">Registrate</a>
                         <?php else : ?>
-                            <a id="salir" href="<?= HOST ?>usuarios/logout" class="nav-link js-scroll-trigger">Salir</a>
+                            <a href="<?= HOST ?>usuarios/logout" class="nav-link">Salir</a>
                         <?php endif; ?>
                     </li>
                 </ul>
@@ -479,18 +479,18 @@
 
 <script type="text/javascript">
     $("#navCurriculums").click(function() {
-        $("#myModal").show();
-        /*
-        dyurl = "<?= HOST ?>/curriculums/api";
+        dyurl = HOST+"curriculums/api";
         $.ajax({
             url: dyurl,
             type: "get",
             success: function(data) {
-                $('#myModalbody').html('');
-                $("#mymodelbody").html(data);
-                alert(data);
-                $('#myModal').show();
+                console.log(data)
+                /*$('#myModalbody').html('');
+                                $("#mymodelbody").html(data);
+                                alert(data);
+                                $("#myModal").modal("show");*/
+                                $("#myModal").modal("show");
             }
-        });*/
+        });
     });
 </script>

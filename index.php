@@ -14,10 +14,10 @@ require_once 'config/controlador.php';
 require_once 'config/vista.php';
 require_once 'config/modelo.php';
 
-echo "<script> const HOST = '".HOST."';</script>";
 
 $app = new App();
 
+echo "<script> const HOST = '".HOST."';</script>";
 
 if (!empty($_SESSION['mensajes'])) {
     require_once 'vistas/mensajes.php';

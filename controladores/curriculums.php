@@ -40,11 +40,9 @@ class Curriculums extends Controlador
 
     public function api()
     {
-        $curriculums = $this->Curriculum->getAll($_SESSION['Usuario']['id']);
-        print_r($curriculums);
-        exit;
-        $this->set(compact('curriculums'));
-        $this->render('curriculums/api');
+        $curriculums = $this->Curriculum->getAll(["Usuario"]);
+        echo json_encode($curriculums);
+        exit;        
     }
 
 
