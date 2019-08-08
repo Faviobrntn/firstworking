@@ -8,7 +8,7 @@ class Modelo extends Conexion
     public $tabla = '';
     public $pk = '';
     public $asociaciones = [];
-    public $paginacion = [
+    public $paginador = [
         'actual' => 1,
         'cantidad' => 0,
         'paginas' => 1,

@@ -114,5 +114,11 @@ class Controlador
     {
         header("Location: ".HOST.$url);
     }
+
+
+    public function paginador($pagina)
+    {
+        $this->vista->paginador = $pagina;
+    }
     
 }

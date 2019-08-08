@@ -15,9 +15,9 @@ class Paginas extends Controlador
         $this->loadModel('Oferta');
 
         $ofertas = $this->Oferta->busqueda(['Localidad', 'Usuario']);
-        $paginacion = $this->Oferta->paginacion;
+        $this->paginador($this->Oferta->paginador);
         
-        $this->set(compact('ofertas', 'paginacion'));
+        $this->set(compact('ofertas'));
         $this->render('paginas/index');
     }
 

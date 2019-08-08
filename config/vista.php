@@ -5,10 +5,11 @@ class Vista
     public $layout = 'default';
     public $variables;
     public $contenido;
-    public $paginacion = [
+    public $paginador = [
         'actual' => 1,
         'cantidad' => 0,
-        'paginas' => 1
+        'paginas' => 1,
+        'cant_por_pagina' => 1
     ];
 
     public function __construct() {
