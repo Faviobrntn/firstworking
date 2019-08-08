@@ -181,29 +181,30 @@ class Modelo extends Conexion
      * @return void
      */
     public function paginar(&$sql){
-        $this->paginacion['actual'] = 0;
-        if (!empty($_GET['page'])){ $this->paginacion['actual'] = $_GET['page']; }
+        $this->paginador['actual'] = 1;
+        if (!empty($_GET['page'])){ $this->paginador['actual'] = $_GET['page']; }
 
-        $this->paginacion['cant_por_pagina'] = $this->limite;
-        $this->paginacion['cantidad'] = $this->cantidad('ofertas');
+        $this->paginador['cant_por_pagina'] = $this->limite;
+        $this->paginador['cantidad'] = $this->cantidad('ofertas');
 
-        $this->paginacion['paginas'] = ceil(($this->paginacion['cantidad'] / $this->limite));
+        $this->paginador['paginas'] = ceil(($this->paginador['cantidad'] / $this->limite));
 
-        $pagina = ($this->paginacion['actual'] * $this->limite);
+        $pagina = (($this->paginador['actual']-1) * $this->limite);
         $sql .= " LIMIT {$this->limite} OFFSET $pagina";
 
 
-        if(($this->paginacion['actual'] - 1)){
-            $this->paginacion['anterior'] = $this->paginacion['actual'] - 1;
+        if(($this->paginador['actual'] - 1)){
+            $this->paginador['anterior'] = $this->paginador['actual'] - 1;
         }else{
-            $this->paginacion['anterior'] = false;
+            $this->paginador['anterior'] = false;
         }
 
-        if (($this->paginacion['actual'] + 1) <=  $this->paginacion['paginas']){
-            $this->paginacion['siguiente'] = $this->paginacion['actual'] + 1;
+        if (($this->paginador['actual'] + 1) <=  $this->paginador['paginas']){
+            $this->paginador['siguiente'] = $this->paginador['actual'] + 1;
         }else{
-            $this->paginacion['siguiente'] = false;
+            $this->paginador['siguiente'] = false;
         }
+
     }
 
 
