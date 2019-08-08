@@ -64,8 +64,9 @@ class Curriculum extends Modelo
 
     public function actualizar($id_cv, $data)
     {
-        $usuario_id = $data['usuario_id'];
-        $titulo = $data['titulo'];
+        //$usuario_id = $data['usuario_id'];
+        $usuario_id = $_SESSION['Usuario']['id']; //$data['usuario_id'];
+        $titulo = $data['title'];
         $resumen = $data['resumen'];
         $id_carrera = $data['id_carrera'];
         $materias_aprobadas = $data['materias_aprobadas'];
@@ -79,12 +80,13 @@ class Curriculum extends Modelo
                 usuario_id=$usuario_id,
                 titulo = $titulo,
                 resumen = $resumen,
-                id_carrera = $id_carrera,
+                idcarrera = $id_carrera,
                 materias_aprobadas = $materias_aprobadas,
                 promedio = $promedio,
                 experiencia_laboral = $experiencia_laboral,
                 conocimientos = $conocimientos,
                 objetivos = $objetivos,
+                archivo = null,
                 creado = $creado
             WHERE id=$id_cv";
 
