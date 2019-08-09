@@ -91,4 +91,86 @@ class Postulacion extends Modelo
             throw $e;
         }
     }
+
+    #------------------------FIJATE FER, LAS DE ACA ABAJO AGREGUE RECIEN, NO SE SI ESTO ES LO QUE SE NECESITABA-------------------------
+
+    public function buscar($search)
+    {
+        try {
+            if (empty($search)) { throw new \Exception("Falta un parametro"); }
+            $resultados = null;
+            $sql = "SELECT * FROM postulaciones WHERE 
+                (usuario_id = '$search' AND oferta_id = '$search') ";
+
+            if(!empty($_SESSION['Usuario']) AND $_SESSION['Usuario']['rol'] != 'admin'){
+                $sql .= " AND usuario_id = ".$_SESSION['Usuario']['id'];
+            }
+
+            $query = $this->db->query($sql);
+            
+            if($query){
+                 while ($row = $query->fetch_assoc()){
+                    $resultados[] = $row;
+                }
+                $query->close();
+            }
+           
+            return $resultados;
+        
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
+
+
+    public function busqueda($asociaciones = [])
+    {
+        try {
+
+            $resultados = null;
+            $sql = "SELECT * FROM postulaciones WHERE 1";
+
+            if(!empty($_GET['search'])){
+                $search = $_GET['search'];
+                $sql .= " AND (usuario_id = '$search' AND oferta_id = '$search')";
+            }
+
+            $this->paginar($sql);
+            // debug($sql); exit;
+            $query = $this->db->query($sql);
+            // debug($query); exit;
+            if($query){
+                while ($row = $query->fetch_assoc()){
+                    $resultados[] = $row;
+                }
+                $query->close();
+            }
+
+            if ((!empty($resultados) AND !empty($asociaciones))) {
+                foreach ($asociaciones as $asoc) {
+                    if (array_key_exists($asoc, $this->asociaciones)) {
+                        $this->loadModel($asoc);
+                    }
+                }
+                foreach ($resultados as $k => $r) {
+                    $adjunto = [];
+                    foreach ($asociaciones as $asoc) {
+                        if (array_key_exists($asoc, $this->asociaciones)) {
+                            $fk = $this->asociaciones[$asoc]['fk'];
+                            $adjunto[strtolower($asoc)] = $this->{$asoc}->get($r[$fk]);
+                        }
+                    }
+                    $resultados[$k] = $resultados[$k] + $adjunto;
+                }
+            }
+
+            // debug($resultados); exit;
+            return $resultados;
+
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
 }
