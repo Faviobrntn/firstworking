@@ -119,6 +119,17 @@
                 transform: scale(0.95, 1.05);
             }
         }
+
+        ul li a {
+            display: block;
+        }
+
+        li:hover,
+        a:hover,
+        li:hover a:hover {
+            background-color: #2196f3;
+            color: white;
+        }
     </style>
 
 </head>
@@ -450,27 +461,41 @@
     <!-- __________________________________________ MODALES __________________________________________ -->
 
 
-    <div class="modal fade right" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
-        <!-- Add class .modal-full-height and then add class .modal-right (or other classes from list above) to set a position to the modal -->
-        <div class="modal-dialog modal-full-height modal-right" role="document">
 
 
+
+
+    <div class="modal fade right" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
+            <!--Content-->
             <div class="modal-content">
+                <!--Header-->
                 <div class="modal-header">
-                    <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+                    <p class="heading lead">Mis CV</p>
+
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true" class="white-text">×</span>
                     </button>
                 </div>
+
+                <!--Body-->
                 <div class="modal-body">
-                    ...
+                    <div class="text-center">
+                        <i class="fas fa-check fa-4x mb-3 animated rotateIn"></i>
+                        <p>Selecciona uno de tus curriculum vitae para que sea automaticamente enviado en tu proxima postulacion</p>
+                    </div>
+                    <ul id="cvlist" class="list-group z-depth-0">
+
+                    </ul>
                 </div>
+
+                <!--Footer-->
                 <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <a type="button" class="btn btn-primary float-right my-2">Listo</a>
+                    <a type="button" class="btn btn-danger float-right my-2" data-dismiss="modal">Cancelar</a>
                 </div>
             </div>
+            <!--/.Content-->
         </div>
     </div>
 </body>
@@ -478,19 +503,36 @@
 </html>
 
 <script type="text/javascript">
+    var cv_seleccionado = "";
     $("#navCurriculums").click(function() {
-        dyurl = HOST+"curriculums/api";
+
+
         $.ajax({
-            url: dyurl,
+            url: HOST + "curriculums/api",
             type: "get",
+            dataType: "json",
             success: function(data) {
-                console.log(data)
+                console.log(data);
+                for (let key in data) {
+                    $('#myModal').find("#cvlist").append('<a id="' + data[key].id + '"href="#" class="cv list-group-item list-group-item-action flex-column align-items-start"><div class="d-flex w-100 justify-content-between"><h5 class="mb-2 h5">' + data[key].titulo + '</h5></div><p class="mb-2">' + data[key].resumen + '</p></a>');
+
+                };
+
+
+
+
+
                 /*$('#myModalbody').html('');
                                 $("#mymodelbody").html(data);
                                 alert(data);
                                 $("#myModal").modal("show");*/
-                                $("#myModal").modal("show");
+                $("#myModal").modal("show");
             }
         });
+
+    });
+
+    $(".cv").click(function() {
+        cv_seleccionado = $(this).attr('id');
     });
 </script>

@@ -89,7 +89,7 @@ class Modelo extends Conexion
                     }
                 }
 
-                $resultados = $resultados + $adjuntos;
+                $resultados = $resultados + $adjunto;
             }
            
             return $resultados;
