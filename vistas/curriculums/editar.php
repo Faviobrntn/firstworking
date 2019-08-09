@@ -39,12 +39,12 @@
                         <label for="promedio" class="col-3 col-form-label">Promedio</label>
                         <input type="text" name="promedio" class="form-control mb-4" placeholder="Promedio" value="<?=(!empty($curriculum["promedio"])? $curriculum["promedio"] : '')?>">
                         
-                        <label for="carrera_id" class="col-3 col-form-label">Carrera</label>
-                        <select name="carrera_id" id="carrera-id" class="form-control mb-4">
+                        <label for="id_carrera" class="col-3 col-form-label">Carrera</label>
+                        <select name="id_carrera" id="carrera-id" class="form-control mb-4">
                             <option value="">Seleccione Carrera</option>
                             <?php if(!empty($carreras)): ?>
                                 <?php foreach($carreras as $key => $value): ?>
-                                    <?php $check = ((!empty($curriculum["carrera_id"]) AND ($curriculum["carrera_id"] = $key))? 'selected' : '')?>; ?>
+                                    <?php $check = ((!empty($curriculum["id_carrera"]) AND ($curriculum["id_carrera"] = $key))? 'selected' : '')?>; ?>
                                     <option value="<?=$key?>" <?=$check?> ><?= ucfirst($value) ?></option>
                                 <?php endforeach ?>
                             <?php endif ?>
