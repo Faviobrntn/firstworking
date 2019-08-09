@@ -491,7 +491,7 @@
 
                 <!--Footer-->
                 <div class="modal-footer justify-content-center">
-                    <a type="button" class="btn btn-primary float-right my-2">Modificar</a>
+                    <a type="button" href="<?= HOST ?>curriculums"class="btn btn-primary float-right my-2">Modificar</a>
                     <a type="button" class="btn btn-danger float-right my-2" data-dismiss="modal">Cerrar</a>
                 </div>
             </div>
