@@ -133,7 +133,7 @@
     </style>
 
     <script>
-        const HOST = '<?=HOST?>';
+        const HOST = '<?= HOST ?>';
     </script>
 
 </head>
@@ -204,7 +204,6 @@
             </a>
         </div>
     </header>
-    <?php print_r($ofertas); ?>
     <section id="ofertasDestacadas" class="my-5 mx-5">
         <!-- Section heading -->
         <h2 class="h1-responsive font-weight-bold text-center">Ofertas Destacadas Recientes</h2>
@@ -249,7 +248,7 @@
                                 <p>Hecha por <a class="font-weight-bold"><?= $oferta["usuario"]["nombre"] ?> <?= $oferta["usuario"]["apellido"] ?></a>, <?= $oferta["creado"] ?></p>
                             </div>
                             <div class="pt-5 mt-5 col-lg-6 text-right">
-                                <form action="<?= HOST ?>usuarios/postularse" method="POST">
+                                <form action="" method="">
                                     <input type="hidden" name="oferta" value="<?= $oferta["id"] ?>" />
                                     <input type="hidden" name="postulante" value="<?= $_SESSION["Usuario"]["id"] ?>" />
                                     <input type="hidden" name="cv" value="<?= $_COOKIE["cv_seleccionado"] ?>" />
@@ -495,7 +494,7 @@
 
                 <!--Footer-->
                 <div class="modal-footer justify-content-center">
-                    <a type="button" href="<?= HOST ?>curriculums"class="btn btn-primary float-right my-2">Modificar</a>
+                    <a type="button" href="<?= HOST ?>curriculums" class="btn btn-primary float-right my-2">Modificar</a>
                     <a type="button" class="btn btn-danger float-right my-2" data-dismiss="modal">Cerrar</a>
                 </div>
             </div>
@@ -508,42 +507,46 @@
 </html>
 
 <script type="text/javascript">
+    $(document).ready(function() {
+        var cv_seleccionado = "";
+        var isModalLleno = false;
 
-$(document).ready(function(){
-    var cv_seleccionado = "";
-    
-    $("#navCurriculums").click(function() {
-        $.ajax({
-            url: HOST + "curriculums/api",
-            type: "get",
-            dataType: "json",
-            success: function(data) {
-                console.log(data);
-                for (let key in data) {
-                    $('#myModal').find("#cvlist").append('<a id="' + data[key].id + '" class="cv list-group-item list-group-item-action flex-column align-items-start"><div class="d-flex w-100 justify-content-between"><h5 class="mb-2 h5">' + data[key].titulo + '</h5></div><p class="mb-2">' + data[key].resumen + '</p></a>');
-                };
-                $("#myModal").modal("show");
+        $("#navCurriculums").click(function() {
+            if (!isModalLleno) {
+
+                $.ajax({
+                    url: HOST + "curriculums/api",
+                    type: "get",
+                    dataType: "json",
+                    success: function(data) {
+                        console.log(data);
+                        for (let key in data) {
+                            $('#myModal').find("#cvlist").append('<a id="' + data[key].id + '" class="cv list-group-item list-group-item-action flex-column align-items-start"><div class="d-flex w-100 justify-content-between"><h5 class="mb-2 h5">' + data[key].titulo + '</h5></div><p class="mb-2">' + data[key].resumen + '</p></a>');
+                        };
+                        isModalLleno = true;
+                    }
+                });
             }
-        });
-    });
-    
+            $("#myModal").modal("show");
 
-    $(document).on("click", ".cv", function() {
-        cv_seleccionado = $(this).attr('id');
-        $.ajax({
-            url: HOST + "curriculums/seleccionar",
-            data: {
-                cv: cv_seleccionado
-            },
-            type: "post",
-            dataType: "json",
-            success: function(resp) {
-                if (resp.estado) {
-                    alert("CV seleccionado!");
-                    $("#myModal").modal("hide");
+        });
+
+
+        $(document).on("click", ".cv", function() {
+            cv_seleccionado = $(this).attr('id');
+            $.ajax({
+                url: HOST + "curriculums/seleccionar",
+                data: {
+                    cv: cv_seleccionado
+                },
+                type: "post",
+                dataType: "json",
+                success: function(resp) {
+                    if (resp.estado) {
+                        $("#myModal").modal("hide");
+                    }
                 }
-            }
+            });
         });
     });
-});
 </script>
