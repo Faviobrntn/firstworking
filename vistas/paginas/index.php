@@ -247,7 +247,7 @@
                             <div class="pt-5 mt-5 col-lg-6 text-right">
                                 <form action="<?= HOST ?>usuarios/postularse" method="POST">
                                     <input type="hidden" name="postulante" value="<?= $_SESSION["Usuario"]["id"] ?>" />
-                                    <input type="hidden" name="cv" value="<?= $_SESSION["Usuario"]["cv_seleccionado"] ?>" />
+                                    <input type="hidden" name="cv" value="<?= $_COOKIE["Usuario"]["cv_seleccionado"] ?>" />
                                     <button class="btn btn-primary btn-lg" type="submit">Postulame!</button>
                                 </form>
                             </div>
@@ -499,14 +499,15 @@
         </div>
     </div>
 </body>
+<?php
+var_dump($_COOKIE['cvseleccionado']);
+?>
 
 </html>
 
 <script type="text/javascript">
     var cv_seleccionado = "";
     $("#navCurriculums").click(function() {
-
-
         $.ajax({
             url: HOST + "curriculums/api",
             type: "get",
@@ -514,25 +515,21 @@
             success: function(data) {
                 console.log(data);
                 for (let key in data) {
-                    $('#myModal').find("#cvlist").append('<a id="' + data[key].id + '"href="#" class="cv list-group-item list-group-item-action flex-column align-items-start"><div class="d-flex w-100 justify-content-between"><h5 class="mb-2 h5">' + data[key].titulo + '</h5></div><p class="mb-2">' + data[key].resumen + '</p></a>');
-
+                    $('#myModal').find("#cvlist").append('<a id="' + data[key].id + '" class="cv list-group-item list-group-item-action flex-column align-items-start"><div class="d-flex w-100 justify-content-between"><h5 class="mb-2 h5">' + data[key].titulo + '</h5></div><p class="mb-2">' + data[key].resumen + '</p></a>');
                 };
-
-
-
-
-
-                /*$('#myModalbody').html('');
-                                $("#mymodelbody").html(data);
-                                alert(data);
-                                $("#myModal").modal("show");*/
                 $("#myModal").modal("show");
             }
         });
 
     });
+</script>
 
+<script type="text/javascript">
     $(".cv").click(function() {
         cv_seleccionado = $(this).attr('id');
+        //no me estaria dando el resultado que busco, quiero poder tenerlo en la pagina listo para clickear postularse y registrar la postulacion con el cv seleccionado
+        alert(cv_seleccionado);
+        document.cookie = 'cvseleccionado=' + cv_seleccionado;
+        $("#myModal").modal("hide");
     });
 </script>
