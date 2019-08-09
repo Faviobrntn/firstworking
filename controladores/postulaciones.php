@@ -16,7 +16,7 @@ class Postulaciones extends Controlador
         if (!empty($_GET['search'])) {
             $postulaciones = $this->Postulacion->buscar($_GET['search']);
         }else{
-            $postulaciones = $this->Postulacion->getAll(['Carrera', 'Localidad']);
+            $postulaciones = $this->Postulacion->getAll(['Usuario', 'Oferta']);
         }
         $this->set(compact('postulaciones'));
         $this->render('postulaciones/index');
@@ -32,12 +32,12 @@ class Postulaciones extends Controlador
             }
         }
 
-        $this->loadModel('Localidad');
-        $localidades = $this->Localidad->listado();
-        $this->loadModel('Carrera');
-        $carreras = $this->Carrera->listado();
+        $this->loadModel('Oferta');
+        $ofertas = $this->Oferta->listado();
+        $this->loadModel('Usuario');
+        $usuarios = $this->Usuario->listado();
 
-        $this->set(compact('localidades', 'carreras'));
+        $this->set(compact('ofertas', 'usuarios'));
         $this->render('postulaciones/alta');
     }
 
@@ -52,12 +52,12 @@ class Postulaciones extends Controlador
             }   
         }
 
-        $this->loadModel('Localidad');
-        $localidades = $this->Localidad->listado();
-        $this->loadModel('Carrera');
-        $carreras = $this->Carrera->listado();
+        $this->loadModel('Oferta');
+        $ofertas = $this->Oferta->listado();
+        $this->loadModel('Usuario');
+        $usuarios = $this->Usuario->listado();
 
-        $this->set(compact('localidades', 'Postulacion', 'carreras'));
+        $this->set(compact('ofertas', 'Postulacion', 'usuarios'));
         $this->render('postulaciones/editar');
     }
 
