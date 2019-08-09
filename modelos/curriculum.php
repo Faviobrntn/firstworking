@@ -93,6 +93,8 @@ class Curriculum extends Modelo
             if ($this->db->query($sql) === TRUE) {
                 return true;
             }
+            print_r($sql);
+            exit();
 
             return false;
         } catch (\Exception $e) {
