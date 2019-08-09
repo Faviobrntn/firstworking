@@ -65,7 +65,7 @@ class Modelo extends Conexion
     public function get($id, $asociaciones = [])
     {
         try {
-            if (empty($id)) { throw new \Exception("Falta un parametro"); }
+            if(empty($id)) { throw new \Exception("Falta un parametro"); }
             $resultados = null;
             $sql = "SELECT * FROM {$this->tabla} WHERE id = $id LIMIT 1";
 

@@ -41,44 +41,56 @@ class Ofertas extends Controlador
         $this->render('ofertas/alta');
     }
 
+
     public function editar($id = null)
     {
-        $oferta = $this->Oferta->get($id);
+        try{
+            $oferta = $this->Oferta->get($id);
 
-        if(!empty($_POST)){
-            if($this->Oferta->actualizar($id, $_POST)){
-                $this->Auth->flash("Se guardo con éxito!");
-                $this->redireccionar("ofertas/index");
-            }   
+            if(!empty($_POST)){
+                if($this->Oferta->actualizar($id, $_POST)){
+                    $this->Auth->flash("Se guardo con éxito!");
+                    $this->redireccionar("ofertas/index");
+                }   
+            }
+
+            $this->loadModel('Localidad');
+            $localidades = $this->Localidad->listado();
+            $this->loadModel('Carrera');
+            $carreras = $this->Carrera->listado();
+
+            $this->set(compact('localidades', 'oferta', 'carreras'));
+            $this->render('ofertas/editar');
+
+        } catch (\Exception $e) {
+            $this->Auth->flash($e->getMessage());
+            $this->redireccionar("ofertas/index");
         }
-
-        $this->loadModel('Localidad');
-        $localidades = $this->Localidad->listado();
-        $this->loadModel('Carrera');
-        $carreras = $this->Carrera->listado();
-
-        $this->set(compact('localidades', 'oferta', 'carreras'));
-        $this->render('ofertas/editar');
     }
 
     
     
     public function eliminar($id = null)
     {
-        $mensaje = "";
-        $ofertas = $this->Oferta->get($id);
+        try{
+            $mensaje = "";
+            $ofertas = $this->Oferta->get($id);
 
-        if($ofertas){
-            if($this->Oferta->eliminar($ofertas['id'])){
-                $mensaje = "Se elimino con éxito";
+            if($ofertas){
+                if($this->Oferta->eliminar($ofertas['id'])){
+                    $mensaje = "Se elimino con éxito";
+                }else{
+                    $mensaje = "No se pudo eliminar";
+                }
             }else{
-                $mensaje = "No se pudo eliminar";
-            }
-        }else{
-            $mensaje = "No se encontro la facultad";
-        }   
+                $mensaje = "No se encontro la facultad";
+            }   
+            
+            $this->Auth->flash($mensaje);
         
-        $this->Auth->flash($mensaje);
+        } catch (\Exception $e) {
+            $this->Auth->flash($e->getMessage());
+        }
         $this->redireccionar("ofertas/index");
     }
 }

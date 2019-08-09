@@ -5,7 +5,7 @@
     <div class="card-body d-sm-flex justify-content-between">
 
         <h4 class="mb-2 mb-sm-0 pt-1">
-            <a href="https://mdbootstrap.com/docs/jquery/" target="_blank">Home Page</a>
+            <a href="https://mdbootstrap.com/docs/jquery/" target="_blank">Paginas</a>
             <span>/</span>
             <span>Dashboard</span>
         </h4>
@@ -36,7 +36,7 @@
             <div class="card-body">
 
             <canvas id="myChart"></canvas>
-WIP
+
             </div>
 
         </div>
@@ -53,7 +53,7 @@ WIP
             <div class="card-header text-center">
                 Pie chart
             </div>
-          wip
+            
             <!--Card content-->
             <div class="card-body"></div>
         </div>

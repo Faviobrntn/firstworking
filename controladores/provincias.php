@@ -45,33 +45,45 @@ class Provincias extends Controlador
 
     public function editar($id = null)
     {
-        if (!empty($_POST)) {
-            if (!empty($_POST['id'])) {
-                $id = $_POST['id'];
+        try{
+            if (!empty($_POST)) {
+                if (!empty($_POST['id'])) {
+                    $id = $_POST['id'];
+                }
+                if ($this->Provincia->actualizar($id, $_POST)) {
+                    $this->Auth->flash("Se guardo con éxito!");
+                }
             }
-            if ($this->Provincia->actualizar($id, $_POST)) {
-                $this->Auth->flash("Se guardo con éxito!");
-            }
+
+        } catch (\Exception $e) {
+            $this->Auth->flash($e->getMessage());
         }
         $this->redireccionar("provincias/index");
     }
 
+
+
     public function eliminar($id = null)
     {
-        $mensaje = "";
-        $usuario = $this->Provincia->get($id);
+        try{
+            $mensaje = "";
+            $usuario = $this->Provincia->get($id);
 
-        if ($usuario) {
-            if ($this->Provincia->eliminar($usuario['id'])) {
-                $mensaje = "Se elimino con éxito";
+            if ($usuario) {
+                if ($this->Provincia->eliminar($usuario['id'])) {
+                    $mensaje = "Se elimino con éxito";
+                } else {
+                    $mensaje = "No se pudo eliminar";
+                }
             } else {
-                $mensaje = "No se pudo eliminar";
+                $mensaje = "No se encontro el usuario";
             }
-        } else {
-            $mensaje = "No se encontro el usuario";
-        }
 
-        $this->Auth->flash($mensaje);
+            $this->Auth->flash($mensaje);
+
+        } catch (\Exception $e) {
+            $this->Auth->flash($e->getMessage());
+        }
         $this->redireccionar("provincias/index");
     }
 }

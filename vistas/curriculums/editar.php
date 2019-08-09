@@ -27,11 +27,11 @@
 
 
                 <div class="card-body mt-2 px-lg-5 pt-0">
-                <form action="<?=HOST?>curriculums/editar/<?=$curriculum['id']?>" method="post">
+                <form action="" method="post">
                 <input type="hidden" name="usuario_id" value="<?php $_SESSION['Usuario']['id'] ?>">
 
                         <label for="title" class="col-3 col-form-label">Titulo</label>
-                        <input type="text" name="title" class="form-control mb-4" placeholder="Titulo" value="<?=(!empty($curriculum["title"])? $curriculum["title"] : '')?>">
+                        <input type="text" name="title" class="form-control mb-4" placeholder="Titulo" value="<?=(!empty($curriculum["titulo"])? $curriculum["titulo"] : '')?>">
                         
                         <label for="materias_aprobadas" class="col-3 col-form-label">Materias Aprobadas</label>    
                         <input type="text" name="materias_aprobadas" class="form-control mb-4" placeholder="Materias Aprobadas" value="<?=(!empty($curriculum["materias_aprobadas"])? $curriculum["materias_aprobadas"] : '')?>">
@@ -44,7 +44,7 @@
                             <option value="">Seleccione Carrera</option>
                             <?php if(!empty($carreras)): ?>
                                 <?php foreach($carreras as $key => $value): ?>
-                                    <?php $check = ((!empty($curriculum["id_carrera"]) AND ($curriculum["id_carrera"] = $key))? 'selected' : '')?>; ?>
+                                    <?php $check = ((!empty($curriculum["idcarrera"]) AND ($curriculum["idcarrera"] = $key))? 'selected' : '')?>; ?>
                                     <option value="<?=$key?>" <?=$check?> ><?= ucfirst($value) ?></option>
                                 <?php endforeach ?>
                             <?php endif ?>

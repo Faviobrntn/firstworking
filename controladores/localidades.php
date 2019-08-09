@@ -48,33 +48,43 @@ class Localidades extends Controlador
 
     public function editar($id = null)
     {
-        if (!empty($_POST)) {
-            if (!empty($_POST['id'])) {
-                $id = $_POST['id'];
+        try{
+            if (!empty($_POST)) {
+                if (!empty($_POST['id'])) {
+                    $id = $_POST['id'];
+                }
+                if($this->Localidad->actualizar($id, $_POST)){
+                    $this->Auth->flash("Se guardo con éxito!");
+                }   
             }
-            if($this->Localidad->actualizar($id, $_POST)){
-                $this->Auth->flash("Se guardo con éxito!");
-            }   
-        }        
+
+        } catch (\Exception $e) {
+            $this->Auth->flash($e->getMessage());
+        }
         $this->redireccionar("localidades/index");
     }
     
     public function eliminar($id = null)
     {
-        $mensaje = "";
-        $localidad = $this->Localidad->get($id);
+        try{
+            $mensaje = "";
+            $localidad = $this->Localidad->get($id);
 
-        if($localidad){
-            if($this->Localidad->eliminar($localidad['id'])){
-                $mensaje = "Se elimino con éxito";
+            if($localidad){
+                if($this->Localidad->eliminar($localidad['id'])){
+                    $mensaje = "Se elimino con éxito";
+                }else{
+                    $mensaje = "No se pudo eliminar";
+                }
             }else{
-                $mensaje = "No se pudo eliminar";
-            }
-        }else{
-            $mensaje = "No se encontro el localidad";
-        }   
-        
-        $this->Auth->flash($mensaje);
+                $mensaje = "No se encontro el localidad";
+            }   
+            
+            $this->Auth->flash($mensaje);
+
+        } catch (\Exception $e) {
+            $this->Auth->flash($e->getMessage());
+        }
         $this->redireccionar("localidades/index");
     }
 }

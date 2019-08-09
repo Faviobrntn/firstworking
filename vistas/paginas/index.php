@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Scrolling Nav - Start Bootstrap Template</title>
+    <title>Inicio | Firstworking</title>
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="<?= HOST ?>vendor/css/bootstrap.min.css">
@@ -131,6 +131,10 @@
             color: white;
         }
     </style>
+
+    <script>
+        const HOST = '<?=HOST?>';
+    </script>
 
 </head>
 
@@ -504,7 +508,10 @@
 </html>
 
 <script type="text/javascript">
+
+$(document).ready(function(){
     var cv_seleccionado = "";
+    
     $("#navCurriculums").click(function() {
         $.ajax({
             url: HOST + "curriculums/api",
@@ -519,14 +526,24 @@
             }
         });
     });
-</script>
+    
 
-<script type="text/javascript">
-    $(".cv").click(function() {
+    $(document).on("click", ".cv", function() {
         cv_seleccionado = $(this).attr('id');
-        //no me estaria dando el resultado que busco, quiero poder tenerlo en la pagina listo para clickear postularse y registrar la postulacion con el cv seleccionado
-        alert(cv_seleccionado);
-        document.cookie = 'cvseleccionado=' + cv_seleccionado;
-        $("#myModal").modal("hide");
+        $.ajax({
+            url: HOST + "curriculums/seleccionar",
+            data: {
+                cv: cv_seleccionado
+            },
+            type: "post",
+            dataType: "json",
+            success: function(resp) {
+                if (resp.estado) {
+                    alert("CV seleccionado!");
+                    $("#myModal").modal("hide");
+                }
+            }
+        });
     });
+});
 </script>

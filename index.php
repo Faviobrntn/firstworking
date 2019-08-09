@@ -17,7 +17,7 @@ require_once 'config/modelo.php';
 
 $app = new App();
 
-echo "<script> const HOST = '".HOST."';</script>";
+// echo "<script> const HOST = '".HOST."';</script>";
 
 if (!empty($_SESSION['mensajes'])) {
     require_once 'vistas/mensajes.php';
