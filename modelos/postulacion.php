@@ -99,7 +99,8 @@ class Postulacion extends Modelo
         try {
             if (empty($search)) { throw new \Exception("Falta un parametro"); }
             $resultados = null;
-            $sql = "SELECT * FROM postulaciones WHERE oferta_id = '$search') ";
+            $sql = "SELECT * FROM postulaciones WHERE 
+                (usuario_id = '$search' AND oferta_id = '$search') ";
 
             if(!empty($_SESSION['Usuario']) AND $_SESSION['Usuario']['rol'] != 'admin'){
                 $sql .= " AND usuario_id = ".$_SESSION['Usuario']['id'];
