@@ -246,8 +246,9 @@
                             </div>
                             <div class="pt-5 mt-5 col-lg-6 text-right">
                                 <form action="<?= HOST ?>usuarios/postularse" method="POST">
+                                    <input type="hidden" name="oferta" value="<?= $oferta["id"] ?>" />
                                     <input type="hidden" name="postulante" value="<?= $_SESSION["Usuario"]["id"] ?>" />
-                                    <input type="hidden" name="cv" value="<?= $_COOKIE["Usuario"]["cv_seleccionado"] ?>" />
+                                    <input type="hidden" name="cv" value="<?= $_COOKIE["cv_seleccionado"] ?>" />
                                     <button class="btn btn-primary btn-lg" type="submit">Postulame!</button>
                                 </form>
                             </div>
@@ -485,20 +486,20 @@
                         <p>Selecciona uno de tus curriculum vitae para que sea automaticamente enviado en tu proxima postulacion</p>
                     </div>
                     <ul id="cvlist" class="list-group z-depth-0">
-
                     </ul>
                 </div>
 
                 <!--Footer-->
                 <div class="modal-footer justify-content-center">
-                    <a type="button" class="btn btn-primary float-right my-2">Listo</a>
-                    <a type="button" class="btn btn-danger float-right my-2" data-dismiss="modal">Cancelar</a>
+                    <a type="button" class="btn btn-primary float-right my-2">Modificar</a>
+                    <a type="button" class="btn btn-danger float-right my-2" data-dismiss="modal">Cerrar</a>
                 </div>
             </div>
             <!--/.Content-->
         </div>
     </div>
 </body>
+
 <?php
 var_dump($_COOKIE['cvseleccionado']);
 ?>
@@ -520,7 +521,6 @@ var_dump($_COOKIE['cvseleccionado']);
                 $("#myModal").modal("show");
             }
         });
-
     });
 </script>
 
