@@ -6,6 +6,11 @@ class Controlador
     public $vista;
     public $modelo;
     public $Auth;
+    public $respuesta = [
+        'estado' => false,
+        'mensaje' => '',
+        'data' => ''
+    ];
     // public $variables;
     
     public function __construct() {

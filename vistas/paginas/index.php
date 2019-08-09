@@ -132,6 +132,10 @@
         }
     </style>
 
+    <script>
+        const HOST = '<?=HOST?>';
+    </script>
+
 </head>
 
 <body id="page-top">
@@ -507,7 +511,10 @@ var_dump($_COOKIE['cvseleccionado']);
 </html>
 
 <script type="text/javascript">
+
+$(document).ready(function(){
     var cv_seleccionado = "";
+    
     $("#navCurriculums").click(function() {
         $.ajax({
             url: HOST + "curriculums/api",
@@ -522,14 +529,24 @@ var_dump($_COOKIE['cvseleccionado']);
             }
         });
     });
-</script>
+    
 
-<script type="text/javascript">
-    $(".cv").click(function() {
+    $(document).on("click", ".cv", function() {
         cv_seleccionado = $(this).attr('id');
-        //no me estaria dando el resultado que busco, quiero poder tenerlo en la pagina listo para clickear postularse y registrar la postulacion con el cv seleccionado
-        alert(cv_seleccionado);
-        document.cookie = 'cvseleccionado=' + cv_seleccionado;
-        $("#myModal").modal("hide");
+        $.ajax({
+            url: HOST + "curriculums/seleccionar",
+            data: {
+                cv: cv_seleccionado
+            },
+            type: "post",
+            dataType: "json",
+            success: function(resp) {
+                if (resp.estado) {
+                    alert("CV seleccionado!");
+                    $("#myModal").modal("hide");
+                }
+            }
+        });
     });
+});
 </script>

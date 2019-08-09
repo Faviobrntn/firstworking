@@ -57,7 +57,6 @@ class Curriculums extends Controlador
             $curriculum = $this->Curriculum->get($id);
 
             if (!empty($_POST)) {
-                // $this->debug($_POST);exit;
                 if ($this->Curriculum->actualizar($id, $_POST)) {
                     $this->Auth->flash("Se guardo con éxito!");
                     $this->redireccionar("curriculums/index");
@@ -99,5 +98,15 @@ class Curriculums extends Controlador
             $this->Auth->flash($e->getMessage());
         }
         $this->redireccionar("curriculums/index");
+    }
+
+
+    public function seleccionar()
+    {
+        if (!empty($_POST)) {
+            setcookie("cvseleccionado", $_POST['cv'], strtotime("+1 month"), HOST);
+            $this->respuesta['estado'] = true;
+        }           
+        die(json_encode($this->respuesta));
     }
 }
