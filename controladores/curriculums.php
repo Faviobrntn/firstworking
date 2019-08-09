@@ -24,18 +24,6 @@ class Curriculums extends Controlador
 
         $this->set(compact('curriculums', 'carreras'));
         $this->render('curriculums/index');
-
-
-
-        //Auth->user($id)!= null
-        // if (isset($_SESSION['Usuario']['id'])) {
-         //   $curriculums = $this->Curriculum->getAll($_SESSION['Usuario']['id']);
-         //   $this->set(compact('curriculums'));
-          //  $this->render('curriculums/index');
-        // } else {
-        //     $this->Auth->flash("Necesitas loguearte para ver tus CV");
-        //     $this->redireccionar("usuarios/login");
-        // }
     }
 
     public function api()
@@ -65,40 +53,51 @@ class Curriculums extends Controlador
 
     public function editar($id = null)
     {
-        $curriculum = $this->Curriculum->get($id);
+        try{
+            $curriculum = $this->Curriculum->get($id);
 
-        if (!empty($_POST)) {
-            // $this->debug($_POST);exit;
-            if ($this->Curriculum->actualizar($id, $_POST)) {
-                $this->Auth->flash("Se guardo con éxito!");
-                $this->redireccionar("curriculums/index");
+            if (!empty($_POST)) {
+                // $this->debug($_POST);exit;
+                if ($this->Curriculum->actualizar($id, $_POST)) {
+                    $this->Auth->flash("Se guardo con éxito!");
+                    $this->redireccionar("curriculums/index");
+                }
             }
+
+           
+            $this->loadModel('Carrera');
+            $carreras = $this->Carrera->listado();
+
+            $this->set(compact('curriculum', 'carreras'));
+            $this->render('curriculums/editar');
+
+        } catch (\Exception $e) {
+            $this->Auth->flash($e->getMessage());
+            $this->redireccionar("curriculums/index");
         }
-
-       
-        $this->loadModel('Carrera');
-        $carreras = $this->Carrera->listado();
-
-        $this->set(compact('curriculum', 'carreras'));
-        $this->render('curriculums/editar');
     }
 
     public function eliminar($id = null)
     {
-        $mensaje = "";
-        $curriculum = $this->Curriculum->get($id);
+        try{
+            $mensaje = "";
+            $curriculum = $this->Curriculum->get($id);
 
-        if ($curriculum) {
-            if ($this->Curriculum->eliminar($curriculum['id'])) {
-                $mensaje = "Se elimino con éxito";
+            if ($curriculum) {
+                if ($this->Curriculum->eliminar($curriculum['id'])) {
+                    $mensaje = "Se elimino con éxito";
+                } else {
+                    $mensaje = "No se pudo eliminar";
+                }
             } else {
-                $mensaje = "No se pudo eliminar";
+                $mensaje = "No se encontro el usuario";
             }
-        } else {
-            $mensaje = "No se encontro el usuario";
-        }
 
-        $this->Auth->flash($mensaje);
+            $this->Auth->flash($mensaje);
+
+        } catch (\Exception $e) {
+            $this->Auth->flash($e->getMessage());
+        }
         $this->redireccionar("curriculums/index");
     }
 }

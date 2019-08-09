@@ -67,35 +67,41 @@ class Facultades extends Controlador
                 }   
             }
 
+            $this->loadModel('Localidad');
+            $localidades = $this->Localidad->listado();
+            
+            $this->set(compact('facultad', 'localidades'));
+            $this->render('facultades/editar');
+
         } catch (\Exception $e) {
             $this->Auth->flash($e->getMessage());
-            // $this->redireccionar("facultades/index");
+            $this->redireccionar("facultades/index");
         }
 
-        $this->loadModel('Localidad');
-        $localidades = $this->Localidad->listado();
-        
-        $this->set(compact('facultad', 'localidades'));
-        $this->render('facultades/editar');
     }
     
     
     public function eliminar($id = null)
     {
-        $mensaje = "";
-        $facultad = $this->Facultad->get($id);
+        try{
+            $mensaje = "";
+            $facultad = $this->Facultad->get($id);
 
-        if($facultad){
-            if($this->Facultad->eliminar($facultad['id'])){
-                $mensaje = "Se elimino con éxito";
+            if($facultad){
+                if($this->Facultad->eliminar($facultad['id'])){
+                    $mensaje = "Se elimino con éxito";
+                }else{
+                    $mensaje = "No se pudo eliminar";
+                }
             }else{
-                $mensaje = "No se pudo eliminar";
-            }
-        }else{
-            $mensaje = "No se encontro la facultad";
-        }   
-        
-        $this->Auth->flash($mensaje);
+                $mensaje = "No se encontro la facultad";
+            }   
+            
+            $this->Auth->flash($mensaje);
+
+        } catch (\Exception $e) {
+            $this->Auth->flash($e->getMessage());
+        }
         $this->redireccionar("facultades/index");
     }
 }

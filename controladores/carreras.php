@@ -53,40 +53,51 @@ class Carreras extends Controlador
 
     public function editar($id = null)
     {
-        $carrera = $this->Carrera->get($id);
-        if (!empty($_POST)) {
-            if (!empty($_POST['id'])) {
-                $id = $_POST['id'];
+        try{
+            $carrera = $this->Carrera->get($id);
+            if (!empty($_POST)) {
+                if (!empty($_POST['id'])) {
+                    $id = $_POST['id'];
+                }
+                if($this->Carrera->actualizar($id, $_POST)){
+                    $this->Auth->flash("Se guardo con éxito!");
+                }   
             }
-            if($this->Carrera->actualizar($id, $_POST)){
-                $this->Auth->flash("Se guardo con éxito!");
-            }   
+
+            $this->loadModel('Facultad');
+            $facultades = $this->Facultad->listado();
+
+            $this->set(compact('carrera', 'facultades'));
+            $this->render("carreras/editar");
+        
+        } catch (\Exception $e) {
+            $this->Auth->flash($e->getMessage());
+            $this->redireccionar("carreras/index");
         }
-
-        $this->loadModel('Facultad');
-        $facultades = $this->Facultad->listado();
-
-        $this->set(compact('carrera', 'facultades'));
-        $this->render("carreras/editar");
     }
     
     public function eliminar($id = null)
     {
-        $mensaje = "";
-        $carrera = $this->Carrera->get($id);
+        try{
+            $mensaje = "";
+            $carrera = $this->Carrera->get($id);
 
-        if($carrera){
-            if($this->Carrera->eliminar($carrera['id'])){
-                $mensaje = "Se elimino con éxito";
+            if($carrera){
+                if($this->Carrera->eliminar($carrera['id'])){
+                    $mensaje = "Se elimino con éxito";
+                }else{
+                    $mensaje = "No se pudo eliminar";
+                }
             }else{
-                $mensaje = "No se pudo eliminar";
-            }
-        }else{
-            $mensaje = "No se encontro el localidad";
-        }   
-        
-        $this->Auth->flash($mensaje);
-        $this->render("carreras/index");
+                $mensaje = "No se encontro el localidad";
+            }   
+            
+            $this->Auth->flash($mensaje);
+
+        } catch (\Exception $e) {
+            $this->Auth->flash($e->getMessage());
+        }
+        $this->redireccionar("carreras/index");
     }
 }
 

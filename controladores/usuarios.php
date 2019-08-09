@@ -76,6 +76,7 @@ class Usuarios extends Controlador
         
         } catch (\Exception $e) {
             $this->Auth->flash($e->getMessage());
+            $this->redireccionar("usuarios/index");
         }    
         $this->render('usuarios/editar');
     }

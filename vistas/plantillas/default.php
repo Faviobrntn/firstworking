@@ -101,7 +101,7 @@
         <!-- Sidebar -->
         <div class="sidebar-fixed position-fixed">
 
-        <a class="logo-wrapper waves-effect bg-dark mb-4">
+        <a href="/" class="logo-wrapper waves-effect bg-dark mb-4">
             <img src="<?=HOST?>Untitled.png" class="img-fluid" alt="">
         </a>
 
