@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Scrolling Nav - Start Bootstrap Template</title>
+    <title>Inicio | Firstworking</title>
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="<?= HOST ?>vendor/css/bootstrap.min.css">
