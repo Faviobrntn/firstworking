@@ -77,18 +77,18 @@ class Curriculum extends Modelo
         $creado = date('Y-m-d H:i:s');
         try {
             $sql = "UPDATE cv SET 
-                usuario_id=$usuario_id,
-                titulo = $titulo,
-                resumen = $resumen,
-                idcarrera = $id_carrera,
-                materias_aprobadas = $materias_aprobadas,
-                promedio = $promedio,
-                experiencia_laboral = $experiencia_laboral,
-                conocimientos = $conocimientos,
-                objetivos = $objetivos,
+                usuario_id='$usuario_id',
+                titulo = '$titulo',
+                resumen = '$resumen',
+                idcarrera = '$id_carrera',
+                materias_aprobadas = '$materias_aprobadas',
+                promedio = '$promedio',
+                experiencia_laboral = '$experiencia_laboral',
+                conocimientos = '$conocimientos',
+                objetivos = '$objetivos',
                 archivo = null,
-                creado = $creado
-            WHERE id=$id_cv";
+                creado = '$creado'
+            WHERE id='$id_cv'";
 
             if ($this->db->query($sql) === TRUE) {
                 return true;
