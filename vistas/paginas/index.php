@@ -500,9 +500,6 @@
     </div>
 </body>
 
-<?php
-var_dump($_COOKIE['cvseleccionado']);
-?>
 
 </html>
 
