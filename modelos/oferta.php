@@ -76,13 +76,12 @@ class Oferta extends Modelo
             $creado = date('Y-m-d H:i:s');
 
             //Arma la instrucción SQL y luego la ejecuta
-            $sql = "UPDATE curriculums SET titulo='$titulo', descripcion='$descripcion', localidad_id='$localidad_id', carrera_id='$carrera_id', modalidad='$modalidad', horario_laboral='$horario_laboral', remuneracion='$remuneracion', creado='$creado',  
-                    WHERE id=$id";
+            $sql = "UPDATE ofertas SET titulo='$titulo', descripcion='$descripcion', localidad_id='$localidad_id', carrera_id='$carrera_id', modalidad='$modalidad', horario_laboral='$horario_laboral', remuneracion='$remuneracion', creado='$creado' WHERE id=$id";
                     
             if ($this->db->query($sql) === TRUE) {
                 return true;
             }
-    
+            
             return false;
         
         } catch (\Exception $e) {
@@ -147,11 +146,11 @@ class Oferta extends Modelo
         try {
 
             $resultados = null;
-            $sql = "SELECT * FROM ofertas";
+            $sql = "SELECT * FROM ofertas WHERE 1";
 
             if(!empty($_GET['search'])){
                 $search = $_GET['search'];
-                $sql .= " AND (id = '$search' OR titulo LIKE '%$search%' OR descripcion LIKE '%$search%')";
+                $sql .= " AND (titulo LIKE '%$search%' OR descripcion LIKE '%$search%')";
             }
 
             $this->paginar($sql);

@@ -65,6 +65,8 @@ class Curriculums extends Controlador
 
     public function editar($id = null)
     {
+        $curriculum = $this->Curriculum->get($id);
+
         if (!empty($_POST)) {
             // $this->debug($_POST);exit;
             if ($this->Curriculum->actualizar($id, $_POST)) {
@@ -73,9 +75,11 @@ class Curriculums extends Controlador
             }
         }
 
-        $curriculum = $this->Curriculum->get($id);
+       
+        $this->loadModel('Carrera');
+        $carreras = $this->Carrera->listado();
 
-        $this->set(compact('curriculum'));
+        $this->set(compact('curriculum', 'carreras'));
         $this->render('curriculums/editar');
     }
 

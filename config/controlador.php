@@ -116,9 +116,9 @@ class Controlador
     }
 
 
-    public function paginador($pagina)
+    public function paginador($paginas)
     {
-        $this->vista->paginador = $pagina;
+        $this->vista->paginador = $paginas;
     }
     
 }
