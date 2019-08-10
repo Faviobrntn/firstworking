@@ -33,7 +33,7 @@ class Postulacion extends Modelo
 
             $usuario = strtolower($_SESSION['Usuario']['id']);
             $oferta = strtolower($data['oferta']);
-            $cv = strtolower($data['cv_seleccionado']);
+            $cv = strtolower($data['cv']);
 
             //Arma la instrucción SQL y luego la ejecuta
             $sql = "INSERT INTO postulaciones (usuario_id, oferta_id, cv_id) 

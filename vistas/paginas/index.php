@@ -248,12 +248,7 @@
                                 <p>Hecha por <a class="font-weight-bold"><?= $oferta["usuario"]["nombre"] ?> <?= $oferta["usuario"]["apellido"] ?></a>, <?= $oferta["creado"] ?></p>
                             </div>
                             <div class="pt-5 mt-5 col-lg-6 text-right">
-                                <form action="" method="">
-                                    <input type="hidden" name="oferta" value="<?= $oferta["id"] ?>" />
-                                    <input type="hidden" name="postulante" value="<?= $_SESSION["Usuario"]["id"] ?>" />
-                                    <input type="hidden" name="cv" value="<?= $_COOKIE["cv_seleccionado"] ?>" />
-                                    <button class="btn btn-primary btn-lg" type="submit">Postulame!</button>
-                                </form>
+                                <button id="<?= $oferta["id"] ?>" class="postulacion btn btn-primary btn-lg">Postulame!</button>
                             </div>
                         </div>
                     </div>
@@ -542,8 +537,38 @@
                 type: "post",
                 dataType: "json",
                 success: function(resp) {
+                    console.log(resp);
+                    console.log("cvseleccionado=" + cv_seleccionado);
                     if (resp.estado) {
+                        document.cookie = "cv_seleccionado=" + cv_seleccionado;
                         $("#myModal").modal("hide");
+                    }
+                }
+            });
+        });
+
+        $(document).on("click", ".postulacion", function() {
+            oferta_postulacion = $(this).attr('id');
+            console.log("cvseleccionado=" + cv_seleccionado);
+            console.log("postulado a=" + oferta_postulacion);
+            $.ajax({
+                url: HOST + "postulaciones/alta",
+                data: {
+                    oferta: oferta_postulacion,
+                    cv: cv_seleccionado
+                },
+                type: "post",
+                dataType: "json",
+                success: function(resp) {
+                    if (resp.estado) {
+                        $(this).html('Postulado').toggleClass('btn-primary btn-success');;
+                    } else {
+                        $(this).html('Error, Reintenta').toggleClass('btn-primary btn-danger');;
+                        setTimeout(
+                            function() {
+                                $(this).html('Postularme!').toggleClass('btn-danger btn-primary');;
+                            }, 2500
+                        );
                     }
                 }
             });
