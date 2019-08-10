@@ -97,10 +97,9 @@ class Postulaciones extends Controlador
     public function detalle($id = null)
     {
         try{
-            $postulacion = $this->Postulacion->get($id, ['Oferta', 'Usuario']);
-
-            $this->set(compact('ofertas', 'postulacion', 'usuarios'));
+            $postulacion = $this->Postulacion->get($id, ['Oferta']);
             
+            $this->set(compact('postulacion'));            
             $this->render('postulaciones/detalle');
 
         } catch (\Exception $e) {
