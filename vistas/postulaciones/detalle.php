@@ -9,7 +9,7 @@
         </h4>
 
         <div class="d-flex justify-content-center">
-            <a href="<?=HOST?>postulaciones" class="btn btn-dark btn-sm my-0 p">
+            <a href="<?= HOST ?>postulaciones" class="btn btn-dark btn-sm my-0 p">
                 Volver
             </a>
         </div>
@@ -30,7 +30,49 @@
 
             <!--Card content-->
             <div class="card-body">
-                <?= debug($postulacion); exit; ?>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Descripcion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Codigo de Postulacion</th>
+                            <td><?= $postulacion["id"] ?></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Fecha de Postulacion</th>
+                            <td><?= $postulacion["creado"] ?></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Codigo de Oferta</th>
+                            <td><?= $postulacion["oferta_id"] ?></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Titulo</th>
+                            <td><?= $postulacion["oferta"]["titulo"] ?></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Descripcion</th>
+                            <td><?= $postulacion["oferta"]["descripcion"] ?></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Modalidad</th>
+                            <td><?= $postulacion["oferta"]["modalidad"] ?></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Horario Laboral</th>
+                            <td><?= $postulacion["oferta"]["horario_laboral"] ?></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Remuneracion</th>
+                            <td><?= $postulacion["oferta"]["remuneracion"] ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
             </div>
         </div>
         <!--/.Card-->
