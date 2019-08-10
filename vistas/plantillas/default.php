@@ -153,7 +153,7 @@
     <header>
         <!-- Navbar -->
         <!-- <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark scrolling-navbar"> -->
-        <nav class="navbar fixed-top navbar-expand-md navbar-light white double-nav scrolling-navbar">
+        <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark double-nav scrolling-navbar">
             <div class="container-fluid">
                 <div class="float-left">
                     <button class="navbar-toggler sidebar" type="button">
