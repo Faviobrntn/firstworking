@@ -37,7 +37,7 @@
         input:focus {
             outline: none;
         }
-
+git 
         input::placeholder {
             color: hsla(0, 0%, 100%, 0.6);
         }
