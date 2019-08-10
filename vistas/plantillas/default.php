@@ -252,7 +252,11 @@
                         <i class="fas fa-user mr-3"></i>Mi perfil
                     </a>
                     <a href="<?=HOST?>curriculums" class="list-group-item list-group-item-action waves-effect rounded-sm">
-                        <i class="fas fa-table mr-3"></i>Curriculums</a>
+                        <i class="fas fa-table mr-3"></i>Mis Curriculums
+                    </a>
+                    <a href="<?=HOST?>postulaciones" class="list-group-item list-group-item-action waves-effect rounded-sm">
+                        <i class="fas fa-table mr-3"></i>Mis Postulaciones
+                    </a>
                 <?php endif ?>
 
 

@@ -43,43 +43,70 @@ class Postulaciones extends Controlador
 
     public function editar($id = null)
     {
-        $Postulacion = $this->Postulacion->get($id);
+        try{
+            $postulacion = $this->Postulacion->get($id);
 
-        if(!empty($_POST)){
-            if($this->Postulacion->actualizar($id, $_POST)){
-                $this->Auth->flash("Se guardo con éxito!");
-                $this->redireccionar("postulaciones/index");
-            }   
+            if(!empty($_POST)){
+                if($this->Postulacion->actualizar($id, $_POST)){
+                    $this->Auth->flash("Se guardo con éxito!");
+                    $this->redireccionar("postulaciones/index");
+                }   
+            }
+
+            $this->loadModel('Oferta');
+            $ofertas = $this->Oferta->listado();
+            $this->loadModel('Usuario');
+            $usuarios = $this->Usuario->listado();
+
+            $this->set(compact('ofertas', 'postulacion', 'usuarios'));
+            $this->render('postulaciones/editar');
+
+        } catch (\Exception $e) {
+            $this->Auth->flash($e->getMessage());
+            $this->redireccionar("postulaciones/index");
         }
-
-        $this->loadModel('Oferta');
-        $ofertas = $this->Oferta->listado();
-        $this->loadModel('Usuario');
-        $usuarios = $this->Usuario->listado();
-
-        $this->set(compact('ofertas', 'Postulacion', 'usuarios'));
-        $this->render('postulaciones/editar');
     }
 
     
     
     public function eliminar($id = null)
     {
-        $mensaje = "";
-        $postulaciones = $this->Postulacion->get($id);
+        try{
+            $mensaje = "";
+            $postulaciones = $this->Postulacion->get($id);
 
-        if($postulaciones){
-            if($this->Postulacion->eliminar($postulaciones['id'])){
-                $mensaje = "Se elimino con éxito";
+            if($postulaciones){
+                if($this->Postulacion->eliminar($postulaciones['id'])){
+                    $mensaje = "Se elimino con éxito";
+                }else{
+                    $mensaje = "No se pudo eliminar";
+                }
             }else{
-                $mensaje = "No se pudo eliminar";
-            }
-        }else{
-            $mensaje = "No se encontro la facultad";
-        }   
+                $mensaje = "No se encontro la facultad";
+            }   
+            $this->Auth->flash($mensaje);
         
-        $this->Auth->flash($mensaje);
+        } catch (\Exception $e) {
+            $this->Auth->flash($e->getMessage());
+        }
+        
         $this->redireccionar("postulaciones/index");
+    }
+
+
+    public function detalle($id = null)
+    {
+        try{
+            $postulacion = $this->Postulacion->get($id, ['Oferta', 'Usuario']);
+
+            $this->set(compact('ofertas', 'postulacion', 'usuarios'));
+            
+            $this->render('postulaciones/detalle');
+
+        } catch (\Exception $e) {
+            $this->Auth->flash($e->getMessage());
+            $this->redireccionar("postulaciones/index");
+        }
     }
 }
 

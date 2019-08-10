@@ -155,6 +155,7 @@ CREATE TABLE `postulaciones` (
   `usuario_id` int(11) NOT NULL,
   `oferta_id` int(11) NOT NULL,
   `cv_id` int(11) NOT NULL,
+  `creado` datetime NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`oferta_id`) REFERENCES `ofertas` (`id`),
   FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`),
