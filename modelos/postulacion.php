@@ -38,10 +38,11 @@ class Postulacion extends Modelo
             $usuario = strtolower($_SESSION['Usuario']['id']);
             $oferta = strtolower($data['oferta']);
             $cv = strtolower($data['cv']);
+            $creado = date('Y-m-d H:i:s');
 
             //Arma la instrucción SQL y luego la ejecuta
-            $sql = "INSERT INTO postulaciones (usuario_id, oferta_id, cv_id) 
-                    VALUES ('$usuario', '$oferta', '$cv')";
+            $sql = "INSERT INTO postulaciones (usuario_id, oferta_id, cv_id, creado) 
+                    VALUES ('$usuario', '$oferta', '$cv', '$creado')";
 
             // mysqli_query($this->db, $sql) or die (mysqli_error($this->db));
 
@@ -79,11 +80,10 @@ class Postulacion extends Modelo
     }
 
 
-    public function eliminar($id_oferta)
+    public function eliminar($id)
     {
         try {
-            $usuario = strtolower($_SESSION['Usuario']['id']);
-            $sql = "DELETE FROM postulaciones WHERE usuario_id='$usuario' AND oferta_id='$id_oferta'";
+            $sql = "DELETE FROM postulaciones WHERE id='$id'";
 
             if ($this->db->query($sql) === TRUE) {
                 return true;
@@ -91,7 +91,6 @@ class Postulacion extends Modelo
 
             return false;
         } catch (\Exception $e) {
-            // throw new Exception("Error: %s\n", $e->getMessage());
             throw $e;
         }
     }
