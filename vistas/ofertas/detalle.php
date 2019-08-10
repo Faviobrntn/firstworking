@@ -71,6 +71,7 @@
                     </thead>
 
                     <tbody>
+                            <?php if(!empty($oferta['postulaciones'])): ?>
                             <?php foreach($oferta['postulaciones'] as $postulacion): ?>
                                 <tr>
                                     <td><?= $postulacion['id'] ?></td>
@@ -80,6 +81,7 @@
                                     <td><?= ucwords($postulacion['curriculum']['resumen']) ?></td>
                                 </tr>
                             <?php endforeach ?>
+                            <?php endif; ?>
                     </tbody>
                 </table>
                 <!---------------------------------------END TABLA DETALLES DE LAS POSTULACIONES------------------------------------------------------------>
