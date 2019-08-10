@@ -122,11 +122,10 @@
 
         ul li a {
             display: block;
+            border-radius: 10px;
         }
 
-        li:hover,
-        a:hover,
-        li:hover a:hover {
+        a:hover {
             background-color: #2196f3;
             color: white;
         }
@@ -503,10 +502,16 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        var cv_seleccionado = "";
+        var cv_seleccionado;
         var isModalLleno = false;
 
+
+
         $("#navCurriculums").click(function() {
+            fillandShowModalCV();
+        });
+
+        function fillandShowModalCV() {
             if (!isModalLleno) {
 
                 $.ajax({
@@ -523,8 +528,7 @@
                 });
             }
             $("#myModal").modal("show");
-
-        });
+        }
 
 
         $(document).on("click", ".cv", function() {
@@ -549,29 +553,41 @@
 
         $(document).on("click", ".postulacion", function() {
             oferta_postulacion = $(this).attr('id');
-            console.log("cvseleccionado=" + cv_seleccionado);
-            console.log("postulado a=" + oferta_postulacion);
-            $.ajax({
-                url: HOST + "postulaciones/alta",
-                data: {
-                    oferta: oferta_postulacion,
-                    cv: cv_seleccionado
-                },
-                type: "post",
-                dataType: "json",
-                success: function(resp) {
-                    if (resp.estado) {
-                        $(this).html('Postulado').toggleClass('btn-primary btn-success');;
-                    } else {
-                        $(this).html('Error, Reintenta').toggleClass('btn-primary btn-danger');;
-                        setTimeout(
-                            function() {
-                                $(this).html('Postularme!').toggleClass('btn-danger btn-primary');;
-                            }, 2500
-                        );
+            if (isCVseleccionado()) {
+                console.log("cvseleccionado=" + cv_seleccionado);
+                console.log("postulado a=" + oferta_postulacion);
+                $.ajax({
+                    url: HOST + "postulaciones/alta",
+                    data: {
+                        oferta: oferta_postulacion,
+                        cv: cv_seleccionado
+                    },
+                    type: "post",
+                    dataType: "json",
+                    success: function(resp) {
+                        if (resp.estado) {
+                            $(this).html('Postulado').toggleClass('btn-primary btn-success');;
+                        } else {
+                            $(this).html('Error, Reintenta').toggleClass('btn-primary btn-danger');;
+                            setTimeout(
+                                function() {
+                                    $(this).html('Postularme!').toggleClass('btn-danger btn-primary');;
+                                }, 2500
+                            );
+                        }
                     }
-                }
-            });
+                });
+            } else {
+                fillandShowModalCV();
+            }
         });
+
+        function isCVseleccionado() {
+            if (cv_seleccionado == null) {
+                return false;
+            } else {
+                return true;
+            }
+        }
     });
 </script>
