@@ -15,30 +15,21 @@
     <!-- Your custom styles (optional) -->
     <link href="<?=HOST?>vendor/css/style.min.css" rel="stylesheet">
     <style>
+        .map-container{
+            overflow:hidden;
+            padding-bottom:56.25%;
+            position:relative;
+            height:0;
+        }
+        .map-container iframe{
+            left:0;
+            top:0;
+            height:100%;
+            width:100%;
+            position:absolute;
+        }
 
-    .map-container{
-        overflow:hidden;
-        padding-bottom:56.25%;
-        position:relative;
-        height:0;
-    }
-    .map-container iframe{
-        left:0;
-        top:0;
-        height:100%;
-        width:100%;
-        position:absolute;
-    }
-    </style>
 
-    <script>
-        const HOST = '<?=HOST?>';
-    </script>
-    <script src="<?=HOST?>vendor/js/jquery.min.js"></script>
-</head>
-
-<body class="grey lighten-2">
-<style>
         .searchDiv {
             position: relative;
         }
@@ -149,125 +140,138 @@
             color: white;
         }
     </style>
+
+    <script>
+        const HOST = '<?=HOST?>';
+    </script>
+    <script src="<?=HOST?>vendor/js/jquery.min.js"></script>
+
 </head>
 
+<body class="grey lighten-2">
 <!--Main Navigation-->
     <header>
-
         <!-- Navbar -->
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark scrolling-navbar">
-        <div class="container-fluid">
+        <!-- <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark scrolling-navbar"> -->
+        <nav class="navbar fixed-top navbar-expand-md navbar-light white double-nav scrolling-navbar">
+            <div class="container-fluid">
+                <div class="float-left">
+                    <button class="navbar-toggler sidebar" type="button">
+                    <i class="fas fa-bars"></i>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                </div>
 
-            <!-- Brand -->
-            <a class="navbar-brand waves-effect  rounded-sm" href="<?=HOST?>" target="_blank">
-                <strong class="blue-text">Firstworking</strong>
-            </a>
+                <!-- Brand -->
+                <a class="navbar-brand waves-effect  rounded-sm" href="<?=HOST?>" target="_blank">
+                    <strong class="blue-text">Firstworking</strong>
+                </a>
 
-            <!-- Collapse -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <!-- Collapse -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="botonNavBar">
+                    <i class="fas fa-bars"></i>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <button class="navbar-toggler" type="button" id="btnCloseSidebar" style="display: none;" >
+                    <i class="fas fa-times"></i>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <!-- Links -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Links -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left -->
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link waves-effect  rounded-sm" href="<?=HOST?>">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect  rounded-sm" href="<?=HOST?>#about" target="_blank">Nosotros</a>
+                        </li>
+                    </ul>
 
-                <!-- Left -->
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link waves-effect  rounded-sm" href="<?=HOST?>">Home
-                            <span class="sr-only">(current)</span>
+                    <!-- Right -->
+                    <ul class="navbar-nav nav-flex-icons">
+                        <!-- <li class="nav-item">
+                            <a href="https://twitter.com/MDBootstrap" class="nav-link waves-effect  rounded-sm" target="_blank">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li> -->
+                        <li class="nav-item">
+                        <a href="<?=HOST?>usuarios/perfil" class="nav-link border border-light rounded waves-effect  rounded-sm"
+                            target="_blank">
+                            <i class="fas fa-user mr-2"></i>Mi Perfil
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect  rounded-sm" href="<?=HOST?>#about" target="_blank">Nosotros</a>
-                    </li>
-                </ul>
-
-                <!-- Right -->
-                <ul class="navbar-nav nav-flex-icons">
-                    <!-- <li class="nav-item">
-                        <a href="https://twitter.com/MDBootstrap" class="nav-link waves-effect  rounded-sm" target="_blank">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </li> -->
-                    <li class="nav-item">
-                    <a href="<?=HOST?>usuarios/perfil" class="nav-link border border-light rounded waves-effect  rounded-sm"
-                        target="_blank">
-                        <i class="fas fa-user mr-2"></i>Mi Perfil
-                    </a>
-                    </li>
-                </ul>
-
+                        </li>
+                    </ul>
+                </div>
             </div>
-
-        </div>
         </nav>
         <!-- Navbar -->
 
         <!-- Sidebar -->
-        <div class="sidebar-fixed navbar-dark bg-dark position-fixed">
+        <div class="sidebar-fixed bg-dark position-fixed" id="sidebar">
+            <a href="<?=HOST?>" class="logo-wrapper waves-effect  rounded-sm bg-dark mb-4">
+                <img src="<?=HOST?>Untitled.png" class="img-fluid" alt="">
+            </a>
 
-        <a href="<?=HOST?>" class="logo-wrapper waves-effect  rounded-sm bg-dark mb-4">
-            <img src="<?=HOST?>Untitled.png" class="img-fluid" alt="">
-        </a>
+            <div class="list-group list-group-flush">
+                <?php if (!empty($_SESSION['Usuario'])): ?>
+                    <?php if ($_SESSION['Usuario']['rol'] == 'admin'): ?>
+                        <a href="<?=HOST?>paginas/dashboard" class="list-group-item active waves-effect  rounded-sm">
+                            <i class="fas fa-chart-pie mr-3"></i>Dashboard
+                        </a>
+                        <a href="<?=HOST?>usuarios" class="list-group-item list-group-item-action waves-effect rounded-sm">
+                            <i class="fas fa-user mr-3"></i>Usuarios</a>
+                        <a href="<?=HOST?>provincias" class="list-group-item list-group-item-action waves-effect rounded-sm">
+                            <i class="fas fa-table mr-3"></i>Provincias</a>
+                        <a href="<?=HOST?>localidades" class="list-group-item list-group-item-action waves-effect rounded-sm">
+                            <i class="fas fa-table mr-3"></i>Localidades</a>
+                        <a href="<?=HOST?>facultades" class="list-group-item list-group-item-action waves-effect rounded-sm">
+                            <i class="fas fa-table mr-3"></i>Facultades</a>
+                        <a href="<?=HOST?>carreras" class="list-group-item list-group-item-action waves-effect rounded-sm">
+                            <i class="fas fa-table mr-3"></i>Carreras</a>
+                        <a href="<?=HOST?>curriculums" class="list-group-item list-group-item-action waves-effect rounded-sm">
+                            <i class="fas fa-table mr-3"></i>Curriculums</a>
+                        <a href="<?=HOST?>ofertas" class="list-group-item list-group-item-action waves-effect rounded-sm">
+                            <i class="fas fa-table mr-3"></i>Ofertas</a>
+                    <?php endif ?>
 
-        <div class="list-group list-group-flush">
-            <?php if (!empty($_SESSION['Usuario'])): ?>
-                <?php if ($_SESSION['Usuario']['rol'] == 'admin'): ?>
-                    <a href="<?=HOST?>paginas/dashboard" class="list-group-item active waves-effect  rounded-sm">
-                        <i class="fas fa-chart-pie mr-3"></i>Dashboard
+                    <?php if ($_SESSION['Usuario']['rol'] == 'ofertante'): ?>
+                        <a href="<?=HOST?>usuarios/perfil" class="list-group-item active waves-effect rounded-sm">
+                            <i class="fas fa-user mr-3"></i>Mi perfil
+                        </a>
+                        <a href="<?=HOST?>ofertas" class="list-group-item list-group-item-action waves-effect rounded-sm">
+                            <i class="fas fa-table mr-3"></i>Ofertas</a>
+                    <?php endif ?>
+
+                    <?php if ($_SESSION['Usuario']['rol'] == 'postulante'): ?>
+                        <a href="<?=HOST?>usuarios/perfil" class="list-group-item active waves-effect rounded-sm">
+                            <i class="fas fa-user mr-3"></i>Mi perfil
+                        </a>
+                        <a href="<?=HOST?>curriculums" class="list-group-item list-group-item-action waves-effect rounded-sm">
+                            <i class="fas fa-table mr-3"></i>Mis Curriculums
+                        </a>
+                        <a href="<?=HOST?>postulaciones" class="list-group-item list-group-item-action waves-effect rounded-sm">
+                            <i class="fas fa-table mr-3"></i>Mis Postulaciones
+                        </a>
+                    <?php endif ?>
+
+
+                    
+                    <hr>
+
+                    <a href="<?=HOST?>usuarios/logout" class="list-group-item active waves-effect  rounded-sm"
+                        onclick="return confirm('Se va a cerrar sesión. ¿Desea continuar?');">
+                        <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión
                     </a>
-                    <a href="<?=HOST?>usuarios" class="list-group-item list-group-item-action waves-effect rounded-sm">
-                        <i class="fas fa-user mr-3"></i>Usuarios</a>
-                    <a href="<?=HOST?>provincias" class="list-group-item list-group-item-action waves-effect rounded-sm">
-                        <i class="fas fa-table mr-3"></i>Provincias</a>
-                    <a href="<?=HOST?>localidades" class="list-group-item list-group-item-action waves-effect rounded-sm">
-                        <i class="fas fa-table mr-3"></i>Localidades</a>
-                    <a href="<?=HOST?>facultades" class="list-group-item list-group-item-action waves-effect rounded-sm">
-                        <i class="fas fa-table mr-3"></i>Facultades</a>
-                    <a href="<?=HOST?>carreras" class="list-group-item list-group-item-action waves-effect rounded-sm">
-                        <i class="fas fa-table mr-3"></i>Carreras</a>
-                    <a href="<?=HOST?>curriculums" class="list-group-item list-group-item-action waves-effect rounded-sm">
-                        <i class="fas fa-table mr-3"></i>Curriculums</a>
-                    <a href="<?=HOST?>ofertas" class="list-group-item list-group-item-action waves-effect rounded-sm">
-                        <i class="fas fa-table mr-3"></i>Ofertas</a>
+
+
+                    
                 <?php endif ?>
-
-                <?php if ($_SESSION['Usuario']['rol'] == 'ofertante'): ?>
-                    <a href="<?=HOST?>usuarios/perfil" class="list-group-item active waves-effect rounded-sm">
-                        <i class="fas fa-user mr-3"></i>Mi perfil
-                    </a>
-                    <a href="<?=HOST?>ofertas" class="list-group-item list-group-item-action waves-effect rounded-sm">
-                        <i class="fas fa-table mr-3"></i>Ofertas</a>
-                <?php endif ?>
-
-                <?php if ($_SESSION['Usuario']['rol'] == 'postulante'): ?>
-                    <a href="<?=HOST?>usuarios/perfil" class="list-group-item active waves-effect rounded-sm">
-                        <i class="fas fa-user mr-3"></i>Mi perfil
-                    </a>
-                    <a href="<?=HOST?>curriculums" class="list-group-item list-group-item-action waves-effect rounded-sm">
-                        <i class="fas fa-table mr-3"></i>Mis Curriculums
-                    </a>
-                    <a href="<?=HOST?>postulaciones" class="list-group-item list-group-item-action waves-effect rounded-sm">
-                        <i class="fas fa-table mr-3"></i>Mis Postulaciones
-                    </a>
-                <?php endif ?>
-
-
-                
-                <hr>
-
-                <a href="<?=HOST?>usuarios/logout" class="list-group-item active waves-effect  rounded-sm"
-                    onclick="return confirm('Se va a cerrar sesión. ¿Desea continuar?');">
-                    <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión
-                </a>
-
-
-                
-            <?php endif ?>
-        </div>
-
+            </div>
         </div>
         <!-- Sidebar -->
 
@@ -291,6 +295,29 @@
     <script>
         // Animations initialization
         new WOW().init();
+
+        $(".sidebar").click(function(){            
+            $(".sidebar-fixed").fadeIn();
+            $("#btnCloseSidebar").css('display', 'inline-block');
+            $("#botonNavBar").css('display', 'none');
+        });
+
+        $("#btnCloseSidebar").click(function(){
+            $(".sidebar-fixed").fadeOut();
+            $("#botonNavBar").css('display', 'inline-block');
+            $(this).css('display', 'none');
+        });
+
+        $( window ).resize(function() {
+            if ($( window ).width() <= 768) {
+                $(".sidebar-fixed").css('display', 'none');
+                $("#botonNavBar").css('display', 'inline-block');
+            }
+            if ($( window ).width() > 768) {
+                $(".sidebar-fixed").css('display', 'block');
+                $("#botonNavBar").css('display', 'none');
+            }
+        });
     </script>
 
 </body>

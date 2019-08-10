@@ -142,6 +142,7 @@
         <div class="container">
             <a class="navbar-brand js-scroll-trigger" href="#page-top"><img class="img-fluid" src="Untitled.png" style="height: 30px;"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -152,25 +153,28 @@
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="#services">Servicios</a>
                     </li>
-                    <li class="nav-item">
-                        <?php if (empty($_SESSION["Usuario"])) : ?>
-                            <a href="<?= HOST ?>usuarios/login" class="nav-link">Acceder</a>
-                        <?php elseif ($_SESSION["Usuario"]["rol"] == "postulante") : ?>
-                            <a id="navCurriculums" class="nav-link ">Mis CV</a>
-                        <?php elseif ($_SESSION["Usuario"]["rol"] == "ofertantes") : ?>
-                            <a href="<?= HOST ?>ofertas" class="nav-link">Mis Ofertas</a>
-                        <?php endif; ?>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<?= HOST ?>usuarios/perfil" class="nav-link">Mi perfil</a>
-                    </li>
-                    <li class="nav-item">
-                        <?php if (empty($_SESSION["Usuario"])) : ?>
-                            <a href="<?= HOST ?>usuarios/registro" class="nav-link">Registrate</a>
-                        <?php else : ?>
+                    <?php if (!empty($_SESSION["Usuario"])) : ?>
+                        <li class="nav-item">
+                            <?php if ($_SESSION["Usuario"]["rol"] == "postulante") : ?>
+                                <a id="navCurriculums" class="nav-link ">Mis CV</a>
+                            <?php elseif ($_SESSION["Usuario"]["rol"] == "ofertante") : ?>
+                                <a href="<?= HOST ?>ofertas" class="nav-link">Mis Ofertas</a>
+                            <?php endif ?>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= HOST ?>usuarios/perfil" class="nav-link">Mi perfil</a>
+                        </li>
+                        <li class="nav-item">
                             <a href="<?= HOST ?>usuarios/logout" class="nav-link">Salir</a>
-                        <?php endif; ?>
-                    </li>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a href="<?= HOST ?>usuarios/login" class="nav-link">Acceder</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= HOST ?>usuarios/registro" class="nav-link">Registrate</a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
