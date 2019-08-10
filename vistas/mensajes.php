@@ -22,7 +22,7 @@
         $("#modalMensajeSistema").modal('show');
 
         function limpiarSesion() {
-            $.ajax(HOST+'/paginas/limpiarSesion',{
+            $.ajax('<?=HOST?>paginas/limpiarSesion',{
                 type: 'GET',
                 cache: true
             });

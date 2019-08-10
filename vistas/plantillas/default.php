@@ -149,11 +149,6 @@
             color: white;
         }
     </style>
-
-    <script>
-        const HOST = '<?= HOST ?>';
-    </script>
-
 </head>
 
 <!--Main Navigation-->
