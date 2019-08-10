@@ -151,11 +151,14 @@ DROP TABLE IF EXISTS `postulaciones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `postulaciones` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `usuario_id` int(11) NOT NULL,
   `oferta_id` int(11) NOT NULL,
-  PRIMARY KEY (`oferta_id`,`usuario_id`),
+  `cv_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
   FOREIGN KEY (`oferta_id`) REFERENCES `ofertas` (`id`),
-  FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
+  FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`),
+  FOREIGN KEY (`cv_id`) REFERENCES `cv` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

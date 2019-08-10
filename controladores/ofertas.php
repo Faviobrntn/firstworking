@@ -69,7 +69,6 @@ class Ofertas extends Controlador
     }
 
     
-    
     public function eliminar($id = null)
     {
         try{
@@ -92,6 +91,33 @@ class Ofertas extends Controlador
             $this->Auth->flash($e->getMessage());
         }
         $this->redireccionar("ofertas/index");
+    }
+
+
+    public function detalle($id = null)
+    {
+        try{
+            $oferta = $this->Oferta->get($id, ['Postulacion']);
+
+            if(!empty($_POST)){
+                if($this->Oferta->actualizar($id, $_POST)){
+                    $this->Auth->flash("Se guardo con éxito!");
+                    $this->redireccionar("ofertas/index");
+                }   
+            }
+
+            $this->loadModel('Localidad');
+            $localidades = $this->Localidad->listado();
+            $this->loadModel('Carrera');
+            $carreras = $this->Carrera->listado();
+
+            $this->set(compact('localidades', 'oferta', 'carreras'));
+            $this->render('ofertas/editar');
+
+        } catch (\Exception $e) {
+            $this->Auth->flash($e->getMessage());
+            $this->redireccionar("ofertas/index");
+        }
     }
 }
 
