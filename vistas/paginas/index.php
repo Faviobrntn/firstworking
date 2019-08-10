@@ -157,9 +157,12 @@
                             <a href="<?= HOST ?>usuarios/login" class="nav-link">Acceder</a>
                         <?php elseif ($_SESSION["Usuario"]["rol"] == "postulante") : ?>
                             <a id="navCurriculums" class="nav-link ">Mis CV</a>
-                        <?php else : ?>
+                        <?php elseif ($_SESSION["Usuario"]["rol"] == "ofertantes") : ?>
                             <a href="<?= HOST ?>ofertas" class="nav-link">Mis Ofertas</a>
                         <?php endif; ?>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= HOST ?>usuarios/perfil" class="nav-link">Mi perfil</a>
                     </li>
                     <li class="nav-item">
                         <?php if (empty($_SESSION["Usuario"])) : ?>
