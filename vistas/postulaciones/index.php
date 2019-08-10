@@ -27,32 +27,34 @@
     <div class="col-md-12 mb-4">
         <div class="card">
             <div class="card-body">
-                <table class="table table-hover">
-                    <thead class="blue-grey lighten-4">
-                        <tr>
-                            <td>Titulo</td>
-                            <td>Modalidad</td>
-                            <td>Horario Laboral</td>
-                            <td>Postulacion</td>
-                            <td class="text-center" colspan="2">Acciones</td>
-                        </tr>
-                    </thead>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="blue-grey lighten-4">
+                            <tr>
+                                <td>Titulo</td>
+                                <td>Modalidad</td>
+                                <td>Horario Laboral</td>
+                                <td>Postulacion</td>
+                                <td class="text-center" colspan="2">Acciones</td>
+                            </tr>
+                        </thead>
 
-                    <tbody>
-                        <?php if(!empty($postulaciones)): ?>
-                            <?php foreach($postulaciones as $postulacion): ?>
-                                <tr>
-                                    <td><?= ucwords($postulacion['oferta']['titulo']) ?></td>
-                                    <td><?= ucwords($postulacion['oferta']['modalidad']) ?></td>
-                                    <td><?= ucwords($postulacion['oferta']['horario_laboral']) ?></td>
-                                    <td><?= $postulacion['creado'] ?></td>
-                                    <td class="text-center"><a class="btn btn-sm btn-success" href="<?=HOST?>postulaciones/detalle/<?=$postulacion['id']?>">Ver</a></td>
-                                    <td class="text-center"><a class="btn btn-sm btn-danger" href="<?=HOST?>postulaciones/eliminar/<?=$postulacion['id']?>">Eliminar</a></td>
-                                </tr>
-                            <?php endforeach ?>
-                        <?php endif ?>
-                    </tbody>
-                </table>
+                        <tbody>
+                            <?php if(!empty($postulaciones)): ?>
+                                <?php foreach($postulaciones as $postulacion): ?>
+                                    <tr>
+                                        <td><?= ucwords($postulacion['oferta']['titulo']) ?></td>
+                                        <td><?= ucwords($postulacion['oferta']['modalidad']) ?></td>
+                                        <td><?= ucwords($postulacion['oferta']['horario_laboral']) ?></td>
+                                        <td><?= $postulacion['creado'] ?></td>
+                                        <td class="text-center"><a class="btn btn-sm btn-success" href="<?=HOST?>postulaciones/detalle/<?=$postulacion['id']?>">Ver</a></td>
+                                        <td class="text-center"><a class="btn btn-sm btn-danger" href="<?=HOST?>postulaciones/eliminar/<?=$postulacion['id']?>">Eliminar</a></td>
+                                    </tr>
+                                <?php endforeach ?>
+                            <?php endif ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

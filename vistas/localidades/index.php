@@ -37,12 +37,6 @@
                     <input type="text" name="nombre" id="nombreLocali" class="form-control mb-4" placeholder="Nombre" required="required">
                     <select name="provincia_id" id="provincia" class="form-control mb-4" required="required">
                         <option value="">Seleccione la Provincia</option>
-                        <?php 
-                            // $sql= $this->db->query("select * FROM provincias");
-                            // while($fila=$sql->fetch_array()){
-                            //     echo "<option value='".$fila['provincia_id']."'>".$fila['nombre']."</option>";
-                            // }
-                        ?>
                         <?php if(!empty($provincias)): ?>
                             <?php foreach($provincias as $key => $value): ?>
                                 <option value="<?=$key?>"><?=ucfirst($value)?></option>
@@ -60,40 +54,42 @@
     <div class="col-md-9 mb-4">
         <div class="card">
             <div class="card-body">
-                <table class="table table-hover">
-                    <thead class="blue-grey lighten-4">
-                        <tr>
-                            <td>#</td>
-                            <td>Nombre</td>
-                            <td>Descripción</td>
-                            <td>Provincia</td>
-                            <td class="text-center" colspan="2">Acciones</td>
-                        </tr>
-                    </thead>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="blue-grey lighten-4">
+                            <tr>
+                                <td>#</td>
+                                <td>Nombre</td>
+                                <td>Descripción</td>
+                                <td>Provincia</td>
+                                <td class="text-center" colspan="2">Acciones</td>
+                            </tr>
+                        </thead>
 
-                    <tbody>
-                        <?php if(!empty($localidades)): ?>
-                            <?php foreach($localidades as $localidad): ?>
-                                <tr>
-                                    <td><?= $localidad['id'] ?></td>
-                                    <td><?= ucwords($localidad['nombre']) ?></td>
-                                    <td><?= $localidad['descripcion'] ?></td>
-                                    <td><?= (!empty($localidad['provincia'])) ? ucwords($localidad['provincia']['nombre']) : '' ?></td>
-                                    <td class="text-center">
-                                        <button type="button" class="btn btn-sm btn-primary" 
-                                            data-toggle="modal" 
-                                            data-target="#modalEditarLocalidad"
-                                            data-id="<?=$localidad['id']?>"
-                                            data-nombre="<?=$localidad['nombre']?>"
-                                            data-provincia="<?=$localidad['provincia_id']?>"
-                                            data-desc="<?=$localidad['descripcion']?>"
-                                        >Editar</button></td>
-                                    <td class="text-center"><a class="btn btn-sm btn-danger" href="<?=HOST?>localidades/eliminar/<?=$localidad['id']?>">Eliminar</a></td>
-                                </tr>
-                            <?php endforeach ?>
-                        <?php endif ?>
-                    </tbody>
-                </table>
+                        <tbody>
+                            <?php if(!empty($localidades)): ?>
+                                <?php foreach($localidades as $localidad): ?>
+                                    <tr>
+                                        <td><?= $localidad['id'] ?></td>
+                                        <td><?= ucwords($localidad['nombre']) ?></td>
+                                        <td><?= $localidad['descripcion'] ?></td>
+                                        <td><?= (!empty($localidad['provincia'])) ? ucwords($localidad['provincia']['nombre']) : '' ?></td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-sm btn-primary" 
+                                                data-toggle="modal" 
+                                                data-target="#modalEditarLocalidad"
+                                                data-id="<?=$localidad['id']?>"
+                                                data-nombre="<?=$localidad['nombre']?>"
+                                                data-provincia="<?=$localidad['provincia_id']?>"
+                                                data-desc="<?=$localidad['descripcion']?>"
+                                            >Editar</button></td>
+                                        <td class="text-center"><a class="btn btn-sm btn-danger" href="<?=HOST?>localidades/eliminar/<?=$localidad['id']?>">Eliminar</a></td>
+                                    </tr>
+                                <?php endforeach ?>
+                            <?php endif ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

@@ -46,38 +46,40 @@
     <div class="col-md-9 mb-4">
         <div class="card">
             <div class="card-body">
-                <table class="table table-hover">
-                    <thead class="blue-grey lighten-4">
-                        <tr>
-                            <td>#</td>
-                            <td>Nombre</td>
-                            <td>Descripción</td>
-                            <td class="text-center" colspan="2">Acciones</td>
-                        </tr>
-                    </thead>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="blue-grey lighten-4">
+                            <tr>
+                                <td>#</td>
+                                <td>Nombre</td>
+                                <td>Descripción</td>
+                                <td class="text-center" colspan="2">Acciones</td>
+                            </tr>
+                        </thead>
 
-                    <tbody>
-                        <?php if(!empty($provincias)): ?>
-                            <?php foreach($provincias as $provincia): ?>
-                                <tr>
-                                    <td><?= $provincia['id'] ?></td>
-                                    <td><?= ucwords($provincia['nombre']) ?></td>
-                                    <td><?= $provincia['descripcion'] ?></td>
-                                    <!-- <td class="text-center"><a class="btn btn-sm btn-primary" href="<?=HOST?>provincias/editar/<?=$provincia['id']?>">Editar</a></td> -->
-                                    <td class="text-center">
-                                        <button type="button" class="btn btn-sm btn-primary" 
-                                            data-toggle="modal" 
-                                            data-target="#modalEditarProvincia"
-                                            data-id="<?=$provincia['id']?>"
-                                            data-nombre="<?=$provincia['nombre']?>"
-                                            data-desc="<?=$provincia['descripcion']?>"
-                                        >Editar</button></td>
-                                    <td class="text-center"><a class="btn btn-sm btn-danger" href="<?=HOST?>provincias/eliminar/<?=$provincia['id']?>">Eliminar</a></td>
-                                </tr>
-                            <?php endforeach ?>
-                        <?php endif ?>
-                    </tbody>
-                </table>
+                        <tbody>
+                            <?php if(!empty($provincias)): ?>
+                                <?php foreach($provincias as $provincia): ?>
+                                    <tr>
+                                        <td><?= $provincia['id'] ?></td>
+                                        <td><?= ucwords($provincia['nombre']) ?></td>
+                                        <td><?= $provincia['descripcion'] ?></td>
+                                        <!-- <td class="text-center"><a class="btn btn-sm btn-primary" href="<?=HOST?>provincias/editar/<?=$provincia['id']?>">Editar</a></td> -->
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-sm btn-primary" 
+                                                data-toggle="modal" 
+                                                data-target="#modalEditarProvincia"
+                                                data-id="<?=$provincia['id']?>"
+                                                data-nombre="<?=$provincia['nombre']?>"
+                                                data-desc="<?=$provincia['descripcion']?>"
+                                            >Editar</button></td>
+                                        <td class="text-center"><a class="btn btn-sm btn-danger" href="<?=HOST?>provincias/eliminar/<?=$provincia['id']?>">Eliminar</a></td>
+                                    </tr>
+                                <?php endforeach ?>
+                            <?php endif ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

@@ -28,32 +28,35 @@
         <div class="card">
             <div class="card-body">
                 <a class="btn btn-primary float-right" href="<?=HOST?>carreras/alta">Nuevo</a>
-                <table class="table table-hover">
-                    <thead class="blue-grey lighten-4">
-                        <tr>
-                            <td>#</td>
-                            <td>Nombre</td>
-                            <td>Facultad</td>
-                            <td>Descripción</td>
-                            <td class="text-center" colspan="2">Acciones</td>
-                        </tr>
-                    </thead>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="blue-grey lighten-4">
+                            <tr>
+                                <td>#</td>
+                                <td>Nombre</td>
+                                <td>Facultad</td>
+                                <td>Descripción</td>
+                                <td class="text-center" colspan="2">Acciones</td>
+                            </tr>
+                        </thead>
 
-                    <tbody>
-                        <?php if(!empty($carreras)): ?>
-                            <?php foreach($carreras as $carrera): ?>
-                                <tr>
-                                    <td><?= $carrera['id'] ?></td>
-                                    <td><?= ucwords($carrera['nombre']) ?></td>
-                                    <td><?= !empty($carrera['facultad'])? $carrera['facultad']['nombre'] : '' ?></td>
-                                    <td><?= $carrera['descripcion'] ?></td>
-                                    <td class="text-center"><a class="btn btn-sm btn-primary" href="<?=HOST?>carreras/editar/<?=$carrera['id']?>">Editar</a></td>
-                                    <td class="text-center"><a class="btn btn-sm btn-danger" href="<?=HOST?>carreras/eliminar/<?=$carrera['id']?>">Eliminar</a></td>
-                                </tr>
-                            <?php endforeach ?>
-                        <?php endif ?>
-                    </tbody>
-                </table>
+                        <tbody>
+                            <?php if(!empty($carreras)): ?>
+                                <?php foreach($carreras as $carrera): ?>
+                                    <tr>
+                                        <td><?= $carrera['id'] ?></td>
+                                        <td><?= ucwords($carrera['nombre']) ?></td>
+                                        <td><?= !empty($carrera['facultad'])? $carrera['facultad']['nombre'] : '' ?></td>
+                                        <td><?= $carrera['descripcion'] ?></td>
+                                        <td class="text-center"><a class="btn btn-sm btn-primary" href="<?=HOST?>carreras/editar/<?=$carrera['id']?>">Editar</a></td>
+                                        <td class="text-center"><a class="btn btn-sm btn-danger" href="<?=HOST?>carreras/eliminar/<?=$carrera['id']?>">Eliminar</a></td>
+                                    </tr>
+                                <?php endforeach ?>
+                            <?php endif ?>
+                        </tbody>
+                    </table>
+                    
+                </div>
             </div>
         </div>
     </div>
