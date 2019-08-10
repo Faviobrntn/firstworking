@@ -26,48 +26,28 @@ class Postulaciones extends Controlador
     public function alta()
     {
         if (!empty($_POST)) {
+            $postulaciones = $this->Postulacion->getFK($this->Auth->user('id'), 'usuario_id');
+
+            // Chequeo que no se postule 2 veces
+            if(!empty($postulaciones)){
+                foreach ($postulaciones as $post) {
+                    if($post['oferta_id'] == $_POST['oferta']){
+                        $this->respuesta['mensaje'] = "Ya se postulo antes.";
+                        die(json_encode($this->respuesta));
+                    }
+                }
+            }
+
             if($this->Postulacion->alta($_POST)){
-                $this->Auth->flash("Se guardo con éxito!");
-                $this->redireccionar("postulaciones/index");
+
+                $this->respuesta['estado'] = true;
             }
         }
 
-        $this->loadModel('Oferta');
-        $ofertas = $this->Oferta->listado();
-        $this->loadModel('Usuario');
-        $usuarios = $this->Usuario->listado();
-
-        $this->set(compact('ofertas', 'usuarios'));
-        $this->render('postulaciones/alta');
+        die(json_encode($this->respuesta));
     }
 
-    public function editar($id = null)
-    {
-        try{
-            $postulacion = $this->Postulacion->get($id);
 
-            if(!empty($_POST)){
-                if($this->Postulacion->actualizar($id, $_POST)){
-                    $this->Auth->flash("Se guardo con éxito!");
-                    $this->redireccionar("postulaciones/index");
-                }   
-            }
-
-            $this->loadModel('Oferta');
-            $ofertas = $this->Oferta->listado();
-            $this->loadModel('Usuario');
-            $usuarios = $this->Usuario->listado();
-
-            $this->set(compact('ofertas', 'postulacion', 'usuarios'));
-            $this->render('postulaciones/editar');
-
-        } catch (\Exception $e) {
-            $this->Auth->flash($e->getMessage());
-            $this->redireccionar("postulaciones/index");
-        }
-    }
-
-    
     
     public function eliminar($id = null)
     {
