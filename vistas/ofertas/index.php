@@ -55,7 +55,7 @@
                                     <td><?= !empty($oferta['carrera'])? $oferta['carrera']['nombre'] : '' ?></td>
                                     <td class="text-center"><a class="btn btn-sm btn-primary" href="<?=HOST?>ofertas/editar/<?=$oferta['id']?>">Editar</a></td>
                                     <td class="text-center"><a class="btn btn-sm btn-danger" href="<?=HOST?>ofertas/eliminar/<?=$oferta['id']?>">Eliminar</a></td>
-                                    <td class="text-center"><a class="btn btn-sm btn-success" href="<?=HOST?>ofertas//<?=$oferta['id']?>">Postul.</a></td>
+                                    <td class="text-center"><a class="btn btn-sm btn-success" href="<?=HOST?>ofertas/detalle/<?=$oferta['id']?>">Postul.</a></td>
                                 </tr>
                             <?php endforeach ?>
                         <?php endif ?>

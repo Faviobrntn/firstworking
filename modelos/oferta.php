@@ -20,6 +20,12 @@ class Oferta extends Modelo
                 'fk' => 'localidad_id',
                 'tabla' => 'localidades'
             ],
+            /*'Postulacion' => [
+                'pk' => 'id',
+                'fk' => 'localidad_id',
+                'tabla' => 'localidades',
+                'inversa' => true
+            ],*/
             'Usuario' => [
                 'pk' => 'id',
                 'fk' => 'usuario_id',

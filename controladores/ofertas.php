@@ -97,22 +97,20 @@ class Ofertas extends Controlador
     public function detalle($id = null)
     {
         try{
-            $oferta = $this->Oferta->get($id, ['Postulacion']);
+            $oferta = $this->Oferta->get($id);
 
-            if(!empty($_POST)){
-                if($this->Oferta->actualizar($id, $_POST)){
-                    $this->Auth->flash("Se guardo con éxito!");
-                    $this->redireccionar("ofertas/index");
-                }   
+            $this->loadModel('Postulacion');
+            $postulaciones = $this->Postulacion->getFK($id, 'oferta_id', ['Usuario', 'Curriculum']);
+
+            if (!empty($postulaciones)) {
+                // foreach ($postulaciones as $post) {
+                    
+                // }
+                $oferta['postulaciones'] = $postulaciones;
             }
-
-            $this->loadModel('Localidad');
-            $localidades = $this->Localidad->listado();
-            $this->loadModel('Carrera');
-            $carreras = $this->Carrera->listado();
-
-            $this->set(compact('localidades', 'oferta', 'carreras'));
-            $this->render('ofertas/editar');
+            
+            $this->set(compact('oferta'));
+            $this->render('ofertas/detalle');
 
         } catch (\Exception $e) {
             $this->Auth->flash($e->getMessage());

@@ -8,10 +8,14 @@ class Postulacion extends Modelo
         parent::__construct();
 
         $this->tabla = "postulaciones";
-        $this->pk = "usuario_id";
-        $this->pk = "oferta_id";
+        $this->pk = "id";
 
         $this->asociaciones = [
+            'Curriculum' => [
+                'pk' => 'id',
+                'fk' => 'cv_id',
+                'tabla' => 'cv'
+            ],
             'Oferta' => [
                 'pk' => 'id',
                 'fk' => 'oferta_id',

@@ -75,7 +75,7 @@ class Modelo extends Conexion
                 $query->close();
             }
 
-            if (!empty($asociaciones)) {
+            if ((!empty($resultados) AND !empty($asociaciones))) {
                 foreach ($asociaciones as $asoc) {
                     if (array_key_exists($asoc, $this->asociaciones)) {
                         $this->loadModel($asoc);
@@ -90,6 +90,56 @@ class Modelo extends Conexion
                 }
 
                 $resultados = $resultados + $adjunto;
+            }
+           
+            return $resultados;
+                    
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
+
+    /**
+     * GetFK
+     * Obtiene registros del modelo que lo usa,
+     * con sus asociaciones y busca por un campo dado
+     * @param string $id
+     * @param string $campo
+     * @param array $asociaciones
+     * @return array $resultados
+     * @throws Exception
+     */
+    public function getFK($id, $campo, $asociaciones = [])
+    {
+        try {
+            if(empty($id)) { throw new \Exception("Falta un parametro"); }
+            $resultados = null;
+            $sql = "SELECT * FROM {$this->tabla} WHERE $campo = $id";
+
+            if($query = $this->db->query($sql)){            
+                while ($row = $query->fetch_assoc()){
+                    $resultados[] = $row;
+                }
+                $query->close();
+            }
+
+            if ((!empty($resultados) AND !empty($asociaciones))) {
+                foreach ($asociaciones as $asoc) {
+                    if (array_key_exists($asoc, $this->asociaciones)) {
+                        $this->loadModel($asoc);
+                    }
+                }
+                foreach ($resultados as $k => $r) {
+                    $adjunto = [];
+                    foreach ($asociaciones as $asoc) {
+                        if (array_key_exists($asoc, $this->asociaciones)) {
+                            $fk = $this->asociaciones[$asoc]['fk'];
+                            $adjunto[strtolower($asoc)] = $this->{$asoc}->get($r[$fk]);
+                        }
+                    }
+                    $resultados[$k] = $resultados[$k] + $adjunto;
+                }
             }
            
             return $resultados;
