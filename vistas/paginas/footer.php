@@ -76,16 +76,16 @@
                 <h6 class="text-uppercase font-weight-bold">Work Team</h6>
                 <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                 <p>
-                    <a href="#!">Favio Barnatan</a>
+                    <a href="https://github.com/Faviobrntn">Favio Barnatan</a>
                 </p>
                 <p>
-                    <a href="#!">Fernando Albertengo</a>
+                    <a href="https://github.com/Pra3t0r5">Fernando Albertengo</a>
                 </p>
                 <p>
-                    <a href="#!">Nahuel Alvarez</a>
+                    <a href="https://github.com/nawealvarez">Nahuel Alvarez</a>
                 </p>
                 <p>
-                    <a href="#!">Lucas PAvan</a>
+                    <a href="https://github.com/LucasPavan04">Lucas PAvan</a>
                 </p>
 
             </div>
