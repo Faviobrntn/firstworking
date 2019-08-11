@@ -61,11 +61,10 @@
             <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 
                 <!-- Content -->
-                <h6 class="text-uppercase font-weight-bold">Company name</h6>
+                <h6 class="text-uppercase font-weight-bold">Firstworking Co</h6>
                 <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit
-                    amet, consectetur
-                    adipisicing elit.</p>
+                <p>Firstworking surgió a raiz de la necesidad de acercarse a las empresas que requieran estudiantes
+                    para insertarse en el mercado laboral.</p>
 
             </div>
             <!-- Grid column -->
@@ -74,19 +73,19 @@
             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
 
                 <!-- Links -->
-                <h6 class="text-uppercase font-weight-bold">Products</h6>
+                <h6 class="text-uppercase font-weight-bold">Work Team</h6>
                 <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                 <p>
-                    <a href="#!">MDBootstrap</a>
+                    <a href="#!">Favio Barnatan</a>
                 </p>
                 <p>
-                    <a href="#!">MDWordPress</a>
+                    <a href="#!">Fernando Albertengo</a>
                 </p>
                 <p>
-                    <a href="#!">BrandFlow</a>
+                    <a href="#!">Nahuel Alvarez</a>
                 </p>
                 <p>
-                    <a href="#!">Bootstrap Angular</a>
+                    <a href="#!">Lucas PAvan</a>
                 </p>
 
             </div>
@@ -121,9 +120,9 @@
                 <h6 class="text-uppercase font-weight-bold">Contact</h6>
                 <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                 <p>
-                    <i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
+                    <i class="fas fa-home mr-3"></i> Avenida Siempre Viva 742, Springfield, Oregon, US</p>
                 <p>
-                    <i class="fas fa-envelope mr-3"></i> info@example.com</p>
+                    <i class="fas fa-envelope mr-3"></i> admin@firstworking.com</p>
                 <p>
                     <i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
                 <p>
