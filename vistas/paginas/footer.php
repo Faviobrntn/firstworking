@@ -97,19 +97,26 @@
                 <!-- Links -->
                 <h6 class="text-uppercase font-weight-bold">Useful links</h6>
                 <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                <p>
-                    <a href="#!">Your Account</a>
-                </p>
-                <p>
-                    <a href="#!">Become an Affiliate</a>
-                </p>
-                <p>
-                    <a href="#!">Shipping Rates</a>
-                </p>
-                <p>
-                    <a href="#!">Help</a>
-                </p>
-
+                <?php if (!empty($_SESSION["Usuario"])) : ?>
+                            <?php if ($_SESSION["Usuario"]["rol"] == "postulante") : ?>
+                                <p><a id="navCurriculums" class="nav-link ">Mis CV</a></p>
+                            <?php elseif ($_SESSION["Usuario"]["rol"] == "ofertante") : ?>
+                                <p><a href="<?= HOST ?>ofertas" class="nav-link">Mis Ofertas</a></p>
+                            <?php endif ?>
+                        <p>
+                            <a href="<?= HOST ?>usuarios/perfil" class="nav-link">Mi perfil</a>
+                        </p>
+                        <p>
+                            <a href="<?= HOST ?>usuarios/logout" class="nav-link">Salir</a>
+                        </p>
+                    <?php else: ?>
+                        <p>
+                            <a href="<?= HOST ?>usuarios/login" class="nav-link">Acceder</a>
+                        </p>
+                        <p>
+                            <a href="<?= HOST ?>usuarios/registro" class="nav-link">Registrate</a>
+                        </p>
+                    <?php endif; ?>
             </div>
             <!-- Grid column -->
 
