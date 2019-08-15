@@ -42,9 +42,11 @@
                     <select name="localidad_id" id="localidad-id" class="form-control mb-4">
                         <option value="">Seleccione una localidad</option>
                         <?php if(!empty($localidades)): ?>
-                            <?php foreach($localidades as $key => $value): ?>
-                                <?php $check = ((!empty($usuario["localidad_id"]) AND ($usuario["localidad_id"] = $key))? 'selected' : '')?>; ?>
-                                <option value="<?=$key?>" <?=$check?> ><?= ucfirst($value) ?></option>
+                            <?php foreach($localidades as $localidad_id => $local): $checkloc = ''; ?>
+                                <?php if (!empty($usuario["localidad_id"])): ?>
+                                <?php $checkloc = ($usuario["localidad_id"] == $localidad_id)? 'selected' : ''; ?>
+                                <?php endif ?>
+                                <option value="<?=$localidad_id?>" <?=$checkloc?> ><?= ucfirst($local) ?></option>
                             <?php endforeach ?>
                         <?php endif ?>
                     </select>
@@ -52,9 +54,11 @@
                     <select name="rol" id="rol" class="form-control mb-4">
                         <option value="">Seleccione un rol</option>
                         <?php if(!empty($roles)): ?>
-                            <?php foreach($roles as $key => $value): ?>
-                                <?php $check = ((!empty($usuario["rol"]) AND ($usuario["rol"] = $key))? 'selected' : '')?>; ?>
-                                <option value="<?=$key?>" <?=$check?> ><?= ucfirst($value) ?></option>
+                            <?php foreach($roles as $rol_id => $rol): $checkrol = '';?>
+                                <?php if (!empty($usuario["rol"])): ?>
+                                <?php $checkrol = ($usuario["rol"] == $rol_id)? 'selected' : ''; ?>
+                                <?php endif ?>
+                                <option value="<?=$rol_id?>" <?=$checkrol?> ><?= ucfirst($rol) ?></option>
                             <?php endforeach ?>
                         <?php endif ?>
                     </select>
