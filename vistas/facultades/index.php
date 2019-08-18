@@ -1,24 +1,14 @@
 <!-- Heading -->
 <div class="card mb-4 wow fadeIn">
-
-    <!--Card content-->
     <div class="card-body d-sm-flex justify-content-between">
-
-        <h4 class="mb-2 mb-sm-0 pt-1">
-            <span>Facultades</span>
-        </h4>
-
+        <h4 class="mb-2 mb-sm-0 pt-1">Facultades</h4>
         <form class="d-flex justify-content-center">
-            <!-- Default input -->
             <input type="search" name="search" placeholder="Buscar" aria-label="Search" class="form-control">
             <button class="btn btn-primary btn-sm my-0 p" type="submit">
                 <i class="fas fa-search"></i>
             </button>
-
         </form>
-
     </div>
-
 </div>
 <!-- Heading -->
 
