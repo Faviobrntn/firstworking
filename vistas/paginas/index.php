@@ -1,27 +1,25 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xml:lang="es" lang="es">
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Language" content="es"/>
+    <!-- <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type"/> -->
+    <meta name="title" content="Firstworking">
     <meta name="description" content="Nos encargamos de conectar gente que da trabajo con gente que lo necesita">
     <meta name="keywords" content="HTML,CSS,XML,JavaScript">
     <meta name="author" content="Firstworking">
     <meta name="application-name" content="Firstworking">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="Content-Language" content="es"/>
     <meta name="distribution" content="global"/>
 
     <title>Inicio | Firstworking</title>
 
-    <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="<?= HOST ?>vendor/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?= HOST ?>vendor/css/scrolling-nav.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.3/css/mdb.min.css" rel="stylesheet">
+    <link href="<?= HOST ?>vendor/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="<?= HOST ?>vendor/css/scrolling-nav.css" rel="stylesheet" type="text/css"/>
+    <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet" type="text/css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.3/css/mdb.min.css" rel="stylesheet" type="text/css"/>
 
     <style>
         .searchDiv {
@@ -190,8 +188,6 @@
 
 
 
-
-
     <header class="bg-primary text-white">
         <div class="container text-center" style="height: 55vh;">
             <h1>Problemas buscando trabajo?</h1>
@@ -212,16 +208,16 @@
             </form>
         </div>
 
-        <div class=" text-center py-5">
-            <a class="js-scroll-trigger" href="#ofertasDestacadas">
-                <i class="bounce fas fa-angle-double-down fa-3x white-text"></i>
+        <div class="text-center py-5">
+            <a class="js-scroll-trigger" href="#ofertasDestacadas">&nbsp;&nbsp;
+                <i class="bounce fas fa-angle-double-down fa-3x white-text"></i>&nbsp;&nbsp;
             </a>
         </div>
     </header>
 
 
 
-    <section id="ofertasDestacadas" class="my-5 mx-5">
+    <section id="ofertasDestacadas" name="ofertasDestacadas" class="my-5 mx-5">
         <!-- Section heading -->
         <h2 class="h1-responsive font-weight-bold text-center">Ofertas Destacadas Recientes</h2>
         <!-- Section description -->
@@ -241,7 +237,7 @@
                     <div class="offset-md-1 col-xl-2">
                         <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
                             <a>
-                                <img alt="Imagen creada de forma aleatoria para las ofertas de trabajo" class="img-fluid" src="https://dummyimage.com/300.png/<?= $color ?>/fff/&text=<?= $oferta["titulo"][0] ?>">
+                                <img alt="Ofertas de trabajo: <?= $oferta["titulo"] ?>" class="img-fluid" src="https://dummyimage.com/300.png/<?= $color ?>/fff/&text=<?= $oferta["titulo"][0] ?>">
                                 <div class="mask rgba-white-slight"></div>
                             </a>
                         </div>

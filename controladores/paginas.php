@@ -51,7 +51,7 @@ class Paginas extends Controlador
             $this->Auth->flash("Su consulta ha sido enviada! Gracias.");
         }
 
-        $this->redireccionar("/");
+        $this->redireccionar("");
     }
 
 
