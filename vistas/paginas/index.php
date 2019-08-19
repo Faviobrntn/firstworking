@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="Content-Language" content="es"/>
+    <!-- <meta http-equiv="Content-Language" content="es"/> -->
     <!-- <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type"/> -->
     <meta name="title" content="Firstworking">
     <meta name="description" content="Nos encargamos de conectar gente que da trabajo con gente que lo necesita">
@@ -217,7 +217,7 @@
 
 
 
-    <section id="ofertasDestacadas" name="ofertasDestacadas" class="my-5 mx-5">
+    <section id="ofertasDestacadas" class="my-5 mx-5">
         <!-- Section heading -->
         <h2 class="h1-responsive font-weight-bold text-center">Ofertas Destacadas Recientes</h2>
         <!-- Section description -->
