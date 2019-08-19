@@ -327,14 +327,13 @@
                 <div class="col-lg-8 mx-auto">
                     <h2>Contactanos</h2>
                     <p class="lead">Comunicate directamente con nosotros</p>
-                    <form action="<?= HOST ?>/paginas/consulta" method="post">
+                    <form action="<?= HOST ?>paginas/consulta" method="post">
                         <label class="my-2" for="email">Tu Email: </label>
-                        <input class="form-control " type="email" name="email" id="email" required>
+                        <input class="form-control" type="email" name="email" id="email" required>
                         <label class="my-2" for="nombre">Tu Nombre: </label>
-                        <input class="form-control " type="text" name="nombre" id="nombre">
+                        <input class="form-control" type="text" name="nombre" id="nombre">
                         <label class="my-2" for="mensaje">Tu Mensaje: </label>
-                        <textarea class="form-control " name="mensaje" id="mensaje" required> Ingresa tu mensaje aqui.
-                        </textarea>
+                        <textarea class="form-control" name="mensaje" id="mensaje" placeholder="Ingresa tu mensaje aqui." required></textarea>
                         <button class="btn btn-primary float-right my-2" type="submit">Enviar</button>
                     </form>
                 </div>
