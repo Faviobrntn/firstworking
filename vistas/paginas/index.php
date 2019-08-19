@@ -3,9 +3,13 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="description" content="Nos encargamos de conectar gente que da trabajo con gente que lo necesita">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+    <meta name="author" content="Firstworking">
+    <meta name="application-name" content="Firstworking">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta http-equiv="Content-Language" content="es"/>
+    <meta name="distribution" content="global"/>
 
     <title>Inicio | Firstworking</title>
 
@@ -129,6 +133,9 @@
             background-color: #2196f3;
             color: white;
         }
+
+        /* Esto lo agrego aca para que no moleste en el validador del footer */
+        h6 { color: white; }
     </style>
 
     <script>
@@ -140,7 +147,8 @@
 <body id="page-top">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img class="img-fluid" src="Untitled.png" style="height: 30px;"></a>
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                <img alt="Logo de la empresa" class="img-fluid" src="Untitled.png" style="height: 30px;"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
                 <span class="navbar-toggler-icon"></span>
@@ -187,11 +195,11 @@
     <header class="bg-primary text-white">
         <div class="container text-center" style="height: 55vh;">
             <h1>Problemas buscando trabajo?</h1>
-            <img class="img-fluid" src="Untitled3.png" style="height: 25vh;">
+            <img alt="Imagen de la empresa como presentación" class="img-fluid" src="Untitled3.png" style="height: 25vh;">
             <p class="lead">La bolsa de trabajo diseñada para estudiantes de la UTN, por estudiantes.</p>
         </div>
         <div class="bg-dark px-0 py-3">
-            <form action="" method="get">
+            <form action="<?= HOST ?>" method="get">
                 <div class="row my-0 mx-0 py-1">
                     <div class="col-sm searchDiv input-group md-form form-sm form-1 offset-3 col-6">
                         <input class="form-control border-0 white-text text-center" name="search" type="text" placeholder="Ingresa tu consulta aqui!" aria-label="Search">
@@ -210,6 +218,9 @@
             </a>
         </div>
     </header>
+
+
+
     <section id="ofertasDestacadas" class="my-5 mx-5">
         <!-- Section heading -->
         <h2 class="h1-responsive font-weight-bold text-center">Ofertas Destacadas Recientes</h2>
@@ -230,7 +241,7 @@
                     <div class="offset-md-1 col-xl-2">
                         <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
                             <a>
-                                <img class="img-fluid" src="https://dummyimage.com/300.png/<?= $color ?>/fff/&text=<?= $oferta["titulo"][0] ?>" alt="Sample image">
+                                <img alt="Imagen creada de forma aleatoria para las ofertas de trabajo" class="img-fluid" src="https://dummyimage.com/300.png/<?= $color ?>/fff/&text=<?= $oferta["titulo"][0] ?>">
                                 <div class="mask rgba-white-slight"></div>
                             </a>
                         </div>
@@ -272,7 +283,7 @@
     </section>
 
 
-    <!---------------------------------------------------LOGIN------------------------------------------------->
+    <!-- ______LOGIN______ -->
     <section id="about">
         <div class="container">
             <div class="row">
@@ -332,48 +343,22 @@
     </section>
 
     <!-- Footer -->
+    <?php include("footer.php"); ?>
 
 
 
 
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="<?= HOST ?>vendor/js/jquery.min.js"></script>
-    <script src="<?= HOST ?>vendor/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="<?= HOST ?>vendor/js/jquery.easing.min.js"></script>
-
-    <!-- Custom JavaScript for this theme -->
-    <script src="<?= HOST ?>vendor/js/scrolling-nav.js"></script>
-
-
-    <footer id="footer" class="bg-dark">
-        <?php include("footer.php"); ?>
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; firstworking.utn 2019</p>
-        </div>
-        <!-- /.container -->
-    </footer>
     <!-- __________________________________________ MODALES __________________________________________ -->
-
-
-
-
-    <div class="modal fade right" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal fade right" id="myModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
-            <!--Content-->
             <div class="modal-content">
-                <!--Header-->
                 <div class="modal-header">
                     <p class="heading lead">Mis CV</p>
-
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" class="white-text">×</span>
                     </button>
                 </div>
 
-                <!--Body-->
                 <div class="modal-body">
                     <div class="text-center">
                         <i class="fas fa-check fa-4x mb-3 animated rotateIn"></i>
@@ -383,117 +368,122 @@
                     </ul>
                 </div>
 
-                <!--Footer-->
                 <div class="modal-footer justify-content-center">
-                    <a type="button" href="<?= HOST ?>curriculums" class="btn btn-primary float-right my-2">Modificar</a>
-                    <a type="button" class="btn btn-danger float-right my-2" data-dismiss="modal">Cerrar</a>
+                    <a href="<?= HOST ?>curriculums" class="btn btn-primary float-right my-2">Modificar</a>
+                    <a href="#" class="btn btn-danger float-right my-2" data-dismiss="modal">Cerrar</a>
                 </div>
             </div>
-            <!--/.Content-->
         </div>
     </div>
-</body>
-
-
-</html>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        var cv_seleccionado;
-        var isModalLleno = false;
+    
 
 
 
-        $("#navCurriculums").click(function() {
-            fillandShowModalCV();
-        });
-
-        function fillandShowModalCV() {
-            if (!isModalLleno) {
-
-                $.ajax({
-                    url: HOST + "curriculums/api",
-                    type: "get",
-                    dataType: "json",
-                    success: function(data) {
-                        console.log(data);
-                        for (let key in data) {
-                            $('#myModal').find("#cvlist").append('<a id="' + data[key].id + '" class="cv list-group-item list-group-item-action flex-column align-items-start"><div class="d-flex w-100 justify-content-between"><h5 class="mb-2 h5">' + data[key].titulo + '</h5></div><p class="mb-2">' + data[key].resumen + '</p></a>');
-                        };
-                        isModalLleno = true;
-                    }
-                });
-            }
-            $("#myModal").modal("show");
-        }
+    <script src="<?= HOST ?>vendor/js/jquery.min.js"></script>
+    <script src="<?= HOST ?>vendor/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= HOST ?>vendor/js/jquery.easing.min.js"></script>
+    <script src="<?= HOST ?>vendor/js/scrolling-nav.js"></script>
+    <script>
+        $(document).ready(function() {
+            var cv_seleccionado;
+            var isModalLleno = false;
 
 
-        $(document).on("click", ".cv", function() {
-            cv_seleccionado = $(this).attr('id');
-            $.ajax({
-                url: HOST + "curriculums/seleccionar",
-                data: {
-                    cv: cv_seleccionado
-                },
-                type: "post",
-                dataType: "json",
-                success: function(resp) {
-                    console.log(resp);
-                    console.log("cvseleccionado=" + cv_seleccionado);
-                    if (resp.estado) {
-                        document.cookie = "cv_seleccionado=" + cv_seleccionado;
-                        $("#myModal").modal("hide");
-                    }
-                }
+
+            $("#navCurriculums").click(function() {
+                fillandShowModalCV();
             });
-        });
 
-        $(document).on("click", ".postulacion", function() {
-            var oferta_postulacion = $(this).attr('id');
-            
-            if (isCVseleccionado()) {
-                console.log("cvseleccionado=" + cv_seleccionado);
-                console.log("postulado a=" + oferta_postulacion);
+            function fillandShowModalCV() {
+                if (!isModalLleno) {
 
-                var _this = $(this);
+                    $.ajax({
+                        url: HOST + "curriculums/api",
+                        type: "get",
+                        dataType: "json",
+                        success: function(data) {
+                            console.log(data);
+                            for (let key in data) {
+                                $('#myModal').find("#cvlist").append('<a id="' + data[key].id + '" class="cv list-group-item list-group-item-action flex-column align-items-start"><div class="d-flex w-100 justify-content-between"><h5 class="mb-2 h5">' + data[key].titulo + '</h5></div><p class="mb-2">' + data[key].resumen + '</p></a>');
+                            };
+                            isModalLleno = true;
+                        }
+                    });
+                }
+                $("#myModal").modal("show");
+            }
 
+
+            $(document).on("click", ".cv", function() {
+                cv_seleccionado = $(this).attr('id');
                 $.ajax({
-                    url: HOST + "postulaciones/alta",
+                    url: HOST + "curriculums/seleccionar",
                     data: {
-                        oferta: oferta_postulacion,
                         cv: cv_seleccionado
                     },
                     type: "post",
                     dataType: "json",
                     success: function(resp) {
+                        console.log(resp);
+                        console.log("cvseleccionado=" + cv_seleccionado);
                         if (resp.estado) {
-                            _this.html('Postulado').prop('disabled', true).toggleClass('btn-primary btn-success');;
-                        } else {
-                            if (resp.mensaje) {
-                                alert(resp.mensaje);
-                                _this.html('Ya te postulaste :´(').toggleClass('btn-primary btn-danger');;
-                            }else{
-                                _this.html('Error, Reintenta').toggleClass('btn-primary btn-danger');;
-                            }
-                            setTimeout(
-                                function() {
-                                    _this.html('Postularme!').prop('disabled', false).toggleClass('btn-danger btn-primary');;
-                                }, 2500
-                            );
+                            document.cookie = "cv_seleccionado=" + cv_seleccionado;
+                            $("#myModal").modal("hide");
                         }
                     }
                 });
-            } else {
-                fillandShowModalCV();
+            });
+
+            $(document).on("click", ".postulacion", function() {
+                var oferta_postulacion = $(this).attr('id');
+                
+                if (isCVseleccionado()) {
+                    console.log("cvseleccionado=" + cv_seleccionado);
+                    console.log("postulado a=" + oferta_postulacion);
+
+                    var _this = $(this);
+
+                    $.ajax({
+                        url: HOST + "postulaciones/alta",
+                        data: {
+                            oferta: oferta_postulacion,
+                            cv: cv_seleccionado
+                        },
+                        type: "post",
+                        dataType: "json",
+                        success: function(resp) {
+                            if (resp.estado) {
+                                _this.html('Postulado').prop('disabled', true).toggleClass('btn-primary btn-success');;
+                            } else {
+                                if (resp.mensaje) {
+                                    alert(resp.mensaje);
+                                    _this.html('Ya te postulaste :´(').toggleClass('btn-primary btn-danger');;
+                                }else{
+                                    _this.html('Error, Reintenta').toggleClass('btn-primary btn-danger');;
+                                }
+                                setTimeout(
+                                    function() {
+                                        _this.html('Postularme!').prop('disabled', false).toggleClass('btn-danger btn-primary');;
+                                    }, 2500
+                                );
+                            }
+                        }
+                    });
+                } else {
+                    fillandShowModalCV();
+                }
+            });
+
+            function isCVseleccionado() {
+                if (cv_seleccionado == null) {
+                    return false;
+                } else {
+                    return true;
+                }
             }
         });
+    </script>
 
-        function isCVseleccionado() {
-            if (cv_seleccionado == null) {
-                return false;
-            } else {
-                return true;
-            }
-        }
-    });
-</script>
+
+</body>
+</html>

@@ -1,10 +1,4 @@
 <footer id="footer" class="page-footer font-small unique-color-dark">
-    <style>
-        h6 {
-            color: white;
-        }
-    </style>
-
 
     <div class="bg-primary">
         <div class="container">
@@ -144,7 +138,8 @@
     </div>
     <!-- Footer Links -->
 
-
-
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; firstworking.utn 2019</p>
+    </div>
 </footer>
 <!-- Footer -->

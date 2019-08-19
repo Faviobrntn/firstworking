@@ -42,7 +42,12 @@ class Paginas extends Controlador
             $mensaje .= "Nombre: ".$_POST['nombre']."\n";
             $mensaje .= "E-mail: ".$_POST['email']."\n";
             $mensaje .= "Mensaje: ".$_POST['mensaje']."\n";
-            mail("soporte@firstworking.com", "Consulta en la pagina", $mensaje);
+
+            $para  = 'faviobarnatan@gmail.com, ';
+            $para .= 'nahuelalvarezutn@gmail.com, ';
+            $para .= 'fernando.albertengo@gmail.com, ';
+            $para .= 'lucaspavan.lp@gmail.com, ';
+            mail($para, "Consulta en la pagina", $mensaje);
             $this->Auth->flash("Su consulta ha sido enviada! Gracias.");
         }
 

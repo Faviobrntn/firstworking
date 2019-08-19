@@ -8,10 +8,10 @@
         <div class="dataTables_paginate paging_simple_numbers" id="dtBasicExample_paginate">
             <ul class="pagination">
                 <li class="paginate_button page-item previous disabled" id="dtBasicExample_previous">
-                    <a href="#" aria-controls="dtBasicExample" data-dt-idx="0" tabindex="0" class="page-link">Anterior</a>
+                    <a href="#" aria-controls="dtBasicExample_previous" data-dt-idx="0" tabindex="0" class="page-link">Anterior</a>
                 </li>
                 <li class="paginate_button page-item next disabled" id="dtBasicExample_next">
-                    <a href="#" aria-controls="dtBasicExample" data-dt-idx="7" tabindex="0" class="page-link">Siguiente</a>
+                    <a href="#" aria-controls="dtBasicExample_next" data-dt-idx="7" tabindex="0" class="page-link">Siguiente</a>
                 </li>
             </ul>
         </div>
@@ -28,7 +28,7 @@
         <div class="dataTables_paginate paging_simple_numbers" id="dtBasicExample_paginate">
             <ul class="pagination">
                 <li class="paginate_button page-item previous <?= (!$this->paginador['anterior'])? 'disabled':'' ?>" id="dtBasicExample_previous">
-                    <a href="?page=<?= $this->paginador['anterior'] ?>" aria-controls="dtBasicExample" data-dt-idx="0" tabindex="0" class="page-link">Anterior</a>
+                    <a href="?page=<?= $this->paginador['anterior'] ?>" aria-controls="dtBasicExample_previous" data-dt-idx="0" tabindex="0" class="page-link">Anterior</a>
                 </li>
 
                 <!--<li class="paginate_button page-item active">
@@ -39,7 +39,7 @@
                 </li>-->
 
                 <li class="paginate_button page-item next <?= (!$this->paginador['siguiente'])? 'disabled':'' ?>" id="dtBasicExample_next">
-                    <a href="?page=<?= $this->paginador['siguiente'] ?>" aria-controls="dtBasicExample" data-dt-idx="7" tabindex="0" class="page-link">Siguiente</a>
+                    <a href="?page=<?= $this->paginador['siguiente'] ?>" aria-controls="dtBasicExample_next" data-dt-idx="7" tabindex="0" class="page-link">Siguiente</a>
                 </li>
             </ul>
         </div>
