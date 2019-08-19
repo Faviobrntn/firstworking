@@ -46,7 +46,7 @@ class Paginas extends Controlador
             $para  = 'faviobarnatan@gmail.com, ';
             $para .= 'nahuelalvarezutn@gmail.com, ';
             $para .= 'fernando.albertengo@gmail.com, ';
-            $para .= 'lucaspavan.lp@gmail.com, ';
+            $para .= 'lucaspavan.lp@gmail.com';
             mail($para, "Consulta en la pagina", $mensaje);
             $this->Auth->flash("Su consulta ha sido enviada! Gracias.");
         }
