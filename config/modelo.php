@@ -115,7 +115,7 @@ class Modelo extends Conexion
         try {
             if(empty($id)) { throw new \Exception("Falta un parametro"); }
             $resultados = null;
-            $sql = "SELECT * FROM {$this->tabla} WHERE $campo = $id";
+            $sql = "SELECT * FROM {$this->tabla} WHERE $campo = '$id'";
 
             if($query = $this->db->query($sql)){            
                 while ($row = $query->fetch_assoc()){

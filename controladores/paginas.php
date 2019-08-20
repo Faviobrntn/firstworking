@@ -24,7 +24,15 @@ class Paginas extends Controlador
 
     public function dashboard()
     {
+        $this->loadModel('Usuario');
 
+        $total = $this->Usuario->cantidad('usuarios');
+        $postulantes = $this->Usuario->getFK('postulante', 'rol');
+        $ofertantes = $this->Usuario->getFK('ofertante', 'rol');
+        $admins = $this->Usuario->getFK('admin', 'rol');
+
+        // debug($postulantes);exit;
+        $this->set(compact('admins', 'postulantes', 'ofertantes', 'total'));
         $this->render('paginas/dashboard');
     }
     

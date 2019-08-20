@@ -20,7 +20,7 @@
             <div class="card-body">
                 <a href="<?=HOST?>usuarios/alta" class="btn btn-primary float-right">Registrar nuevo</a>
                 <h5 class="card-title">Usuarios</h5>
-                <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <p class="card-text">Listado de usuarios del sistema</p>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
