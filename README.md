@@ -1,9 +1,13 @@
 # Firstworking
-=============================
 
-Es un mini proyecto sobre una bolsa de trabajo
+Es un mini proyecto sobre una bolsa de trabajo.
 
 ---------------
+
+Objetivo
+---------------
+Trabajo integrador final 2019 para la materia Entornos Graficos - UTN frro
+
 
 Instalacion
 ---------------
